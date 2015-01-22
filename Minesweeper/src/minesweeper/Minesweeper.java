@@ -14,8 +14,10 @@ import java.util.Scanner;
 public class Minesweeper {
 //Instance variables
     String name;
-    String welcomeText = "Hello, this is the Minesweeper game.\n"
-            + " Press the button to proceed with the game.";
+    String instructions = "Minesweeper is a logic game where\n"
+            + "mines are hidden in a grid of squares.\n" 
+            + "The goal of the game is to clear a rectangular board\n"
+            + "containing hidden mines without detonating any of them.\n";
     
     /**
      * @param args the command line arguments
@@ -23,12 +25,18 @@ public class Minesweeper {
     public static void main(String[] args) {
         Minesweeper myGame = new Minesweeper();
         myGame.getName();
-        myGame.displayWelcome();
-        // TODO code application logic here
-    }
+        myGame.displayHelp();
+        
+    Game beginner = new Game("Beginner", 9, 2);
+    beginner.discribeLevel();
+    Game intermidiate = new Game("Intermidiate", 81, 13);
+    intermidiate.discribeLevel();
+    Game expert = new Game("Expert", 256, 40);
+    expert.discribeLevel();
+       }
 
     /**
-     *
+     *First function
      */
     public void getName(){
         // Getting the name of the player
@@ -38,11 +46,11 @@ public class Minesweeper {
     }
 
     /**
-     *
+     *HEre is the second function
      */
-    public void displayWelcome() {
+    public void displayHelp() {
         //Displaying wencome message
         System.out.println("\nWelcome" + this.name + "\n");
-        System.out.println(this.welcomeText);
+        System.out.println(this.instructions);
     }
 }
