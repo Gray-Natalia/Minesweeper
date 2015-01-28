@@ -7,7 +7,7 @@ package minesweeper;
 
 /**
  *
- * @author nicoya
+ * @author nicoya The Confused 
  */
 public class Board {
     //Instance variables
