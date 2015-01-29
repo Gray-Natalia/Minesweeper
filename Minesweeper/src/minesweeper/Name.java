@@ -18,7 +18,13 @@ public class Name {
     String ifnot;
     
     public static void main(String[] args) {
-        
+        getName();     
+    
+    } 
+    /** Moved from main to getName by Keith to own method for greater 
+     * accessibility from other classes. 
+     */
+    public static void getName() {  
         Name intro = new Name();
         intro.greeting = "welcome to Minesweeper game";
         intro.name = "Please, enter your name";
@@ -32,8 +38,6 @@ public class Name {
         
     if ( name.length()>= 4) System.out.println("Great " + name +", Go ahead!!!");
     else System.out.println(name + intro.ifnot);
-    
-    } 
-    
     }
+}
     
