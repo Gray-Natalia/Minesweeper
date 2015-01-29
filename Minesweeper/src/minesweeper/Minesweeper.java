@@ -50,7 +50,7 @@ public class Minesweeper {
      */
     public void displayHelp() {
         //Displaying wencome message
-        System.out.println("\nWelcome" + this.name + "\n");
+        System.out.println("\nWelcome " + this.name + "\n");
         System.out.println(this.instructions);
     }
 }

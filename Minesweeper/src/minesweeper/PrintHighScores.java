@@ -8,12 +8,13 @@ package minesweeper;
  *
  * @author cheryl
  */
-public class HighScoreList {
+public class PrintHighScores {
     public void DisplayhHighScoreList(){ 
          System.out.println("High Score List" + "\n");
             for (int i = 0; i <10; i++) {
-                System.out.println(ranking[i] + "." + "\t" +  playerName[i] + 
+                System.out.println(HighScores.beginner[i] + "." + "\t" +  playerName[i] + 
                         "\t" + ((int) time[i]/60) + ":" + ((int) time[i]%60));
             }
+        HighScores.Print(0);
     }    
 }

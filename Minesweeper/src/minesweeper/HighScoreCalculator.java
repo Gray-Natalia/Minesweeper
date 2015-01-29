@@ -23,6 +23,6 @@ public class HighScoreCalculator {
         currentScore = 60;
         int i;
         for (i = 0; i <10; i++)
-            if currentScore < HighScoreBeginner.HighScoreBeginner(i)
+            if currentScore < HighScores.HighScoreBeginner(i)
     }
 }
