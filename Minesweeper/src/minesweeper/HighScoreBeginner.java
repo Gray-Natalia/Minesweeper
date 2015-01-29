@@ -16,7 +16,16 @@ public class HighScoreBeginner {
         "Kevin", "Nate", "Bob", "Dan", "Amy", "Jane" };
         double[] time = { 10.5, 20.23, 30, 35, 40, 55, 65, 85, 93, 100 };
         
+        System.out.println(ranking[3] + "." + "\t" + playerName[3] + "\t" + time[3]);
+        
+        playerName[3] = "Jessica";
        
-        System.out.println(ranking[0] + "." + "\t" + playerName[0] + "\t" + time[0]);
+        System.out.println(ranking[3] + "." + "\t" + playerName[3] + "\t" + time[3]);
+    }
+    public static void returnArray(int[] ranking) {
+        for (int i = 0; i < ranking.length; i++) {
+            System.out.print(ranking[i] + " ");
+        }
     }
 }
+
