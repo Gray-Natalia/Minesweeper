@@ -12,18 +12,18 @@ package minesweeper;
 public class Game {
     //Instance variables
     public String level;
-    public int squeres;
+    public int squares;
     public int mines;
     
-    public Game(String gameLevel, int squeresTotal, int minesTotal){
+    public Game(String gameLevel, int squaresTotal, int minesTotal){
         level = gameLevel;
-        squeres = squeresTotal;
+        squares = squaresTotal;
         mines = minesTotal;
     }
     
           
-    public void discribeLevel(){
-        System.out.println(level + " has " + squeres + "squeres and " + mines + "mines.");
+    public void describeLevel(){
+        System.out.println(level + " has " + squares + "squares and " + mines + "mines.");
                 
     }
 

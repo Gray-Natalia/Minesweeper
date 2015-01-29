@@ -28,11 +28,11 @@ public class Minesweeper {
         myGame.displayHelp();
         
     Game beginner = new Game("Beginner", 9, 2);
-    beginner.discribeLevel();
-    Game intermidiate = new Game("Intermidiate", 81, 13);
-    intermidiate.discribeLevel();
+    beginner.describeLevel();
+    Game intermediate = new Game("Intermediate", 81, 13);
+    intermediate.describeLevel();
     Game expert = new Game("Expert", 256, 40);
-    expert.discribeLevel();
+    expert.describeLevel();
        }
 
     /**
