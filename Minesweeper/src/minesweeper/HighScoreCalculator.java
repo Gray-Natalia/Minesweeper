@@ -7,8 +7,14 @@ package minesweeper;
 
 /**
  *
- * @author Keith Banner
+ * @author Keith Banner, Nikki Huntsman
  */
 public class HighScoreCalculator {
-    
-}
+        public void CheckScore(){
+        
+        if (newScore > time[9]){
+        system.out.println("Sorry you did not make the top ten ranking. Please try again.");
+        break; 
+        }             
+    }
+}       
