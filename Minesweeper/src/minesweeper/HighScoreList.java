@@ -20,6 +20,7 @@ public class HighScoreList {
                  + ranking[6] + "." + "\t" +  playerName[6] + time[6] + "\n"
                  + ranking[7] + "." + "\t" +  playerName[7] + time[7] + "\n"
                  + ranking[8] + "." + "\t" +  playerName[8] + time[8] + "\n"
-                 + ranking[9] + "." + "\t" +  playerName[9] + time[9] + "\n");
+                 + ranking[9] + "." + "\t" +  playerName[9] + time[9] + "\n"
+                 + "11"       + "." + "\t" +  Name);
     }    
 }

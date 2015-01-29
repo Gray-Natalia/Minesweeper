@@ -21,11 +21,17 @@ public class HighScoreBeginner {
         playerName[3] = "Jessica";
        
         System.out.println(ranking[3] + "." + "\t" + playerName[3] + "\t" + time[3]);
+        
+        returnArray(new int[]{1, 2, 3, 12, 5, 6, 7, 8, 9, 10, 11});
+        
+        System.out.println(ranking[3] + "." + "\t" + playerName[3] + "\t" + time[3]);
+        
     }
     public static void returnArray(int[] ranking) {
         for (int i = 0; i < ranking.length; i++) {
             System.out.print(ranking[i] + " ");
         }
     }
+    
 }
 
