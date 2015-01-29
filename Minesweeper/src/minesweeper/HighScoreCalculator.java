@@ -7,7 +7,7 @@ package minesweeper;
 
 /**
  *
- * @author Keith
+ * @author Keith Banner
  */
 public class HighScoreCalculator {
     
