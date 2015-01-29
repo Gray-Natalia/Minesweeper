@@ -12,8 +12,8 @@ public class HighScoreList {
     public void DisplayhHighScoreList(){ 
          System.out.println("High Score List" + "\n");
             for (int i = 0; i <10; i++) {
-                System.out.println(ranking[i] + "." + "\t" +  playerName[i] + "\t" 
-                        + ((int) time[i]/60) + ":" + ((int) time[i]%60));
+                System.out.println(ranking[i] + "." + "\t" +  playerName[i] + 
+                        "\t" + ((int) time[i]/60) + ":" + ((int) time[i]%60));
             }
     }    
 }
