@@ -23,7 +23,7 @@ public class Game {
     
           
     public void describeLevel(){
-        System.out.println(level + " has " + squares + "squares and " + mines + "mines.");
+        System.out.println(level + " has " + squares + " squares and " + mines + " mines.");
                 
     }
 
