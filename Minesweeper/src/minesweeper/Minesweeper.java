@@ -16,7 +16,7 @@ public class Minesweeper {
     String name;
     String instructions = "Minesweeper is a logic game where\n"
             + "mines are hidden in a grid of squares.\n" 
-            + "The goal of the game is to clear a rectangular board\n"
+            + "The goal of the game is to clear a board\n"
             + "containing hidden mines without detonating any of them.\n";
     
     /**
