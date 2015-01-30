@@ -12,8 +12,8 @@ package minesweeper;
 public class Location {
     int columnTotal;  //Number of columns
     int rowTotal; //Number of rows
-    int squeres = columnTotal + rowTotal;
-    int numMines = (columnTotal*rowTotal)- squeres;
+    int squares = columnTotal + rowTotal;
+    int numMines = (columnTotal*rowTotal)- squares;
     
     boolean mines;
     
