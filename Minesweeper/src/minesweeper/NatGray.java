@@ -13,10 +13,13 @@ import java.util.Scanner;
  */
 public class NatGray {
     
+public static void main(String[] args) {
+        NatGra();     
     
+    }     
    public static void NatGra()
    {
-      int weight, height;
+      int weight = 0, height = 0;
       double bmi;
       
       System.out.println("This is the Body Mass Index calculator");
@@ -32,7 +35,7 @@ public class NatGray {
         
       Scanner input1 = new Scanner (System.in); 
       
-      System.out.println("Enter your height in sm");
+      System.out.println("Enter your height in cm");
       if(input1.hasNextInt()) { //возвращает истинну если с потока ввода можно считать целое число
        height = input1.nextInt();
        } else {
