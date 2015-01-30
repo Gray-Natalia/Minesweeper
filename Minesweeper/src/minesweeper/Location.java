@@ -22,10 +22,7 @@ public class Location {
     
   
     double random = Math.random (); //To define randomly if it exist or not a mine
-            if (random>0.9)   //10% of probability to exist a mine
-                mines=true;
-            else
-                mines=false;
+    mines = random>0.9; //10% of probability to exist a mine
            
            
     }      
