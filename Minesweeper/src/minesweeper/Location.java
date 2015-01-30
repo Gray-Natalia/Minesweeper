@@ -12,19 +12,25 @@ package minesweeper;
 public class Location {
     int columnTotal;  //Number of columns
     int rowTotal; //Number of rows
-    int squares = columnTotal + rowTotal;
-    int numMines = (columnTotal*rowTotal)- squares;
+    int squares = columnTotal *  rowTotal;
     
     boolean mines;
-    
+     
     
     public Location (){
     
   
-    double random = Math.random (); //To define randomly if it exist or not a mine
-    mines = random>0.9; //10% of probability to exist a mine
-           
-           
-    }      
+     double random = Math.random (); //To define randomly if it exist or not a mine
+            if (random>0.9)   //10% of probability to exist a mine
+                mines=true;
+            else
+                mines=false;
+            
+    }
+    
+    public boolean isMined(){
+        return false;
+        }    
+   
 }
 
