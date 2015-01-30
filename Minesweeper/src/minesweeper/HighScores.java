@@ -11,11 +11,13 @@ package minesweeper;
  */
 
 import java.util.Arrays;
+import static minesweeper.PrintHighScores.printBeginnerHighScores;
 
 public class HighScores 
 {
+   
     public static void main(String[] args){
-    
+        changeHighScoreValues(6, "Keith", 60);
     }
     
     HighScores[] beginner = new HighScores[10];
@@ -66,6 +68,20 @@ public class HighScores
         ranking = r;
         playerName = p;
         time = t;
+    }
+    public static void changeHighScoreValues(int index, String newPlayerName, double newTime){        
+        HighScores hs = new HighScores();
+        hs.beginner[index].playerName = newPlayerName;
+        hs.beginner[index].time = newTime;
+        printBeginnerHighScores();
+        System.out.println("Beginner High Score List" + "\n" +
+                 "Rank\tName\t\tTime");
+            for (int i = 0; i <10; i++) {
+                System.out.println(hs.beginner[i].ranking + "." + "\t" 
+                        +  hs.beginner[i].playerName + "\t\t"
+                        + ((int) hs.beginner[i].time/60) + ":"  //Minutes
+                        + String.format("%02d",(int) hs.beginner[i].time%60));      //Seconds
+            }
     }
 }
 
