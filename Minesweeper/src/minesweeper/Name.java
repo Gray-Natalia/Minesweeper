@@ -26,18 +26,25 @@ public class Name {
      */
     public static void getName() {  
         Name intro = new Name();
-        intro.greeting = "welcome to Minesweeper game";
-        intro.name = "Please, enter your name";
-        intro.ifnot =" your name must contain at least 4 character, Try Again!!";
+        intro.greeting = "Welcome to Minesweeper.";
+        intro.name = "Please enter your name.";
+        intro.ifnot = "\nPlayer name must contain 3 to 15 characters."
+                + " Please try Again.";
        
         String name;
-        //int four = 4;
         Scanner input = new Scanner (System.in);
         System.out.println(intro.name);
         name = input.nextLine();
-        
-    if ( name.length()>= 4) System.out.println("Great " + name +", Go ahead!!!");
-    else System.out.println(name + intro.ifnot);
-    }
+    
+        //Checks for minumum of 3 characters and max of 15.
+        //Loops if incorrect input.
+        while((name.length() < 3) || (name.length() > 15)) { 
+            System.out.println(intro.ifnot);
+            System.out.println("");
+            System.out.println(intro.name);
+            name = input.nextLine();
+        }
+        System.out.println("Great " + name +", Go ahead!!!");
+    }  
 }
     
