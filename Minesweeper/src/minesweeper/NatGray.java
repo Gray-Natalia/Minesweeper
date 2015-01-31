@@ -41,18 +41,19 @@ public static void main(String[] args) {
        } else {
           System.out.println("The number you enters wasn't in integer");
         }
-        
-       bmi = weight/((height*height)/100);
+       
+      
+       bmi = weight/((double)(height*height)/100);
     
       
        if(bmi < 18.5) {
-       System.out.println("You are underweight");
+       System.out.println("Your Body Mass Index is " + bmi + ".\n" + "You are \'underweight\'.");
         } else if (bmi < 24.9){
-            System.out.println("You are normal");
+            System.out.println("Your Body Mass Index is " + bmi + ".\n" + "You are \'normal\'.");
         } else if (bmi < 29.9){
-        System.out.println("You are overweight");
+        System.out.println("Your Body Mass Index is " + bmi + ".\n" + "You are \'overweight\'.");
         } else if (bmi >= 30){
-            System.out.println("You suffer from Obesity");
+            System.out.println("Your Body Mass Index is " + bmi + ".\n" + "You suffer from \'Obesity\'.");
         } 
        }}
 
