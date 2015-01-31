@@ -14,10 +14,10 @@ import java.util.Scanner;
 public class NatGray {
     
 public static void main(String[] args) {
-        NatGra();     
+        NatGray();     
     
     }     
-   public static void NatGra()
+   public static void NatGray()
    {
       int weight = 0, height = 0;
       double bmi;
