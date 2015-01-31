@@ -19,9 +19,9 @@ public static void main(String[] args) {
     }     
    public static void NatGray()
    {
-      int weight = 0, height = 0;
-      double bmi;
-      
+      int weight = 0;
+      double bmi, height;
+      height =(int) 0;
       System.out.println("This is the Body Mass Index calculator");
       
       Scanner input = new Scanner (System.in);
@@ -43,7 +43,7 @@ public static void main(String[] args) {
         }
        
       
-       bmi = weight/((double)(height*height)/100);
+       bmi = weight/((height/100)*(height/100));
     
       
        if(bmi < 18.5) {
