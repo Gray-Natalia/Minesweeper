@@ -45,19 +45,27 @@ public class Location {
     public Location (){
         
                         
-      double Begginer = 0;
-        
-      mines = Begginer>0.9;
-      
+      double Beginner = 0;
+        if (Beginner>0.9)
+            mines = true;
+        else
+            mines=false;
+             
+       
       double Intermediate = 0;
-         
-      mines = Intermediate>0.7;
+      
+      if(Intermediate >0.7)
+          mines = true;
+      else
+          mines=false;
       
       
       double Expert = 0;
           
-          
-      mines = Expert>0.5;
+      if(Expert >0.5)    
+          mines = true;
+      else
+          mines=false;
                          
     }
     
