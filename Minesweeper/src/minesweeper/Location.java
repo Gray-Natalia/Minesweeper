@@ -5,27 +5,60 @@
  */
 package minesweeper;
 
+
+
 /**
  *
  * @author Alfonso
  */
 public class Location {
-    int columnTotal;  //Number of columns
-    int rowTotal; //Number of rows
-    int squares = columnTotal *  rowTotal;
+     
+        
+  public static void main (String[] args, String B, String I, String E) {
+   
+            
+    String greeting = "Enter the level to play B (Beginner), I (Intermediate) or E (Expert).";
+    String warning = "Only B (Beginner), I (Intermediate) or E (Expert) is allowed.";
+    String message = "You have entered (level difficulty) with (number) columns and (number) rows.";
+    
+    
+  }
+    int columnBeginner = 3;
+    int columnIntermediate = 9;
+    int columnExpert = 16;
+    int rowBeginner = 3;
+    int rowIntermediate = 9;
+    int rowExpert = 16;
+    
+    Location level = new Location();
+    
+   
+            
+    int squaresBeginner = columnBeginner *  rowBeginner;
+    int squareIntermediate = columnIntermediate * rowIntermediate;
+    int squareExpert = columnExpert * columnExpert;
     
     boolean mines;
      
+         
     
     public Location (){
-    
-  
-     double random = Math.random (); //To define randomly if it exist or not a mine
-            if (random>0.9)   //10% of probability to exist a mine
-                mines=true;
-            else
-                mines=false;
-            
+        
+                        
+      double Begginer = 0;
+        
+      mines = Begginer>0.9;
+      
+      double Intermediate = 0;
+         
+      mines = Intermediate>0.7;
+      
+      
+      double Expert = 0;
+          
+          
+      mines = Expert>0.5;
+                         
     }
     
     public boolean isMined(){
