@@ -10,7 +10,7 @@ package minesweeper;
  * @author kalavic
  */
 public class Game {
-    //Instance variables
+    //Instancevariables variables
     public String level;
     public int squares;
     public int mines;

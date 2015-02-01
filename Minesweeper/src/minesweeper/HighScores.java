@@ -10,7 +10,6 @@ package minesweeper;
  * @author Keith
  */
 
-import java.util.Arrays;
 import static minesweeper.PrintHighScores.printBeginnerHighScores;
 
 public class HighScores 
@@ -69,6 +68,7 @@ public class HighScores
         playerName = p;
         time = t;
     }
+    
     public static void changeHighScoreValues(int index, String newPlayerName, double newTime){        
         HighScores hs = new HighScores();
         hs.beginner[index].playerName = newPlayerName;
