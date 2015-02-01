@@ -14,7 +14,7 @@ package minesweeper;
 public class Location {
      
         
-  public static void main (String[] args, String B, String I, String E) {
+  public static void main (String[] args) {
    
             
     String greeting = "Enter the level to play B (Beginner), I (Intermediate) or E (Expert).";
