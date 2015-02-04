@@ -11,19 +11,18 @@ package minesweeper;
  * @author Keith
  */
 public class CellValueCalculatorRandom {
+    
     public static void main(String args[]) 
     throws java.io.IOException {
         CellValueCalculatorRandom cvcr = new CellValueCalculatorRandom();
         cvcr.ChooseDifficultyLevel();
         cvcr.calculateNumMines();
     }
+    
     int numberOfMines = 99;
     int numberOfColumns = 30;
     int numberOfRows = 16;
     int numberOfCells = numberOfColumns * numberOfRows;
-    
-    
-    
     
     CellValueCalculatorRandom[] mineLocation = new CellValueCalculatorRandom[numberOfMines];
     

@@ -6,77 +6,79 @@ package minesweeper;
 
 import java.util.Scanner;
 
-
-
 /**
  *
  * @author jacksonrkj
  */
-public class HelpMenuView  {
-        
-    private final static String[][] menuItems = {
-        {"P", "How to Play"},
-        {"S", "Basic Strategies"}, 
-        {"A", "About"},
-        {"B", "Back"}
-    };
+
+
+public class MainMenuView {
     
-    // Create instance of the HelpMenuControl (action) class
-    private HelpMenuControl helpMenuControl = new HelpMenuControl();
+    public static void main(String[] args) {
+        MainMenuView mainMenuView = new MainMenuView();
+        mainMenuView.getInput();
+    }
     
-    // default constructor
-    public HelpMenuView() {
-        
-    } 
+    private static final String[][] menuItems = {
+        {"P", "Play"},
+        {"V", "View Best Times"},
+        {"H", "Help"},
+        {"X", "Exit Minesweeper"}
+    }; 
+  
+    MainMenuControl mainMenuControl = new MainMenuControl();
     
-    // display the help menu and get the end users input selection
+    public MainMenuView() {
+
+    }
+ 
+    
     public void getInput() {       
-              
+
         String command;
         Scanner inFile = new Scanner(System.in);
         
         do {
-            
             this.display(); // display the menu
-            
+
             // get commaned entered
             command = inFile.nextLine();
             command = command.trim().toUpperCase();
             
             switch (command) {
                 case "P":
-                    this.helpMenuControl.displayHowToPlay();
+                    this.mainMenuControl.startGame();
                     break;
-                case "S":
-                    this.helpMenuControl.displayBasicStrategies();
+                case "V":
+                    this.mainMenuControl.viewBestTimes();
                     break;
-                case "A":
-                    this.helpMenuControl.displayAbout();
-                    break;                  
-                case "B":
-//                    Will go back to future MainMenu class
-//                    mm.MainMenu();
+                case "H":
+                    this.mainMenuControl.displayHelpMenu();            
+                    break;
+                case "X":
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;
+                    continue;                    
             }
-        } while (!command.equals("B"));  
-        
-         return;
-    }
+        } while (!command.equals("X"));
 
-        // displays the help menu
-    public final void display() {
+        return;
+    }
+    
+
+    
+    
+   public final void display() {
         System.out.println("\n\t===============================================================");
-        System.out.println("\tHelp Menu");
+        System.out.println("\tMain Menu");
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following commands:");
 
-        for (int i = 0; i < HelpMenuView.menuItems.length; i++) {
+        for (int i = 0; i < MainMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
         }
         System.out.println("\t===============================================================\n");
-    }
-  
+    }   
+    
 }
