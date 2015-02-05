@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author jacksonrkj
+ * @author Group
  */
 public class HelpMenuView  {
         
@@ -45,13 +45,13 @@ public class HelpMenuView  {
             
             switch (command) {
                 case "P":
-                    this.helpMenuControl.displayHowToPlay();
+                    helpMenuControl.displayHowToPlay();
                     break;
                 case "S":
-                    this.helpMenuControl.displayBasicStrategies();
+                    helpMenuControl.displayBasicStrategies();
                     break;
                 case "A":
-                    this.helpMenuControl.displayAbout();
+                    helpMenuControl.displayAbout();
                     break;                  
                 case "B":
 //                    Will go back to future MainMenu class

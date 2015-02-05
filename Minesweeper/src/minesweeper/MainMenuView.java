@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author jacksonrkj
+ * @author Keith Banner
  */
 
 
@@ -47,13 +47,13 @@ public class MainMenuView {
             
             switch (command) {
                 case "P":
-                    this.mainMenuControl.startGame();
+                    mainMenuControl.startGame();
                     break;
                 case "V":
-                    this.mainMenuControl.viewBestTimes();
+                    mainMenuControl.viewBestTimes();
                     break;
                 case "H":
-                    this.mainMenuControl.displayHelpMenu();            
+                    mainMenuControl.displayHelpMenu();            
                     break;
                 case "X":
                     break;

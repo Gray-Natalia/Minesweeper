@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author jacksonrkj
+ * @author Keith Banner
  */
 public class MainMenuControl {
     
