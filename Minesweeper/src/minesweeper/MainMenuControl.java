@@ -14,9 +14,10 @@ public class MainMenuControl {
     
     
      
-    public void startGame() {
-        System.out.println("This function will call the game menu that is "
-                + "currently being created.");
+    public void chooseLevel() {
+        //Natalia Gray added chooseLevel
+        ChooseLevelMenuView chooseLevelMenuView = new ChooseLevelMenuView();
+        chooseLevelMenuView.getInput();
     }
 
     public void viewBestTimes() {
