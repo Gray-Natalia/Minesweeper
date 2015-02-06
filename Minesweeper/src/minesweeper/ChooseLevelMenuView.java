@@ -16,7 +16,7 @@ public class ChooseLevelMenuView {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 
         {"E", "Expert"},
-        {"X", "Exit Minesweeper"}
+        {"X", "Exit To Main Menu"}
     };
     
     // Create instance of the ChooseLevelMenuControl (action) class
