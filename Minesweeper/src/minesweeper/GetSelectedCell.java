@@ -12,46 +12,44 @@ import java.util.Scanner;
  */
 public class GetSelectedCell {
     
-    private Game game; 
+    
     
     /*
      * default constructor
      */
-    public GetSelectedCell(Game game) {
-        this.game = game;
-        
-    } 
+    
     
     public String getInput(Player player) {
 
-        String newMarker = null;
+        String selectedCell = null;
         Scanner in = new Scanner(System.in);
-                
+        
+        int numberOfColumns = 9;
+        
+                 
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
             // prompt for input
-            System.out.println("\n\t" + player.name 
-                    + ", enter a single character that will be used to mark "
-                    + "your squares in the game.");
+            System.out.println("Please enter column. A to " + (char)(numberOfColumns + 'A') );
             
             // get input from user           
-            newMarker = in.nextLine();
+            selectedCell = in.nextLine();
            
             // no marker entered?
-            if (newMarker == null  || newMarker.length() < 1) {
+            if (selectedCell == null  || selectedCell.length() < 1) {
                 continue;
             }
             
             // grab only the first character and convert it to upper case
-            newMarker = newMarker.substring(0, 1).toUpperCase();
+            selectedCell = selectedCell.substring(0, 1).toUpperCase();
             
-            if (newMarker.equals("Q")) { // Quit?
+            if (selectedCell.equals("Q")) { // Quit?
                 return null;
             }
             
             // Check to see if the marker is already in use
-            if (this.game.playerA.marker.equals(newMarker) ||
-                this.game.playerB.marker.equals(newMarker) ) {
+            if (this.game.playerA.marker.equals(selectedCell) ||
+                this.game.playerB.marker.equals(selectedCell) ) {
                new TicTacToeError().displayError(
                         "This marker is currently in use. " +
                         "Select a different character");
@@ -61,7 +59,7 @@ public class GetSelectedCell {
             valid = true; // signal that a valid marker was entered
         }
         
-        return newMarker;
+        return selectedCell;
     }
     
 }
