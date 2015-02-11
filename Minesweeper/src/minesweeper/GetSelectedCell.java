@@ -12,54 +12,62 @@ import java.util.Scanner;
  */
 public class GetSelectedCell {
     
+    public static void main(String args[]) {
+        GetSelectedCell getSelectedCell = new GetSelectedCell();
+        getSelectedCell.getInput();
+    }
     
     
-    /*
-     * default constructor
-     */
-    
-    
-    public String getInput(Player player) {
+    public String getInput() {
 
-        String selectedCell = null;
+        String selectedColumn = null;
+        String selectedRow = null;
+        
         Scanner in = new Scanner(System.in);
         
         int numberOfColumns = 9;
+        int numberOfRows = 9;
         
                  
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter column. A to " + (char)(numberOfColumns + 'A') );
+            System.out.println("Please enter column. A to " + (char)(numberOfColumns + 'A' - 1) );
             
             // get input from user           
-            selectedCell = in.nextLine();
-           
+            selectedColumn = in.nextLine();
+                       
             // no marker entered?
-            if (selectedCell == null  || selectedCell.length() < 1) {
+            if (selectedColumn == null  || selectedColumn.length() < 1) {
                 continue;
             }
             
             // grab only the first character and convert it to upper case
-            selectedCell = selectedCell.substring(0, 1).toUpperCase();
-            
-            if (selectedCell.equals("Q")) { // Quit?
-                return null;
-            }
-            
-            // Check to see if the marker is already in use
-            if (this.game.playerA.marker.equals(selectedCell) ||
-                this.game.playerB.marker.equals(selectedCell) ) {
-               new TicTacToeError().displayError(
-                        "This marker is currently in use. " +
-                        "Select a different character");
-               continue; 
-            }
+            selectedColumn = selectedColumn.substring(0, 1).toUpperCase();
             
             valid = true; // signal that a valid marker was entered
         }
         
-        return selectedCell;
+        valid = false;
+        while (!valid) {
+            // prompt for input
+            System.out.println("Please enter row. 1 to " + numberOfRows);
+            
+            // get input from user           
+            selectedRow = in.nextLine();
+           
+            // no marker entered?
+            if (selectedRow == null  || selectedRow.length() < 1) {
+                continue;
+            }
+            
+            // grab only the first character and convert it to upper case
+            selectedRow = selectedRow.substring(0, 1).toUpperCase();
+            
+            valid = true; // signal that a valid marker was entered
+        }
+        
+        return selectedColumn;
     }
     
 }
