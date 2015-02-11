@@ -46,8 +46,9 @@ public class MainMenuView {
             command = command.trim().toUpperCase();
             
             switch (command) {
+                //Natalia Gray added chooseLevel
                 case "P":
-                    mainMenuControl.startGame();
+                    mainMenuControl.chooseLevel();
                     break;
                 case "V":
                     mainMenuControl.viewBestTimes();
