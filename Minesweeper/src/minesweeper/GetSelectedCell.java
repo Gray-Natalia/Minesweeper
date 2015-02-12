@@ -28,11 +28,12 @@ public class GetSelectedCell {
         int numberOfColumns = 9;
         int numberOfRows = 9;
         int numberOfMines = 10;
-                 
+        char numberOfColumns2 = (char)(numberOfColumns + 'A' - 1);
+        
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter column A to " + (char)(numberOfColumns + 'A' - 1) + ".");
+            System.out.println("Please enter column A to " + numberOfColumns2 + ".");
             
             // get input from user           
             selectedColumn = in.nextLine();
@@ -40,6 +41,11 @@ public class GetSelectedCell {
             // no marker entered?
             if (selectedColumn == null  || selectedColumn.length() < 1) {
                 continue;
+            }
+            //the input is bigger than the number of rows or columns
+            
+            if (selectedColumn > numberOfColumns2){
+             continue;   
             }
             
             // grab only the first character and convert it to upper case
