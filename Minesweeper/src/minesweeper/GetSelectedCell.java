@@ -32,7 +32,7 @@ public class GetSelectedCell {
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter column. A to " + (char)(numberOfColumns + 'A' - 1) );
+            System.out.println("Please enter column A to " + (char)(numberOfColumns + 'A' - 1) + ".");
             
             // get input from user           
             selectedColumn = in.nextLine();
@@ -67,11 +67,14 @@ public class GetSelectedCell {
             valid = true; // signal that a valid marker was entered
         }
         
+        char c = selectedColumn.charAt(0);
+        int r = Integer.parseInt(selectedRow);
+        
         MineLocations mineLocations = new MineLocations();
         
         for (int i = 0; i < numberOfMines; i++) {
-            if (mineLocations.mineLocation[i].column == selectedColumn
-                && mineLocations.mineLocation[i].row == selectedRow) {
+            if (mineLocations.mineLocation[i].column == c
+                && mineLocations.mineLocation[i].row == r) {
                 System.out.println("Oops, you just blew up. Please play again.");
                 break;                
             }
