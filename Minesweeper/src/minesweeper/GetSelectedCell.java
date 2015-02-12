@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author jacksonrkj
+ * @author Group
  */
 public class GetSelectedCell {
     
@@ -28,55 +28,100 @@ public class GetSelectedCell {
         int numberOfColumns = 9;
         int numberOfRows = 9;
         int numberOfMines = 10;
-        char numberOfColumns2 = (char)(numberOfColumns + 'A' - 1);
+        // Variable that stores the letter reperesenting the last column
+        char letterOfLastColumn = (char)(numberOfColumns + 'A' - 1);
+        
+        // Variable for column value to be tested.
+        char c;
+        
+        // Variable for row value to be tested.
+        int r;
+        
+        System.out.println("This program will allow you to see if a cell contains a mine."
+                + "\nYou will be asked to enter a column and row value to test the cell. Example A5.");
+        
+        System.out.println("Please select a column to test.");
         
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter column A to " + numberOfColumns2 + ".");
+            System.out.println("Enter column value from A to " + letterOfLastColumn + ".");
             
             // get input from user           
             selectedColumn = in.nextLine();
                        
             // no marker entered?
             if (selectedColumn == null  || selectedColumn.length() < 1) {
+                System.out.println("Invalid input. Please try again.\n");
                 continue;
             }
             //the input is bigger than the number of rows or columns
             
-            if (selectedColumn > numberOfColumns2){
-             continue;   
-            }
-            
             // grab only the first character and convert it to upper case
             selectedColumn = selectedColumn.substring(0, 1).toUpperCase();
+            
+            // Converts input to char
+            c = selectedColumn.charAt(0);
+            
+            // Repeats loop if input is less than A
+            if (c < 'A') {  
+                System.out.println("Invalid input. Value entered was less than A.\nPlease try again.\n");
+                continue;
+            }
+            
+            // Repeats loop if input is greater than the last column
+            if (c > letterOfLastColumn){ 
+                System.out.println("Invalid input. Value entered was higher than " + letterOfLastColumn + ".\nPlease try again.\n");
+                continue;   
+            }
             
             valid = true; // signal that a valid marker was entered
         }
         
+        System.out.println("Please select a row to test.");
+        
         valid = false;
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter row 1 to " + numberOfRows+ ".");
+            System.out.println("Enter row value from 1 to " + numberOfRows+ ".");
             
             // get input from user           
             selectedRow = in.nextLine();
            
             // no marker entered?
             if (selectedRow == null  || selectedRow.length() < 1) {
+                System.out.println("Invalid input. Please try again.\n");
                 continue;
             }
             
-            // grab only the first character and convert it to upper case
-            selectedRow = selectedRow.substring(0, 1).toUpperCase();
+            // converts input to integer for row.
+            r = Integer.parseInt(selectedRow);
+            
+            // Repeats loop if selected row is less than 1.
+            if (r < 1) {
+                System.out.println("Invalid input. Value entered was less than 1.\nPlease try again.\n");
+                continue;
+            }
+            
+            // Repeats loop if selected row is greater than last row.
+            if (r > numberOfRows) {
+                System.out.println("Invalid input. Value entered was higher than " + numberOfRows + ".\nPlease try again.\n");
+                continue;
+            }
             
             valid = true; // signal that a valid marker was entered
         }
         
-        char c = selectedColumn.charAt(0);
-        int r = Integer.parseInt(selectedRow);
+        
+        
         
         MineLocations mineLocations = new MineLocations();
+        
+        // Converts input to char
+        c = selectedColumn.charAt(0);
+        
+        // converts input to integer for row.
+        r = Integer.parseInt(selectedRow);
         
         for (int i = 0; i < numberOfMines; i++) {
             if (mineLocations.mineLocation[i].column == c
