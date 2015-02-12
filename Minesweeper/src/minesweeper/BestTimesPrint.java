@@ -11,14 +11,14 @@ package minesweeper;
 public class BestTimesPrint {
     
     public static void printBeginnerBestTimes() {   
-        BestTimes bt = new BestTimes();
+        BestTimes bestTimes = new BestTimes();
         System.out.println("Beginner Best Times" + "\n" +
                  "Rank\tName\t\tTime");
             for (int i = 0; i <10; i++) {
-                System.out.println(bt.beginner[i].ranking + "." + "\t" 
-                        +  bt.beginner[i].playerName + "\t\t"
-                        + ((int) bt.beginner[i].time/60) + ":"  //Minutes
-                        + String.format("%02d",(int) bt.beginner[i].time%60));      //Seconds
+                System.out.println(bestTimes.beginner[i].ranking + "." + "\t" 
+                        +  bestTimes.beginner[i].playerName + "\t\t"
+                        + ((int) bestTimes.beginner[i].time/60) + ":"  //Minutes
+                        + String.format("%02d",(int) bestTimes.beginner[i].time%60));      //Seconds
             }
     }
     public static void printIntermediateBestTimes() {   

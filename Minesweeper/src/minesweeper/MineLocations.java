@@ -17,7 +17,15 @@ public class MineLocations {
     
     public MineLocations() {
         mineLocation[1] = new MineLocations('A',5);
-        mineLocation[2] = new MineLocations('C',2);
+        mineLocation[2] = new MineLocations('B',2);
+        mineLocation[3] = new MineLocations('C',7);
+        mineLocation[4] = new MineLocations('D',3);
+        mineLocation[5] = new MineLocations('E',6);
+        mineLocation[6] = new MineLocations('F',8);
+        mineLocation[7] = new MineLocations('G',1);
+        mineLocation[8] = new MineLocations('H',9);
+        mineLocation[9] = new MineLocations('I',4);
+        mineLocation[10] = new MineLocations('C',2);
     }
     
     public char column;
