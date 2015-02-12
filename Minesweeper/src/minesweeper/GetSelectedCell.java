@@ -18,7 +18,7 @@ public class GetSelectedCell {
     }
     
     
-    public String getInput() {
+    public void getInput() {
 
         String selectedColumn = null;
         String selectedRow = null;
@@ -27,7 +27,7 @@ public class GetSelectedCell {
         
         int numberOfColumns = 9;
         int numberOfRows = 9;
-        
+        int numberOfMines = 10;
                  
         boolean valid = false; // flag to indicate if valid character entered
         while (!valid) {
@@ -67,7 +67,21 @@ public class GetSelectedCell {
             valid = true; // signal that a valid marker was entered
         }
         
-        return selectedColumn;
+        MineLocations mineLocations = new MineLocations();
+        
+        for (int i = 0; i < numberOfMines; i++) {
+            if (mineLocations.mineLocation[i].column == selectedColumn
+                && mineLocations.mineLocation[i].row == selectedRow) {
+                System.out.println("Oops, you just blew up. Please play again.");
+                break;                
+            }
+            else {
+                if ( i == numberOfMines - 1)
+                    System.out.println("YAY! No mine. Please select another column and row.");
+            }
+                
+        }
+       
     }
     
 }
