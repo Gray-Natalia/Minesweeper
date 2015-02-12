@@ -51,7 +51,7 @@ public class GetSelectedCell {
         valid = false;
         while (!valid) {
             // prompt for input
-            System.out.println("Please enter row. 1 to " + numberOfRows);
+            System.out.println("Please enter row 1 to " + numberOfRows+ ".");
             
             // get input from user           
             selectedRow = in.nextLine();
