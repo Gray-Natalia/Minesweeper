@@ -50,7 +50,7 @@ public class ChooseLevelMenuView {
                     break;
                 case "E":
                     chooseLevelMenuControl.displayExpert();
-                    break;         
+                    break;
                 case "X":
                     break;
                 default: 
@@ -59,7 +59,6 @@ public class ChooseLevelMenuView {
             }
         } while (!command.equals("X"));  
         
-         return;
     }
 
         // displays the level menu

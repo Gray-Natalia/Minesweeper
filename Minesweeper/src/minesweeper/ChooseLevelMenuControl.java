@@ -14,14 +14,24 @@ public class ChooseLevelMenuControl {
     public ChooseLevelMenuControl() {
         
     } 
+    
+    int numberOfMines;
+    int numberOfColumns;
+    int numberOfRows;
+    int numberOfCells;
+    String difficultyLevel;
 
     public void displayBeginner() {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
         this.displayHelpBorder();             
-        System.out.println(
-                "\tA board of 8x8 squares appears with 10% of squares with hidden mines. ");
+        numberOfMines = 10;
+        numberOfColumns = 9;
+        numberOfRows = 9;
+        numberOfCells = numberOfColumns * numberOfRows;
+        difficultyLevel = "Beginner";
+        displaySelectedLevel();
         displayHelpBorder();
     }
         
@@ -30,8 +40,12 @@ public class ChooseLevelMenuControl {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();     
-        System.out.println( 
-                 "\tA board of 16x16 squares appears with 10% of squares with hidden mines. ");
+        numberOfMines = 40;
+        numberOfColumns = 16;
+        numberOfRows = 16;
+        numberOfCells = numberOfColumns * numberOfRows;
+        difficultyLevel = "Intermediate";
+        displaySelectedLevel();
         displayHelpBorder();
     }
             
@@ -40,14 +54,26 @@ public class ChooseLevelMenuControl {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();     
-        System.out.println( 
-                "\tA board of 24x24 squares appears with 10% of squares with hidden mines. ");
+        numberOfMines = 99;
+        numberOfColumns = 30;
+        numberOfRows = 16;
+        numberOfCells = numberOfColumns * numberOfRows;
+        difficultyLevel = "Expert";
+        displaySelectedLevel();
         displayHelpBorder();
     }
     
     public void displayHelpBorder() {       
         System.out.println(
         "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+    
+    public void displaySelectedLevel() {
+        System.out.println("\tYou have selected " + difficultyLevel + "."
+                + "\n\tThere are " + numberOfRows + " rows,"
+                + "\n\t" + numberOfColumns + " columns,"
+                + "\n\tand " + numberOfMines + " mines."
+                + "\n\tThat's " + numberOfCells + " cells!");
     }
     
 }
