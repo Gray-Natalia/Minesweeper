@@ -10,14 +10,24 @@ package minesweeper;
  * @author Keith
  */
 
-import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
+import java.io.FileInputStream;
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
-public class BestTimes 
+public class BestTimes implements Serializable
 {
     BestTimes[] beginner = new BestTimes[10];
     BestTimes[] intermediate = new BestTimes[10];
     BestTimes[] expert = new BestTimes[10];
-    
+
+    public static void main(String args[]) throws IOException, ClassNotFoundException{
+        BestTimes bestTimes = new BestTimes();
+        bestTimes.outputToFile();
+        bestTimes.inputFromFile();
+    }
         public BestTimes() {
         beginner[0] = new BestTimes(1, "John", 10.5);
         beginner[1] = new BestTimes(2, "James", 20.3);
@@ -29,7 +39,7 @@ public class BestTimes
         beginner[7] = new BestTimes(8, "Dan", 85);
         beginner[8] = new BestTimes(9, "Amy", 93);
         beginner[9] = new BestTimes(10, "Jane", 100);
-        
+
         intermediate[0] = new BestTimes(1, "John", 110.5);
         intermediate[1] = new BestTimes(2, "James", 120.3);
         intermediate[2] = new BestTimes(3, "Jill", 130);
@@ -40,7 +50,7 @@ public class BestTimes
         intermediate[7] = new BestTimes(8, "Dan", 185);
         intermediate[8] = new BestTimes(9, "Amy", 193);
         intermediate[9] = new BestTimes(10, "Jane", 200);
-        
+
         expert[0] = new BestTimes(1, "John", 210.5);
         expert[1] = new BestTimes(2, "James", 220.3);
         expert[2] = new BestTimes(3, "Jill", 230);
@@ -52,18 +62,36 @@ public class BestTimes
         expert[8] = new BestTimes(9, "Amy", 293);
         expert[9] = new BestTimes(10, "Jane", 300);
         }
-        
+
     public int ranking;
     public String playerName;
     public double time;
-    
+
     public BestTimes(int r, String p, double t) 
     {
         ranking = r;
         playerName = p;
         time = t;
     }
+
+    public void outputToFile() throws IOException {
+        try(FileOutputStream f = new FileOutputStream("bestTimes.txt"); ObjectOutputStream s = new ObjectOutputStream(f)) {
+            s.writeObject(beginner);
+            s.writeObject(intermediate);
+            s.writeObject(expert);
+            s.flush();
+        }
+
+    }
     
-    
+    public void inputFromFile() throws IOException, ClassNotFoundException {
+        BestTimes[] beginner2, intermediate2, expert2;
+        try(FileInputStream in = new FileInputStream("bestTimes.txt"); ObjectInputStream s = new ObjectInputStream(in)) {
+            beginner2 = (BestTimes[]) s.readObject();
+            intermediate2 = (BestTimes[]) s.readObject();
+            expert2 = (BestTimes[]) s.readObject();
+        }
+        System.out.println(beginner2[1].playerName);
+    }
 }
 
