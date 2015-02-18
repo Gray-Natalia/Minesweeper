@@ -17,14 +17,14 @@ public class MineLocations {
     
     public MineLocations() {
         mineLocation[0] = new MineLocations('A',5);
-        mineLocation[1] = new MineLocations('B',2);
-        mineLocation[2] = new MineLocations('C',7);
-        mineLocation[3] = new MineLocations('D',3);
-        mineLocation[4] = new MineLocations('E',6);
-        mineLocation[5] = new MineLocations('F',8);
-        mineLocation[6] = new MineLocations('G',1);
-        mineLocation[7] = new MineLocations('H',9);
-        mineLocation[8] = new MineLocations('I',4);
+        mineLocation[1] = new MineLocations('C',7);
+        mineLocation[2] = new MineLocations('D',3);
+        mineLocation[3] = new MineLocations('I',4);
+        mineLocation[4] = new MineLocations('G',1);
+        mineLocation[5] = new MineLocations('B',2);
+        mineLocation[6] = new MineLocations('F',8);
+        mineLocation[7] = new MineLocations('E',6);
+        mineLocation[8] = new MineLocations('H',9);
         mineLocation[9] = new MineLocations('C',2);
     }
     
