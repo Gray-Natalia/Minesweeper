@@ -18,7 +18,7 @@ public class HelpMenuView  {
         {"P", "How to Play"},
         {"S", "Basic Strategies"}, 
         {"A", "About"},
-        {"B", "Back"}
+        {"X", "Exit to Main Menu"}
     };
     
     // Create instance of the HelpMenuControl (action) class
@@ -53,15 +53,13 @@ public class HelpMenuView  {
                 case "A":
                     helpMenuControl.displayAbout();
                     break;                  
-                case "B":
-//                    Will go back to future MainMenu class
-//                    mm.MainMenu();
+                case "X":
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
                     continue;
             }
-        } while (!command.equals("B"));  
+        } while (!command.equals("X"));  
         
          return;
     }

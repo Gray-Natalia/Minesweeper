@@ -15,10 +15,10 @@ import java.util.Scanner;
 public class BestTimesMenuView {
         
     private static final String[][] menuItems = {
-        {"1", "Beginner"},
-        {"2", "Intermediate"},
-        {"3", "Expert"},
-        {"B", "Back to Main Menu"}
+        {"B", "Beginner"},
+        {"I", "Intermediate"},
+        {"E", "Expert"},
+        {"X", "Exit to Main Menu"}
     }; 
   
     BestTimesMenuControl bestTimesMenuControl = new BestTimesMenuControl();
@@ -41,22 +41,22 @@ public class BestTimesMenuView {
             command = command.trim().toUpperCase();
             
             switch (command) {
-                case "1":
+                case "B":
                     this.bestTimesMenuControl.beginnerBestTimes();
                     break;
-                case "2":
+                case "I":
                     this.bestTimesMenuControl.intermediateBestTimes();
                     break;
-                case "3":
+                case "E":
                     this.bestTimesMenuControl.expertBestTimes();            
                     break;
-                case "B":
+                case "X":
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
                     continue;                    
             }
-        } while (!command.equals("B"));
+        } while (!command.equals("X"));
 
         return;
     }

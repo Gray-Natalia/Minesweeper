@@ -4,8 +4,6 @@
  */
 package minesweeper;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Keith Banner

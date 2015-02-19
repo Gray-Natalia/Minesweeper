@@ -74,7 +74,7 @@ public class HelpMenuControl  {
         System.out.println( 
                 "\tThe developers of Minesweeper come from all over the world.\n" +
                 "\n" +
-                "\tНаталья Грей\n" +
+                "\tНаталья Грей (Natalia Gray)\n" +
                 "\tUfa, Russia\n" +
                 "\n" +
                 "\tAndres Reyes\n" +

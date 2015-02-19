@@ -15,18 +15,14 @@ import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
 
 
 public class BestTimesCalculator {        
-    public static void main(String args[])   
-        throws java.io.IOException{
-        BestTimesCalculator BestTimesCalculator = new BestTimesCalculator();
-        BestTimesCalculator.checkBestTimeEligibility();
+    public static void main(String args[]) {
     }
     public double newTime;
     
     Name Name = new Name();
     public String playerName;
     
-    public void checkBestTimeEligibility()    
-        throws java.io.IOException{
+    public void checkBestTimeEligibility() throws java.io.IOException {
         playerName = Name.getName();
         System.out.println(playerName);
         Scanner input = new Scanner(System.in);
@@ -50,9 +46,7 @@ public class BestTimesCalculator {
                     }
         }
         else updateBestTimes(newTime);
-    
-                    
-        }
+    }
     
     public void updateBestTimes(double newBestTime) {
         BestTimes BestTimes = new BestTimes();
@@ -71,17 +65,66 @@ public class BestTimesCalculator {
         
     }
     public void changeBestTimeValues(int index, String newPlayerName, double newTime){        
-        BestTimes BestTimes = new BestTimes();
-        BestTimes.beginner[index].playerName = newPlayerName;
-        BestTimes.beginner[index].time = newTime;
+        BestTimes bestTimes = new BestTimes();
+        bestTimes.beginner[index].playerName = newPlayerName;
+        bestTimes.beginner[index].time = newTime;
         System.out.println("Beginner Best Times" + "\n" +
                  "Rank\tName\t\tTime");
-            for (int i = 0; i <10; i++) {
-                System.out.println(BestTimes.beginner[i].ranking + "." + "\t" 
-                        +  BestTimes.beginner[i].playerName + "\t\t"
-                        + ((int) BestTimes.beginner[i].time/60) + ":"  //Minutes
-                        + String.format("%02d",(int) BestTimes.beginner[i].time%60));      //Seconds
+            for (int i = 0; i < bestTimes.beginner.length; i++) {
+                System.out.println(bestTimes.beginner[i].ranking + "." + "\t" 
+                        +  bestTimes.beginner[i].playerName + "\t\t"
+                        + ((int) bestTimes.beginner[i].time/60) + ":"  //Minutes
+                        + String.format("%02d",(int) bestTimes.beginner[i].time%60));      //Seconds
             }
     }
-        
+    
+    
+    public double functionAverage;
+    
+    /**
+     *
+     * @param difficultyLevel
+     * @return
+     */
+    public double calculateAverageTime(String difficultyLevel) {
+        BestTimes bestTimes = new BestTimes();
+        double total = 0;
+        if (difficultyLevel.equalsIgnoreCase("beginner")) {
+            for (BestTimes beginner : bestTimes.beginner) {
+                total += beginner.time;
+            }
+            double beginnerAverage = total / bestTimes.beginner.length;
+            functionAverage = beginnerAverage;
+        }
+        if (difficultyLevel.equalsIgnoreCase("intermediate")) {
+            for (BestTimes intermediate : bestTimes.intermediate) {
+                total += intermediate.time;
+            }
+            double intermediateAverage = total / bestTimes.intermediate.length;
+            functionAverage = intermediateAverage;
+        }
+        if (difficultyLevel.equalsIgnoreCase("expert")) {
+            for (BestTimes expert : bestTimes.expert) {
+                total += expert.time;
+            }
+            double expertAverage = total / bestTimes.expert.length;
+            functionAverage = expertAverage;
+        }
+        return functionAverage;
+    }
+    
+    // Converts Time from seconds to ## seconds or ##:## if option is 1
+    // or just to ##:##
+    public String convertTime(double time, int option) {
+        String output;
+            if (time < 60 && option == 1) {
+            output = (String.format("%.2f", time) + " seconds");
+        }
+        else {
+            output = (((int) time/60) + ":" + String.format("%02d",(int) time%60));
+        }
+        return output;
+    }
+
+      
 }

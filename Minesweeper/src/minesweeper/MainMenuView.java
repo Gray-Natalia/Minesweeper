@@ -14,11 +14,6 @@ import java.util.Scanner;
 
 public class MainMenuView {
     
-    public static void main(String[] args) {
-        MainMenuView mainMenuView = new MainMenuView();
-        mainMenuView.getInput();
-    }
-    
     private static final String[][] menuItems = {
         {"P", "Play"},
         {"V", "View Best Times"},
