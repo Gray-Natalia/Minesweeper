@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author kalavic
  */
-public class ChooseLevelMenuView {
+public class DifficultyLevelMenuView {
     private final static String[][] menuItems = {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 
@@ -19,11 +19,11 @@ public class ChooseLevelMenuView {
         {"X", "Exit To Main Menu"}
     };
     
-    // Create instance of the ChooseLevelMenuControl (action) class
-    private ChooseLevelMenuControl chooseLevelMenuControl = new ChooseLevelMenuControl();
+    // Create instance of the DifficultyLevelMenuControl (action) class
+    private DifficultyLevelMenuControl chooseLevelMenuControl = new DifficultyLevelMenuControl();
     
     // default constructor
-    public ChooseLevelMenuView() {
+    public DifficultyLevelMenuView() {
         
     } 
     
@@ -68,7 +68,7 @@ public class ChooseLevelMenuView {
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following levels:");
 
-        for (int i = 0; i < ChooseLevelMenuView.menuItems.length; i++) {
+        for (int i = 0; i < DifficultyLevelMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
         }
         System.out.println("\t===============================================================\n");

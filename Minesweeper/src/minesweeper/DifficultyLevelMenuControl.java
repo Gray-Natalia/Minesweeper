@@ -9,9 +9,9 @@ package minesweeper;
  *
  * @author kalavic
  */
-public class ChooseLevelMenuControl {
+public class DifficultyLevelMenuControl {
     
-    public ChooseLevelMenuControl() {
+    public DifficultyLevelMenuControl() {
         
     } 
     

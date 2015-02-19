@@ -115,7 +115,7 @@ public class GetSelectedCell {
         
         
         
-        MineLocations mineLocations = new MineLocations();
+        MineLocationsPreset mineLocations = new MineLocationsPreset();
         
         // Converts input to char
         c = selectedColumn.charAt(0);

@@ -111,15 +111,15 @@ public class BestTimesCalculator {
                 double expertAverage = total / bestTimes.expert.length;
                 functionAverage = expertAverage;
                 break;
+            default:
+                System.out.println("Invalid input received on average time function."
+                        + "Contact the developer for help.");
         }
         return functionAverage;
     }
     
-    
-    
-    
     // Converts Time from seconds to ## seconds or ##:## if option is 1
-    // or just to ##:##
+    // If option is not 1 seconds become ##:##
     public String convertTime(double time, int option) {
         String output;
             if (time < 60 && option == 1) {

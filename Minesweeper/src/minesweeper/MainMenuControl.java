@@ -16,7 +16,7 @@ public class MainMenuControl {
         //Natalia Gray added chooseLevel
         GetPlayerName getPlayerName = new GetPlayerName();
         getPlayerName.getName();
-        ChooseLevelMenuView chooseLevelMenuView = new ChooseLevelMenuView();
+        DifficultyLevelMenuView chooseLevelMenuView = new DifficultyLevelMenuView();
         chooseLevelMenuView.getInput();
     }
 

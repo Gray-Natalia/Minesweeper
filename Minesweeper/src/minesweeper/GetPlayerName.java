@@ -17,7 +17,7 @@ public class GetPlayerName {
     public String playerName;
     String ifnot;
     
-    public String getName() {  
+    public String getName() {
         GetPlayerName getPlayerName = new GetPlayerName();
         getPlayerName.greeting = "Welcome to Minesweeper.";
         getPlayerName.playerName = "Please enter your name.";
