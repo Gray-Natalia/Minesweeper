@@ -14,16 +14,12 @@ import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
  */
 
 
-public class BestTimesCalculator {        
-    public static void main(String args[]) {
-    }
-    public double newTime;
-    
-    Name Name = new Name();
-    public String playerName;
+public class BestTimesCalculator {  
     
     public void checkBestTimeEligibility() throws java.io.IOException {
-        playerName = Name.getName();
+        GetPlayerName getPlayerName = new GetPlayerName();
+        double newTime;
+        String playerName = getPlayerName.getName();
         System.out.println(playerName);
         Scanner input = new Scanner(System.in);
         BestTimes bt = new BestTimes();
@@ -51,6 +47,7 @@ public class BestTimesCalculator {
     public void updateBestTimes(double newBestTime) {
         BestTimes BestTimes = new BestTimes();
         BestTimesCalculator BestTimesCalculator = new BestTimesCalculator();
+        GetPlayerName getPlayerName = new GetPlayerName();
         int i;
         for (i = 0; i <10; i++){
             if (newBestTime < BestTimes.beginner[i].time) {
@@ -58,7 +55,7 @@ public class BestTimesCalculator {
                     BestTimesCalculator.changeBestTimeValues(j, BestTimes.beginner[j-1].playerName
                             , BestTimes.beginner[j-1].time);
                 }
-                BestTimesCalculator.changeBestTimeValues(i, playerName, newBestTime);
+                BestTimesCalculator.changeBestTimeValues(i, getPlayerName.playerName, newBestTime);
                 break;
             }
         }
@@ -88,30 +85,38 @@ public class BestTimesCalculator {
      */
     public double calculateAverageTime(String difficultyLevel) {
         BestTimes bestTimes = new BestTimes();
-        double total = 0;
-        if (difficultyLevel.equalsIgnoreCase("beginner")) {
-            for (BestTimes beginner : bestTimes.beginner) {
-                total += beginner.time;
-            }
-            double beginnerAverage = total / bestTimes.beginner.length;
-            functionAverage = beginnerAverage;
-        }
-        if (difficultyLevel.equalsIgnoreCase("intermediate")) {
-            for (BestTimes intermediate : bestTimes.intermediate) {
-                total += intermediate.time;
-            }
-            double intermediateAverage = total / bestTimes.intermediate.length;
-            functionAverage = intermediateAverage;
-        }
-        if (difficultyLevel.equalsIgnoreCase("expert")) {
-            for (BestTimes expert : bestTimes.expert) {
-                total += expert.time;
-            }
-            double expertAverage = total / bestTimes.expert.length;
-            functionAverage = expertAverage;
+        double total;
+        switch (difficultyLevel) {
+            case "beginner":
+                total = 0;
+                for (BestTimes beginner : bestTimes.beginner) {
+                    total += beginner.time;
+                }
+                double beginnerAverage = total / bestTimes.beginner.length;
+                functionAverage = beginnerAverage;
+                break;
+            case "intermediate":
+                total = 0;
+                for (BestTimes intermediate : bestTimes.intermediate) {
+                    total += intermediate.time;
+                }
+                double intermediateAverage = total / bestTimes.intermediate.length;
+                functionAverage = intermediateAverage;
+                break;
+            case "expert":
+                total = 0;
+                for (BestTimes expert : bestTimes.expert) {
+                    total += expert.time;
+                }
+                double expertAverage = total / bestTimes.expert.length;
+                functionAverage = expertAverage;
+                break;
         }
         return functionAverage;
     }
+    
+    
+    
     
     // Converts Time from seconds to ## seconds or ##:## if option is 1
     // or just to ##:##

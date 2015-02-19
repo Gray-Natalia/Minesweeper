@@ -43,7 +43,7 @@ public class MainMenuView {
             switch (command) {
                 //Natalia Gray added chooseLevel
                 case "P":
-                    mainMenuControl.chooseLevel();
+                    mainMenuControl.play();
                     break;
                 case "V":
                     mainMenuControl.viewBestTimes();

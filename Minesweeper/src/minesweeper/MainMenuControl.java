@@ -12,8 +12,10 @@ public class MainMenuControl {
     
     
      
-    public void chooseLevel() {
+    public void play() {
         //Natalia Gray added chooseLevel
+        GetPlayerName getPlayerName = new GetPlayerName();
+        getPlayerName.getName();
         ChooseLevelMenuView chooseLevelMenuView = new ChooseLevelMenuView();
         chooseLevelMenuView.getInput();
     }
