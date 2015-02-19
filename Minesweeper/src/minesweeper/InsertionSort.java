@@ -7,7 +7,7 @@ package minesweeper;
 
 /**
  *
- * @author kalav_000
+ * @author group
  */
 public class InsertionSort {
    
