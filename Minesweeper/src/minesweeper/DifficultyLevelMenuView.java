@@ -16,6 +16,7 @@ public class DifficultyLevelMenuView {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 
         {"E", "Expert"},
+        {"P", "Preset Demo"},
         {"X", "Exit To Main Menu"}
     };
     
@@ -43,13 +44,16 @@ public class DifficultyLevelMenuView {
             
             switch (command) {
                 case "B":
-                    chooseLevelMenuControl.displayBeginner();
+                    chooseLevelMenuControl.beginner();
                     break;
                 case "I":
-                    chooseLevelMenuControl.displayIntermediate();
+                    chooseLevelMenuControl.intermediate();
                     break;
                 case "E":
-                    chooseLevelMenuControl.displayExpert();
+                    chooseLevelMenuControl.expert();
+                    break;
+                case "P":
+                    chooseLevelMenuControl.beginnerPreset();
                     break;
                 case "X":
                     break;

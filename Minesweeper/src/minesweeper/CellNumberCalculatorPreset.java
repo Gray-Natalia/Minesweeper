@@ -27,18 +27,19 @@ public class CellNumberCalculatorPreset {
     
     public void calculateNumMines() {
         MineLocationsPreset mineLocations = new MineLocationsPreset();
-        int j = 0; //Counter for new cellValueBeginner array index.
+        mineLocations.SortMines();
+        int j; //Counter for new cellValueBeginner array index.
+        int currentMineCheck = 0;
         for (char c = 'A'; c <= 'A' + numberOfColumns - 1; c++) {
             j = (int)c - 65; // Converts the char into an int with A equal to 0.
             for (int r = 1; r <= numberOfRows; r++) {
-                minefound:   {
-                    for (int i = 0; i < numberOfMines; i++) {
-                        if (mineLocations.mineLocation[i].column == c //checks if a mine matches current row
-                                && mineLocations.mineLocation[i].row == r) { //and column.
-                            cellValueOut[j] = new CellValue(c, r, 10); //value of 10 means mine.
-                            break minefound;
-                        }
-                    }
+                if (currentMineCheck !=mineLocations.mineLocation.length 
+                    && mineLocations.mineLocation[currentMineCheck].column == c 
+                    && mineLocations.mineLocation[currentMineCheck].row == r) {
+                cellValueOut[j] = new CellValue(c, r, 10); //value of 10 means mine.
+                    currentMineCheck += 1;
+                }
+                else {
                     int tempCellValue = 0;
                     for (int k = 0; k < numberOfMines; k++) { //counter for loop to calculate cell value.
 
@@ -74,8 +75,8 @@ public class CellNumberCalculatorPreset {
                         if (c < 'A' + numberOfColumns && mineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
                                 && r < numberOfRows && mineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
                             tempCellValue++;
-                    }
                     cellValueOut[j] = new CellValue(c, r, tempCellValue);
+                    }
                 }
                 j += 9;
             }

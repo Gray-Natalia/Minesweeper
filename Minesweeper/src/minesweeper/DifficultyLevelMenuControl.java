@@ -15,13 +15,13 @@ public class DifficultyLevelMenuControl {
         
     } 
     
-    int numberOfMines;
-    int numberOfColumns;
-    int numberOfRows;
-    int numberOfCells;
-    String difficultyLevel;
+    public int numberOfMines;
+    public int numberOfColumns;
+    public int numberOfRows;
+    public int numberOfCells;
+    public String difficultyLevel;
 
-    public void displayBeginner() {
+    public void beginner() {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -29,13 +29,11 @@ public class DifficultyLevelMenuControl {
         numberOfMines = 10;
         numberOfColumns = 9;
         numberOfRows = 9;
-        numberOfCells = numberOfColumns * numberOfRows;
         difficultyLevel = "Beginner";
-        displaySelectedLevel();
-        displayHelpBorder();
+        displayAndStartSelectedLevel();
     }
         
-    public void displayIntermediate() {
+    public void intermediate() {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -43,13 +41,11 @@ public class DifficultyLevelMenuControl {
         numberOfMines = 40;
         numberOfColumns = 16;
         numberOfRows = 16;
-        numberOfCells = numberOfColumns * numberOfRows;
         difficultyLevel = "Intermediate";
-        displaySelectedLevel();
-        displayHelpBorder();
+        displayAndStartSelectedLevel();
     }
             
-    public void displayExpert() {
+    public void expert() {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -57,10 +53,21 @@ public class DifficultyLevelMenuControl {
         numberOfMines = 99;
         numberOfColumns = 30;
         numberOfRows = 16;
-        numberOfCells = numberOfColumns * numberOfRows;
         difficultyLevel = "Expert";
-        displaySelectedLevel();
+        displayAndStartSelectedLevel();
+    }
+    
+    public void beginnerPreset() {
+        System.out.println();
+        this.displayHelpBorder();             
+        numberOfMines = 10;
+        numberOfColumns = 9;
+        numberOfRows = 9;
+        difficultyLevel = "Beginner";
+        System.out.println("\tThis is a special preset board for testing the game.");
         displayHelpBorder();
+        CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
+        cellNumberCalculator.calculateNumMines();
     }
     
     public void displayHelpBorder() {       
@@ -68,12 +75,14 @@ public class DifficultyLevelMenuControl {
         "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
     
-    public void displaySelectedLevel() {
+    public void displayAndStartSelectedLevel() {
         System.out.println("\tYou have selected " + difficultyLevel + "."
                 + "\n\tThere are " + numberOfRows + " rows,"
                 + "\n\t" + numberOfColumns + " columns,"
-                + "\n\tand " + numberOfMines + " mines."
-                + "\n\tThat's " + numberOfCells + " cells!");
+                + "\n\tand " + numberOfMines + " mines.");
+        displayHelpBorder();
+        CellNumberCalculatorRandom cellNumberCalculator = new CellNumberCalculatorRandom();
+        cellNumberCalculator.calculateNumMines(numberOfColumns, numberOfRows, numberOfMines);
     }
     
 }

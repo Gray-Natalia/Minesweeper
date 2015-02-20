@@ -9,6 +9,8 @@ package minesweeper;
  *
  * @author knban_000
  */
+
+// constructor used by CellNumberCalculator
 public class CellValue {
     public char column;
     public int row;

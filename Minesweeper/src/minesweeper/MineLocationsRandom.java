@@ -11,28 +11,19 @@ package minesweeper;
  */
 public class MineLocationsRandom {
     
-//    DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
-//    int numberOfColumns = difficultyLevelMenuControl.numberOfColumns;
-//    int numberOfRows = difficultyLevelMenuControl.numberOfRows;
-//    int numberOfMines = difficultyLevelMenuControl.numberOfMines;
-    int numberOfColumns = 9;
-    int numberOfRows = 9;
-    int numberOfMines = 10;
-
-    MineLocationsRandom[] mineLocation = new MineLocationsRandom[numberOfMines];
-        
-    public MineLocationsRandom() {
-        for (int i = 0; i < numberOfMines; i++){
-            mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
-            for (int j = 0; j < i; j++){                
-                while (mineLocation[i].column == mineLocation[j].column && mineLocation[i].row == mineLocation[j].row) {
-                    mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
-                }
-            }
-        }
+    public static void main(String args[]) {
+        MineLocationsRandom mineLocationsRandom = new MineLocationsRandom();
+        mineLocationsRandom.SortMines(9,9,10);
     }
     
-    public void SortMines() {
+    int numberOfColumns;
+    int numberOfRows;
+    int numberOfMines;
+    
+    public void SortMines(int columns, int rows, int mines) {
+        numberOfColumns = columns;
+        numberOfRows = rows;
+        numberOfMines = mines;
         int k;
         for (int j = 1; j < mineLocation.length; j++)
         {
@@ -46,6 +37,19 @@ public class MineLocationsRandom {
             }
             mineLocation[k+1].column = tempColumn;
             mineLocation[k+1].row = tempRow;
+        }
+    }
+        
+    MineLocationsRandom[] mineLocation = new MineLocationsRandom[numberOfMines];
+    
+    public MineLocationsRandom() {
+        for (int i = 0; i < numberOfMines; i++){
+            mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
+            for (int j = 0; j < i; j++){                
+                while (mineLocation[i].column == mineLocation[j].column && mineLocation[i].row == mineLocation[j].row) {
+                    mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
+                }
+            }
         }
     }
     
