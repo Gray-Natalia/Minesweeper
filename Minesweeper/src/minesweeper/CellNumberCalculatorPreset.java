@@ -26,14 +26,15 @@ public class CellNumberCalculatorPreset {
     CellValue[] cellValueOut = new CellValue[numberOfCells];
     
     public void calculateNumMines() {
-        MineLocationsPreset MineLocations = new MineLocationsPreset();
+        MineLocationsPreset mineLocations = new MineLocationsPreset();
         int j = 0; //Counter for new cellValueBeginner array index.
-        for (int r = 1; r <= numberOfRows; r++) {
-            for (char c = 'A'; c <= 'A' +numberOfColumns - 1; c++) {
+        for (char c = 'A'; c <= 'A' + numberOfColumns - 1; c++) {
+            j = (int)c - 65; // Converts the char into an int with A equal to 0.
+            for (int r = 1; r <= numberOfRows; r++) {
                 minefound:   {
                     for (int i = 0; i < numberOfMines; i++) {
-                        if (MineLocations.mineLocation[i].column == c //checks if a mine matches current row
-                                && MineLocations.mineLocation[i].row == r) { //and column.
+                        if (mineLocations.mineLocation[i].column == c //checks if a mine matches current row
+                                && mineLocations.mineLocation[i].row == r) { //and column.
                             cellValueOut[j] = new CellValue(c, r, 10); //value of 10 means mine.
                             break minefound;
                         }
@@ -42,45 +43,45 @@ public class CellNumberCalculatorPreset {
                     for (int k = 0; k < numberOfMines; k++) { //counter for loop to calculate cell value.
 
                         //If cell up and to the left of current cell is mine, add one to tempCellValue.
-                        if (c > 'A' && MineLocations.mineLocation[k].column == (c-1) // Left one column. Skips if first column
-                                && r > 0 && MineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
+                        if (c > 'A' && mineLocations.mineLocation[k].column == (c-1) // Left one column. Skips if first column
+                                && r > 0 && mineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
                             tempCellValue++;
                         //If cell left of current cell is mine, add one to tempCellValue.
-                        if (c > 'A' && MineLocations.mineLocation[k].column == (c-1) //Left one column. Skips if first column
-                                && MineLocations.mineLocation [k].row == r)
+                        if (c > 'A' && mineLocations.mineLocation[k].column == (c-1) //Left one column. Skips if first column
+                                && mineLocations.mineLocation [k].row == r)
                             tempCellValue++;
                         //If cell down and to the left of current cell is mine, add one to tempCellValue.
-                        if (c > 'A' && MineLocations.mineLocation[k].column == (c-1) //Left one column. Skips if first column
-                                && r < numberOfRows && MineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
+                        if (c > 'A' && mineLocations.mineLocation[k].column == (c-1) //Left one column. Skips if first column
+                                && r < numberOfRows && mineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
                             tempCellValue++;
                         //If cell directly above current cell is mine, add one to tempCellValue.
-                        if (MineLocations.mineLocation[k].column == c
-                                && r > 0 && MineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
+                        if (mineLocations.mineLocation[k].column == c
+                                && r > 0 && mineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
                             tempCellValue++;
                         //If cell directly below current cell is mine, add one to tempCellValue.
-                        if (MineLocations.mineLocation[k].column == c
-                                && r < numberOfRows && MineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
+                        if (mineLocations.mineLocation[k].column == c
+                                && r < numberOfRows && mineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
                             tempCellValue++;
                         //If cell up and to the right of current cell is mine, add one to tempCellValue.
-                        if (c < 'A' + numberOfColumns && MineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
-                                && r > 0 && MineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
+                        if (c < 'A' + numberOfColumns && mineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
+                                && r > 0 && mineLocations.mineLocation[k].row == (r-1)) //Up one row. Skips if first row
                             tempCellValue++;
                         //If cell to the right of current cell is mine, add one to tempCellValue.
-                        if (c < 'A' + numberOfColumns && MineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
-                                && MineLocations.mineLocation[k].row == r)
+                        if (c < 'A' + numberOfColumns && mineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
+                                && mineLocations.mineLocation[k].row == r)
                             tempCellValue++;
                         //If cell down and to the right of current cell is mine, add one to tempCellValue.
-                        if (c < 'A' + numberOfColumns && MineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
-                                && r < numberOfRows && MineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
+                        if (c < 'A' + numberOfColumns && mineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
+                                && r < numberOfRows && mineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
                             tempCellValue++;
                     }
                     cellValueOut[j] = new CellValue(c, r, tempCellValue);
                 }
-                j++;
+                j += 9;
             }
         }
-        for(int k1 = 0; k1 < numberOfRows; k1++) { 
-            for(int k2 = k1*numberOfRows; k2 < (k1+1)*numberOfRows; k2++) {
+        for(int k1 = 0; k1 < numberOfColumns; k1++) { 
+            for(int k2 = k1*numberOfColumns; k2 < (k1+1)*numberOfColumns; k2++) {
                 if (cellValueOut[k2].cellValue == 10)
                     System.out.print("M\t");
                 else System.out.print(cellValueOut[k2].cellValue + "\t");

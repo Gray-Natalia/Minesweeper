@@ -11,32 +11,28 @@ package minesweeper;
  */
 public class MineLocationsRandom {
     
-    public static void main(String args[]) {
-        MineLocationsRandom mineLocationsRandom = new MineLocationsRandom();
-        mineLocationsRandom.MineLocationsRandom1();
-    }
-    
-    private MineLocationsRandom() {
-        DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
-        int numberOfColumns = difficultyLevelMenuControl.numberOfColumns;
-        int numberOfRows = difficultyLevelMenuControl.numberOfRows;
-        int numberOfMines = difficultyLevelMenuControl.numberOfMines;
+//    DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
+//    int numberOfColumns = difficultyLevelMenuControl.numberOfColumns;
+//    int numberOfRows = difficultyLevelMenuControl.numberOfRows;
+//    int numberOfMines = difficultyLevelMenuControl.numberOfMines;
+    int numberOfColumns = 9;
+    int numberOfRows = 9;
+    int numberOfMines = 10;
+
+    MineLocationsRandom[] mineLocation = new MineLocationsRandom[numberOfMines];
         
-        MineLocationsRandom[] mineLocation = new MineLocationsRandom[numberOfMines];
-    
+    public MineLocationsRandom() {
         for (int i = 0; i < numberOfMines; i++){
             mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
-            System.out.println("Array number " + i + "created");
             for (int j = 0; j < i; j++){                
                 while (mineLocation[i].column == mineLocation[j].column && mineLocation[i].row == mineLocation[j].row) {
                     mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
                 }
             }
         }
-        
     }
     
-    private void SortMines() {
+    public void SortMines() {
         int k;
         for (int j = 1; j < mineLocation.length; j++)
         {
@@ -51,12 +47,7 @@ public class MineLocationsRandom {
             mineLocation[k+1].column = tempColumn;
             mineLocation[k+1].row = tempRow;
         }
-        
-        for (MineLocationsRandom mineLocation1 : mineLocation) {
-            System.out.println(mineLocation1.column + "" + mineLocation1.row);
-        }
     }
-    
     
     public char column;
     public int row;
