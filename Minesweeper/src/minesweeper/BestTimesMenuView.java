@@ -54,7 +54,7 @@ public class BestTimesMenuView {
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;                    
+                    continue;
             }
         } while (!command.equals("X"));
 
