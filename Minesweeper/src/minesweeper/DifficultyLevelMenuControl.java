@@ -15,17 +15,16 @@ public class DifficultyLevelMenuControl {
         
     } 
     
-    public int numberOfMines;
     public int numberOfColumns;
     public int numberOfRows;
-    public int numberOfCells;
+    public int numberOfMines;
     public String difficultyLevel;
-
+    
     public void beginner() {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
-        this.displayHelpBorder();             
+        this.displayHelpBorder();
         numberOfMines = 10;
         numberOfColumns = 9;
         numberOfRows = 9;
@@ -37,7 +36,7 @@ public class DifficultyLevelMenuControl {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
-        displayHelpBorder();     
+        displayHelpBorder();
         numberOfMines = 40;
         numberOfColumns = 16;
         numberOfRows = 16;
@@ -49,7 +48,7 @@ public class DifficultyLevelMenuControl {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
-        displayHelpBorder();     
+        displayHelpBorder();
         numberOfMines = 99;
         numberOfColumns = 30;
         numberOfRows = 16;
@@ -59,15 +58,11 @@ public class DifficultyLevelMenuControl {
     
     public void beginnerPreset() {
         System.out.println();
-        this.displayHelpBorder();             
-        numberOfMines = 10;
-        numberOfColumns = 9;
-        numberOfRows = 9;
-        difficultyLevel = "Beginner";
+        this.displayHelpBorder();  
         System.out.println("\tThis is a special preset board for testing the game.");
         displayHelpBorder();
-        CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
-        cellNumberCalculator.calculateNumMines();
+        CellNumberCalculatorPreset cellNumberCalculatorPreset = new CellNumberCalculatorPreset();
+        cellNumberCalculatorPreset.calculateNumMines();
     }
     
     public void displayHelpBorder() {       
@@ -81,8 +76,14 @@ public class DifficultyLevelMenuControl {
                 + "\n\t" + numberOfColumns + " columns,"
                 + "\n\tand " + numberOfMines + " mines.");
         displayHelpBorder();
+        
+        GameVariables game = new GameVariables();
+        game.setNumberOfColumns(numberOfColumns);
+        game.setNumberOfRows(numberOfRows);
+        game.setNumberOfMines(numberOfMines);
+        game.setNumberOfCells(numberOfColumns * numberOfRows);
         CellNumberCalculatorRandom cellNumberCalculator = new CellNumberCalculatorRandom();
-        cellNumberCalculator.calculateNumMines(numberOfColumns, numberOfRows, numberOfMines);
+        cellNumberCalculator.calculateNumMines();
     }
     
 }

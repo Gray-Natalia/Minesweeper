@@ -9,11 +9,13 @@ package minesweeper;
  *
  * @author knban_000
  */
-public class CellValue {
+
+// constructor used by CellNumberCalculator
+public class ConstructorCellOutputArray {
     public char column;
     public int row;
     public int cellValue; //value of 10 means mine.
-    public CellValue(char col, int ro, int cv) {
+    public ConstructorCellOutputArray(char col, int ro, int cv) {
         
         column = col;
         row = ro;

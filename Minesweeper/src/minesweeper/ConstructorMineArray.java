@@ -9,10 +9,12 @@ package minesweeper;
  *
  * @author knban_000
  */
-public class CurrentGameInformation {
-    public int numberOfMines;
-    public int numberOfColumns;
-    public int numberOfRows;
-    public int numberOfCells;
-    public String difficultyLevel;
+public class ConstructorMineArray {
+    public char column;
+    public int row;
+    
+    public ConstructorMineArray(char col, int ro) {
+        column = col;
+        row = ro;
+    }
 }

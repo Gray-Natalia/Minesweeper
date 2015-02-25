@@ -9,28 +9,32 @@ package minesweeper;
  *
  * @author knban_000
  */
-public class MineLocationsRandom {
+
+public class MineLocationsRandom{
+
     
-    public static void main(String args[]) {
-        MineLocationsRandom mineLocationsRandom = new MineLocationsRandom();
-        mineLocationsRandom.SortMines(9,9,10);
+    
+    
+    public static void MineGenerator(int columns, int rows, int mines) {
+        ConstructorMineArray[] mineLocation = new ConstructorMineArray[mines];
+        for (int i = 0; i < mines; i++){
+            mineLocation[i] = new ConstructorMineArray((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
+            for (int j = 0; j < i; j++){                
+                while (mineLocation[i].column == mineLocation[j].column && mineLocation[i].row == mineLocation[j].row) {
+                    mineLocation[i] = new ConstructorMineArray((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
+                }
+            }
+        }
     }
     
-    int numberOfColumns;
-    int numberOfRows;
-    int numberOfMines;
-    
     public void SortMines(int columns, int rows, int mines) {
-        numberOfColumns = columns;
-        numberOfRows = rows;
-        numberOfMines = mines;
+        MineLocationsRandom mineLocationsR = new MineLocationsRandom();
         int k;
-        for (int j = 1; j < mineLocation.length; j++)
-        {
-            char tempColumn = mineLocation [j].column;
+        for (int j = 1; j < mineLocationsR.mineLocation.length; j++){
+            char tempColumn = mineLocationsR.mineLocation [j].column;
             int tempRow = mineLocation [j].row;
-            for(k = j - 1; (k >= 0 ) && (mineLocation[k].column > tempColumn|| 
-                    (mineLocation[k].column == tempColumn && mineLocation[k].row > tempRow)); k--)
+            for(k = j - 1; (k >= 0 ) && (mineLocation[k].column > tempColumn
+                    || (mineLocation[k].column == tempColumn && mineLocation[k].row > tempRow)); k--)
             {
                 mineLocation[k+1].column = mineLocation[k].column;
                 mineLocation[k+1].row = mineLocation[k].row;
@@ -38,29 +42,8 @@ public class MineLocationsRandom {
             mineLocation[k+1].column = tempColumn;
             mineLocation[k+1].row = tempRow;
         }
-    }
-        
-    MineLocationsRandom[] mineLocation = new MineLocationsRandom[numberOfMines];
-    
-    public MineLocationsRandom() {
-        for (int i = 0; i < numberOfMines; i++){
-            mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
-            for (int j = 0; j < i; j++){                
-                while (mineLocation[i].column == mineLocation[j].column && mineLocation[i].row == mineLocation[j].row) {
-                    mineLocation[i] = new MineLocationsRandom((char)('A' + (char) (Math.random() * numberOfColumns)), 1+ (int) (Math.random() * numberOfRows));
-                }
-            }
+        for (int i = 0; i < 10; i++) {
+            System.out.println(mineLocation[i].column + "" + mineLocation[i].row);
         }
     }
-    
-    public char column;
-    public int row;
-    
-    public MineLocationsRandom(char col, int ro) {
-        column = col;
-        row = ro;
-    }
-
-    
-    
 }

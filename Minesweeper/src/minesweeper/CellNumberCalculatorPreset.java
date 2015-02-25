@@ -23,7 +23,7 @@ public class CellNumberCalculatorPreset {
     public int numberOfCells = numberOfColumns * numberOfRows;
 
     
-    CellValue[] cellValueOut = new CellValue[numberOfCells];
+    ConstructorCellOutputArray[] cellValueOut = new ConstructorCellOutputArray[numberOfCells];
     
     public void calculateNumMines() {
         MineLocationsPreset mineLocations = new MineLocationsPreset();
@@ -36,7 +36,7 @@ public class CellNumberCalculatorPreset {
                 if (currentMineCheck !=mineLocations.mineLocation.length 
                     && mineLocations.mineLocation[currentMineCheck].column == c 
                     && mineLocations.mineLocation[currentMineCheck].row == r) {
-                cellValueOut[j] = new CellValue(c, r, 10); //value of 10 means mine.
+                cellValueOut[j] = new ConstructorCellOutputArray(c, r, 10); //value of 10 means mine.
                     currentMineCheck += 1;
                 }
                 else {
@@ -75,7 +75,7 @@ public class CellNumberCalculatorPreset {
                         if (c < 'A' + numberOfColumns && mineLocations.mineLocation[k].column == (c+1) //Right one column. Skips if last column
                                 && r < numberOfRows && mineLocations.mineLocation[k].row == (r+1)) //Down one row. Skips if last row
                             tempCellValue++;
-                    cellValueOut[j] = new CellValue(c, r, tempCellValue);
+                    cellValueOut[j] = new ConstructorCellOutputArray(c, r, tempCellValue);
                     }
                 }
                 j += 9;

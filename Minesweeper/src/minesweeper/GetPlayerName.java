@@ -9,34 +9,36 @@ import java.util.Scanner;
 
 /**
  *
- * @author DilexsaTech
+ * @author 
  */
 public class GetPlayerName {
     
     String greeting;
-    public String playerName;
     String ifnot;
+    String namePrompt;
+    String playerName;
     
     public String getName() {
-        GetPlayerName getPlayerName = new GetPlayerName();
-        getPlayerName.greeting = "Welcome to Minesweeper.";
-        getPlayerName.playerName = "Please enter your name.";
-        getPlayerName.ifnot = "\nPlayer name must contain 3 to 15 characters."
+        greeting = "Welcome to Minesweeper.";
+        namePrompt = "Please enter your name.";
+        ifnot = "\nPlayer name must contain 3 to 15 characters."
                 + " Please try Again.";
        
         Scanner input = new Scanner (System.in);
-        System.out.println(getPlayerName.playerName);
+        System.out.println(greeting + "\n" + namePrompt);
         playerName = input.nextLine();
     
         //Checks for minumum of 3 characters and max of 15.
         //Loops if incorrect input.
         while((playerName.length() < 3) || (playerName.length() > 15)) { 
-            System.out.println(getPlayerName.ifnot);
+            System.out.println(ifnot);
             System.out.println("");
-            System.out.println(getPlayerName.playerName);
+            System.out.println(namePrompt);
             playerName = input.nextLine();
         }
         System.out.println("Great " + playerName +", Go ahead!!!");
+        GameVariables game = new GameVariables();
+        game.setPlayerName(playerName);
         return playerName;
     }  
 }
