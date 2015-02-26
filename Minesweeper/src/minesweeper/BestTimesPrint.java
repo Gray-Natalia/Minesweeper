@@ -15,7 +15,7 @@ public class BestTimesPrint {
         BestTimesCalculator bestTimesCalculator = new BestTimesCalculator();
         System.out.println("Beginner Best Times" + "\n" +
                  "Rank\tName\t\tTime");
-            for (int i = 0; i <10; i++) {
+            for (int i = 0; i < 10; i++) {
                 System.out.println(bestTimes.beginner[i].ranking + "." + "\t" 
                         +  bestTimes.beginner[i].playerName + "\t\t"
                         +  bestTimesCalculator.convertTime(bestTimes.beginner[i].time, 0));      //Seconds

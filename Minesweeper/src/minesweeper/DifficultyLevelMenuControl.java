@@ -5,6 +5,8 @@
  */
 package minesweeper;
 
+import minesweeper.notUsed.CellNumberCalculatorRandom;
+
 /**
  *
  * @author kalavic
