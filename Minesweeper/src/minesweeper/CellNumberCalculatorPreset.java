@@ -36,11 +36,13 @@ public class CellNumberCalculatorPreset {
                 if (currentMineCheck !=mineLocations.mineLocation.length 
                     && mineLocations.mineLocation[currentMineCheck].column == c 
                     && mineLocations.mineLocation[currentMineCheck].row == r) {
-                cellValueOut[j] = new ConstructorCellOutputArray(c, r, 10); //value of 10 means mine.
+                    //if it is a mine then:
+                    cellValueOut[j] = new ConstructorCellOutputArray(c, r, 10); //value of 10 means mine.
                     currentMineCheck += 1;
                 }
+                //if not a mine then:
                 else {
-                    int tempCellValue = 0;
+                    int tempCellValue = 0; //How many mines are touching the cell.
                     for (int k = 0; k < numberOfMines; k++) { //counter for loop to calculate cell value.
 
                         //If cell up and to the left of current cell is mine, add one to tempCellValue.
@@ -78,7 +80,7 @@ public class CellNumberCalculatorPreset {
                     cellValueOut[j] = new ConstructorCellOutputArray(c, r, tempCellValue);
                     }
                 }
-                j += 9;
+                j += numberOfColumns;
             }
         }
         for(int k1 = 0; k1 < numberOfColumns; k1++) { 
