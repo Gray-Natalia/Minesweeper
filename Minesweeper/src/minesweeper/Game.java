@@ -11,6 +11,7 @@ import java.util.Objects;
 /**
  *
  * @author kalavic
+ * convert to java bean by C Rubenstein
  */
 public class Game implements Serializable {
     //Instancevariables variables
