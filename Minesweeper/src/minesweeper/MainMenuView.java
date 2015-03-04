@@ -24,7 +24,6 @@ public class MainMenuView {
     public MainMenuView() {
 
     }
- 
     
     public static void getInput() {       
 
@@ -57,9 +56,6 @@ public class MainMenuView {
             }
         } while (!command.equals("X"));
     }
-    
-
-    
     
    public static final void display() {
         System.out.println("\n\t===============================================================");

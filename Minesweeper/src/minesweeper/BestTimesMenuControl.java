@@ -4,27 +4,21 @@
  */
 package minesweeper;
 
-import java.util.Scanner;
-
 /**
  *
- * @author jacksonrkj
+ * @author 
  */
 public class BestTimesMenuControl {
-    
-    BestTimesPrint bestTimesPrint = new BestTimesPrint();
-    
      
     public void beginnerBestTimes() {
-        bestTimesPrint.printBeginnerBestTimes();
+        BestTimesPrint.printBeginnerBestTimes();
     }
 
     public void intermediateBestTimes() {
-        bestTimesPrint.printIntermediateBestTimes();        
+        BestTimesPrint.printIntermediateBestTimes();        
     }
     
     public void expertBestTimes() {
-        bestTimesPrint.printExpertBestTimes();
+        BestTimesPrint.printExpertBestTimes();
     }
-    
 }

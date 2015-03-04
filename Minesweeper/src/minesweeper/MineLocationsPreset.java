@@ -5,11 +5,13 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author knban_000
  */
-public class MineLocationsPreset {
+public class MineLocationsPreset implements Serializable{
     int numberOfMines = 10;
     
     MineLocationsPreset[] mineLocation = new MineLocationsPreset[numberOfMines];
