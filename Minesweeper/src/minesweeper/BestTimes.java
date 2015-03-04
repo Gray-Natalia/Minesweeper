@@ -23,12 +23,7 @@ public class BestTimes implements Serializable
     BestTimes[] intermediate = new BestTimes[10];
     BestTimes[] expert = new BestTimes[10];
 
-    public static void main(String args[]) throws IOException, ClassNotFoundException{
-        BestTimes bestTimes = new BestTimes();
-        bestTimes.outputToFile();
-        bestTimes.inputFromFile();
-    }
-        public BestTimes() {
+    public BestTimes() {
         beginner[0] = new BestTimes(1, "John", 10.5);
         beginner[1] = new BestTimes(2, "James", 20.3);
         beginner[2] = new BestTimes(3, "Jill", 30);
@@ -61,7 +56,7 @@ public class BestTimes implements Serializable
         expert[7] = new BestTimes(8, "Dan", 285);
         expert[8] = new BestTimes(9, "Amy", 293);
         expert[9] = new BestTimes(10, "Jane", 300);
-        }
+    }
 
     public int ranking;
     public String playerName;
@@ -80,16 +75,19 @@ public class BestTimes implements Serializable
             s.writeObject(intermediate);
             s.writeObject(expert);
             s.flush();
+        } catch (IOException io) {
+            System.out.println(io.getCause());
         }
-
     }
     
     public void inputFromFile() throws IOException, ClassNotFoundException {
-        BestTimes[] beginner2, intermediate2, expert2;
+        BestTimes[] beginner2 = null, intermediate2, expert2;
         try(FileInputStream in = new FileInputStream("bestTimes.txt"); ObjectInputStream s = new ObjectInputStream(in)) {
             beginner2 = (BestTimes[]) s.readObject();
             intermediate2 = (BestTimes[]) s.readObject();
             expert2 = (BestTimes[]) s.readObject();
+        } catch (IOException io) {
+            System.out.println(io.getCause());
         }
         System.out.println(beginner2[1].playerName);
     }

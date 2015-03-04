@@ -12,11 +12,6 @@ package minesweeper;
  */
 public class CellNumberCalculatorPreset {
     
-    public static void main(String args[]) {
-        CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
-        cellNumberCalculator.calculateNumMines();
-    }
-    
     public int numberOfMines = 10;
     public int numberOfColumns = 9;
     public int numberOfRows = 9;
