@@ -10,6 +10,7 @@ import java.io.Serializable;
 /**
  *
  * @author knban_000
+ * converted to java bean by C Rubenstein
  */
 public class CellValue implements Serializable {
     private char column;
