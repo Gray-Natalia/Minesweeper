@@ -16,7 +16,7 @@ import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
 
 public class BestTimesCalculator {  
     
-    public void checkBestTimeEligibility() throws java.io.IOException {
+    public static void checkBestTimeEligibility() throws java.io.IOException {
         GetPlayerName getPlayerName = new GetPlayerName();
         double newTime;
         String playerName = getPlayerName.getName();
@@ -44,7 +44,7 @@ public class BestTimesCalculator {
         else updateBestTimes(newTime);
     }
     
-    public void updateBestTimes(double newBestTime) {
+    public static void updateBestTimes(double newBestTime) {
         BestTimes BestTimes = new BestTimes();
         BestTimesCalculator BestTimesCalculator = new BestTimesCalculator();
         GetPlayerName getPlayerName = new GetPlayerName();
@@ -61,7 +61,7 @@ public class BestTimesCalculator {
         }
         
     }
-    public void changeBestTimeValues(int index, String newPlayerName, double newTime){        
+    public static void changeBestTimeValues(int index, String newPlayerName, double newTime){        
         BestTimes bestTimes = new BestTimes();
         bestTimes.beginner[index].playerName = newPlayerName;
         bestTimes.beginner[index].time = newTime;
@@ -76,14 +76,14 @@ public class BestTimesCalculator {
     }
     
     
-    public double functionAverage;
+    public static double functionAverage;
     
     /**
      *
      * @param difficultyLevel
      * @return
      */
-    public double calculateAverageTime(String difficultyLevel) {
+    public static double calculateAverageTime(String difficultyLevel) {
         BestTimes bestTimes = new BestTimes();
         double total;
         switch (difficultyLevel) {
@@ -120,7 +120,7 @@ public class BestTimesCalculator {
     
     // Converts Time from seconds to ## seconds or ##:## if option is 1
     // If option is not 1 seconds become ##:##
-    public String convertTime(double time, int option) {
+    public static String convertTime(double time, int option) {
         String output;
             if (time < 60 && option == 1) {
             output = (String.format("%.2f", time) + " seconds");

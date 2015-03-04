@@ -77,11 +77,6 @@ public class DifficultyLevelMenuControl {
                 + "\n\tand " + numberOfMines + " mines.");
         displayHelpBorder();
         
-        GameVariables game = new GameVariables();
-        game.setNumberOfColumns(numberOfColumns);
-        game.setNumberOfRows(numberOfRows);
-        game.setNumberOfMines(numberOfMines);
-        game.setNumberOfCells(numberOfColumns * numberOfRows);
         CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
         cellNumberCalculator.calculateNumMines();
     }

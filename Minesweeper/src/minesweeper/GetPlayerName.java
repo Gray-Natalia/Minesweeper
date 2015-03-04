@@ -37,8 +37,6 @@ public class GetPlayerName {
             playerName = input.nextLine();
         }
         System.out.println("Great " + playerName +", Go ahead!!!");
-        GameVariables game = new GameVariables();
-        game.setPlayerName(playerName);
         return playerName;
     }  
 }
