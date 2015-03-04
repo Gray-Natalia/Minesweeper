@@ -4,15 +4,21 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Keith Banner
+ * convert to java bean by C Rubenstein
  */
-public class MainMenuControl {
+public class MainMenuControl implements Serializable {
+
+    public MainMenuControl() {
+    }
     
     
      
-    public void play() {
+    public static void play() {
         //Natalia Gray added chooseLevel
         GetPlayerName getPlayerName = new GetPlayerName();
         getPlayerName.getName();
@@ -20,12 +26,12 @@ public class MainMenuControl {
         chooseLevelMenuView.getInput();
     }
 
-    public void viewBestTimes() {
+    public static void viewBestTimes() {
         BestTimesMenuView bestTimesMenuView = new BestTimesMenuView();
         bestTimesMenuView.getInput();
     }
     
-    public void displayHelpMenu() {
+    public static void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.getInput();
     }
