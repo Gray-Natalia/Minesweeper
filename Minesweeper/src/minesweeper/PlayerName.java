@@ -6,7 +6,6 @@
 package minesweeper;
 
     import java.util.ArrayList;
-    import java.util.Arrays;
     import java.util.Collections;
     import java.util.List;
 
@@ -18,7 +17,7 @@ public class PlayerName {
     
     public static void main (String args[]){
         
-        List<String> playerNames = new ArrayList<String>();
+        List<String> playerNames = new ArrayList<>();
         
                 playerNames.add("John");
 		playerNames.add("Melissa");

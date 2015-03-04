@@ -5,8 +5,6 @@
  */
 package minesweeper;
 
-import minesweeper.notUsed.CellNumberCalculatorRandom;
-
 /**
  *
  * @author kalavic
@@ -84,7 +82,7 @@ public class DifficultyLevelMenuControl {
         game.setNumberOfRows(numberOfRows);
         game.setNumberOfMines(numberOfMines);
         game.setNumberOfCells(numberOfColumns * numberOfRows);
-        CellNumberCalculatorRandom cellNumberCalculator = new CellNumberCalculatorRandom();
+        CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
         cellNumberCalculator.calculateNumMines();
     }
     

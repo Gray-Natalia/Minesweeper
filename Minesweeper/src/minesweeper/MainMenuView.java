@@ -21,20 +21,18 @@ public class MainMenuView {
         {"X", "Exit Minesweeper"}
     }; 
   
-    MainMenuControl mainMenuControl = new MainMenuControl();
-    
     public MainMenuView() {
 
     }
  
     
-    public void getInput() {       
+    public static void getInput() {       
 
         String command;
         Scanner inFile = new Scanner(System.in);
         
         do {
-            this.display(); // display the menu
+            MainMenuView.display(); // display the menu
 
             // get commaned entered
             command = inFile.nextLine();
@@ -43,13 +41,13 @@ public class MainMenuView {
             switch (command) {
                 //Natalia Gray added chooseLevel
                 case "P":
-                    mainMenuControl.play();
+                    MainMenuControl.play();
                     break;
                 case "V":
-                    mainMenuControl.viewBestTimes();
+                    MainMenuControl.viewBestTimes();
                     break;
                 case "H":
-                    mainMenuControl.displayHelpMenu();            
+                    MainMenuControl.displayHelpMenu();            
                     break;
                 case "X":
                     break;
@@ -58,14 +56,12 @@ public class MainMenuView {
                     continue;                    
             }
         } while (!command.equals("X"));
-
-        return;
     }
     
 
     
     
-   public final void display() {
+   public static final void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tMain Menu");
         System.out.println("\n\t===============================================================");
