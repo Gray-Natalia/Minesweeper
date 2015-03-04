@@ -5,20 +5,24 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  *
  * @author kalavic
+ * convert to java beans by C Rubenstein
  */
-public class DifficultyLevelMenuControl {
+public class DifficultyLevelMenuControl implements Serializable  {
     
     public DifficultyLevelMenuControl() {
         
     } 
     
-    public int numberOfColumns;
-    public int numberOfRows;
-    public int numberOfMines;
-    public String difficultyLevel;
+    private int numberOfColumns;
+    private int numberOfRows;
+    private int numberOfMines;
+    private String difficultyLevel;
     
     public void beginner() {
         //for now here will be the description of the level, in the future
@@ -65,7 +69,7 @@ public class DifficultyLevelMenuControl {
         cellNumberCalculatorPreset.calculateNumMines();
     }
     
-    public void displayHelpBorder() {       
+    public static void displayHelpBorder() {       
         System.out.println(
         "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
@@ -79,6 +83,77 @@ public class DifficultyLevelMenuControl {
         
         CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
         cellNumberCalculator.calculateNumMines();
+    }
+
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
+
+    public void setNumberOfColumns(int numberOfColumns) {
+        this.numberOfColumns = numberOfColumns;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
+
+    public int getNumberOfMines() {
+        return numberOfMines;
+    }
+
+    public void setNumberOfMines(int numberOfMines) {
+        this.numberOfMines = numberOfMines;
+    }
+
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.numberOfColumns;
+        hash = 29 * hash + this.numberOfRows;
+        hash = 29 * hash + this.numberOfMines;
+        hash = 29 * hash + Objects.hashCode(this.difficultyLevel);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DifficultyLevelMenuControl other = (DifficultyLevelMenuControl) obj;
+        if (this.numberOfColumns != other.numberOfColumns) {
+            return false;
+        }
+        if (this.numberOfRows != other.numberOfRows) {
+            return false;
+        }
+        if (this.numberOfMines != other.numberOfMines) {
+            return false;
+        }
+        if (!Objects.equals(this.difficultyLevel, other.difficultyLevel)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DifficultyLevelMenuControl{" + "numberOfColumns=" + numberOfColumns + ", numberOfRows=" + numberOfRows + ", numberOfMines=" + numberOfMines + ", difficultyLevel=" + difficultyLevel + '}';
     }
     
 }

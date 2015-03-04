@@ -5,17 +5,21 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+import java.util.Arrays;
+
 
 /**
  *
  * @author Keith
+ * convert to java beans by C Rubenstein
  */
-public class CellNumberCalculatorPreset {
+public class CellNumberCalculatorPreset implements Serializable {
     
-    public int numberOfMines = 10;
-    public int numberOfColumns = 9;
-    public int numberOfRows = 9;
-    public int numberOfCells = numberOfColumns * numberOfRows;
+    private int numberOfMines = 10;
+    private int numberOfColumns = 9;
+    private int numberOfRows = 9;
+    private int numberOfCells = numberOfColumns * numberOfRows;
 
     
     ConstructorCellOutputArray[] cellValueOut = new ConstructorCellOutputArray[numberOfCells];
@@ -87,5 +91,92 @@ public class CellNumberCalculatorPreset {
             System.out.print("\n");
         }
     }
+
+    public CellNumberCalculatorPreset() {
+    }
+
+    public int getNumberOfMines() {
+        return numberOfMines;
+    }
+
+    public void setNumberOfMines(int numberOfMines) {
+        this.numberOfMines = numberOfMines;
+    }
+
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
+
+    public void setNumberOfColumns(int numberOfColumns) {
+        this.numberOfColumns = numberOfColumns;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
+
+    public int getNumberOfCells() {
+        return numberOfCells;
+    }
+
+    public void setNumberOfCells(int numberOfCells) {
+        this.numberOfCells = numberOfCells;
+    }
+
+    public ConstructorCellOutputArray[] getCellValueOut() {
+        return cellValueOut;
+    }
+
+    public void setCellValueOut(ConstructorCellOutputArray[] cellValueOut) {
+        this.cellValueOut = cellValueOut;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.numberOfMines;
+        hash = 97 * hash + this.numberOfColumns;
+        hash = 97 * hash + this.numberOfRows;
+        hash = 97 * hash + this.numberOfCells;
+        hash = 97 * hash + Arrays.deepHashCode(this.cellValueOut);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CellNumberCalculatorPreset other = (CellNumberCalculatorPreset) obj;
+        if (this.numberOfMines != other.numberOfMines) {
+            return false;
+        }
+        if (this.numberOfColumns != other.numberOfColumns) {
+            return false;
+        }
+        if (this.numberOfRows != other.numberOfRows) {
+            return false;
+        }
+        if (this.numberOfCells != other.numberOfCells) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.cellValueOut, other.cellValueOut)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CellNumberCalculatorPreset{" + "numberOfMines=" + numberOfMines + ", numberOfColumns=" + numberOfColumns + ", numberOfRows=" + numberOfRows + ", numberOfCells=" + numberOfCells + ", cellValueOut=" + cellValueOut + '}';
+    }
+    
 }
 

@@ -5,13 +5,14 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author kalavic
  */
-public class DifficultyLevelMenuView {
+public class DifficultyLevelMenuView implements Serializable {
     private final static String[][] menuItems = {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 

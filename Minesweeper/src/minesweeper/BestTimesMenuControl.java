@@ -4,21 +4,23 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 
  */
-public class BestTimesMenuControl {
+public class BestTimesMenuControl implements Serializable {
      
-    public void beginnerBestTimes() {
+    public static void beginnerBestTimes() {
         BestTimesPrint.printBeginnerBestTimes();
     }
 
-    public void intermediateBestTimes() {
+    public static void intermediateBestTimes() {
         BestTimesPrint.printIntermediateBestTimes();        
     }
     
-    public void expertBestTimes() {
+    public static void expertBestTimes() {
         BestTimesPrint.printExpertBestTimes();
     }
 }

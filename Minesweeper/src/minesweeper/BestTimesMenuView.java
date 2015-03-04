@@ -4,6 +4,7 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Scanner;
  */
 
 
-public class BestTimesMenuView {
+public class BestTimesMenuView implements Serializable {
         
     private static final String[][] menuItems = {
         {"B", "Beginner"},

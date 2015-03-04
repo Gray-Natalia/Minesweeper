@@ -5,6 +5,7 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
 
@@ -14,7 +15,7 @@ import static minesweeper.BestTimesPrint.printBeginnerBestTimes;
  */
 
 
-public class BestTimesCalculator {  
+public class BestTimesCalculator implements Serializable {  
     
     public static void checkBestTimeEligibility() throws java.io.IOException {
         GetPlayerName getPlayerName = new GetPlayerName();
