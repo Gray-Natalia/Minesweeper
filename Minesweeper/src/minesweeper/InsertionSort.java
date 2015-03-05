@@ -21,7 +21,7 @@ public class InsertionSort {
         
         for (j = 1; j < mineLocationsPreset.mineLocation.length; j++)
         {
-            tempColumn = mineLocationsPreset.mineLocation [j].column;
+            tempColumn = mineLocationsPreset.mineLocation[j].column;
             tempRow = mineLocationsPreset.mineLocation [j].row;
             for(i = j - 1; (i >= 0 ) && (mineLocationsPreset.mineLocation[i].column > tempColumn|| 
                     (mineLocationsPreset.mineLocation[i].column == tempColumn && mineLocationsPreset.mineLocation[i].row > tempRow)); i--)

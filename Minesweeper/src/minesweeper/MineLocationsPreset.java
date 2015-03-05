@@ -6,13 +6,16 @@
 package minesweeper;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *
  * @author knban_000
  */
 public class MineLocationsPreset implements Serializable{
-    int numberOfMines = 10;
+    private int numberOfMines = 10;
+    char column;
+    int row;
     
     MineLocationsPreset[] mineLocation = new MineLocationsPreset[numberOfMines];
     
@@ -28,9 +31,6 @@ public class MineLocationsPreset implements Serializable{
             mineLocation[8] = new MineLocationsPreset('A',2);
             mineLocation[9] = new MineLocationsPreset('F',3);
     }
-    
-    public char column;
-    public int row;
     
     public MineLocationsPreset(char col, int ro) {
         column = col;
@@ -53,4 +53,77 @@ public class MineLocationsPreset implements Serializable{
             mineLocation[k+1].row = tempRow;
         }
     }
+
+    public int getNumberOfMines() {
+        return numberOfMines;
+    }
+
+    public void setNumberOfMines(int numberOfMines) {
+        this.numberOfMines = numberOfMines;
+    }
+
+    public char getColumn() {
+        return column;
+    }
+
+    public void setColumn(char column) {
+        this.column = column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public MineLocationsPreset[] getMineLocation() {
+        return mineLocation;
+    }
+
+    public void setMineLocation(MineLocationsPreset[] mineLocation) {
+        this.mineLocation = mineLocation;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.numberOfMines;
+        hash = 17 * hash + this.column;
+        hash = 17 * hash + this.row;
+        hash = 17 * hash + Arrays.deepHashCode(this.mineLocation);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MineLocationsPreset other = (MineLocationsPreset) obj;
+        if (this.numberOfMines != other.numberOfMines) {
+            return false;
+        }
+        if (this.column != other.column) {
+            return false;
+        }
+        if (this.row != other.row) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.mineLocation, other.mineLocation)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "MineLocationsPreset{" + "numberOfMines=" + numberOfMines + ", column=" + column + ", row=" + row + ", mineLocation=" + mineLocation + '}';
+    }
+    
+    
 }

@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class ConstructorCellOutputArray implements Serializable {
     private char column;
     private int row;
-    private int cellValue; //value of 10 means mine.
+    int cellValue; //value of 10 means mine.
     public ConstructorCellOutputArray(char col, int ro, int cv) {
         
         column = col;
