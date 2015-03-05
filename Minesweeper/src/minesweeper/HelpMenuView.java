@@ -5,14 +5,17 @@
 package minesweeper;
 
 import java.util.Scanner;
+import java.io.Serializable;
+import java.util.Objects;
 
 
 
 /**
  *
- * @author Group
+ * @author Group, Alfonso Ramirez
+ * 
  */
-public class HelpMenuView  {
+public class HelpMenuView implements Serializable {
         
     private final static String[][] menuItems = {
         {"P", "How to Play"},
