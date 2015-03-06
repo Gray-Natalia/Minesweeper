@@ -19,6 +19,7 @@ public class BestTimesMenuView implements Serializable {
         {"B", "Beginner"},
         {"I", "Intermediate"},
         {"E", "Expert"},
+        {"A", "All Difficulty Levels"},
         {"X", "Exit to Main Menu"}
     }; 
   
@@ -51,6 +52,8 @@ public class BestTimesMenuView implements Serializable {
                 case "E":
                     this.bestTimesMenuControl.expertBestTimes();            
                     break;
+                case "A":
+                    this.bestTimesMenuControl.allBestTimes();
                 case "X":
                     break;
                 default: 
@@ -61,9 +64,6 @@ public class BestTimesMenuView implements Serializable {
 
         return;
     }
-    
-
-    
     
    public final void display() {
         System.out.println("\n\t===============================================================");

@@ -5,11 +5,38 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
-public class Mine {
-    char column;
-    char row;
+public class Mine implements Serializable {
+    private char column;
+    private char row;
+
+    public Mine() {
+    }
+
+    public char getColumn() {
+        return column;
+    }
+
+    public void setColumn(char column) {
+        this.column = column;
+    }
+
+    public char getRow() {
+        return row;
+    }
+
+    public void setRow(char row) {
+        this.row = row;
+    }
+
+    @Override
+    public String toString() {
+        return "Mine{" + "column=" + column + ", row=" + row + '}';
+    }
 }
+

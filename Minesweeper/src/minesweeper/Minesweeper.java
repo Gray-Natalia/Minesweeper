@@ -10,17 +10,14 @@ package minesweeper;
  * @author kalavic
  */
 public class Minesweeper {
-//Instance variables
-    String name;
-    String instructions = "Minesweeper is a logic game where\n"
-            + "mines are hidden in a grid of squares.\n" 
-            + "The goal of the game is to clear a board\n"
-            + "containing hidden mines without detonating any of them.\n";
-    
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        System.out.println("   _____  .__                                                                 \n" +
+"  /     \\ |__| ____   ____   ________  _  __ ____   ____ ______   ___________ \n" +
+" /  \\ /  \\|  |/    \\_/ __ \\ /  ___/\\ \\/ \\/ // __ \\_/ __ \\\\____ \\_/ __ \\_  __ \\\n" +
+"/    Y    \\  |   |  \\  ___/ \\___ \\  \\     /\\  ___/\\  ___/|  |_> >  ___/|  | \\/\n" +
+"\\____|__  /__|___|  /\\___  >____  >  \\/\\_/  \\___  >\\___  >   __/ \\___  >__|   \n" +
+"        \\/        \\/     \\/     \\/              \\/     \\/|__|        \\/       ");
+        
         MainMenuView.getInput();
     }
 }
