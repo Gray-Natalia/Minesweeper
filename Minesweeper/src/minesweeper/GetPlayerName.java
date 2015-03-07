@@ -5,13 +5,14 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author 
  */
-public class GetPlayerName {
+public class GetPlayerName implements Serializable {
     
     String greeting;
     String ifnot;

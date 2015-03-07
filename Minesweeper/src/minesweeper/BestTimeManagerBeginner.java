@@ -14,7 +14,7 @@ import java.util.Comparator;
  *
  * @author knban_000
  */
-public class BestTimeManagerBeginner {
+public class BestTimeManagerBeginner implements Serializable {
     // ArrayList type is bestTimesBeginner (Uses BestTimeBeginner constructor)
     private ArrayList<BestTime> bestTimesBeginner;
     

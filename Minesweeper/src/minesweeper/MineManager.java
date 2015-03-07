@@ -110,8 +110,6 @@ public class MineManager implements Serializable{
             } else {
                 return 1;
             }
-
         }
     }
-    
 }

@@ -14,7 +14,7 @@ import java.util.Comparator;
  *
  * @author knban_000
  */
-public class BestTimeManagerIntermediate {
+public class BestTimeManagerIntermediate implements Serializable {
     // ArrayList type is bestTimesIntermediate (Uses BestTimeIntermediate constructor)
     private ArrayList<BestTime> bestTimesIntermediate;
     

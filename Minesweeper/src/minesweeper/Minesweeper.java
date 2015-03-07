@@ -11,6 +11,7 @@ package minesweeper;
  */
 public class Minesweeper {
     public static void main(String[] args) {
+        
         System.out.println("   _____  .__                                                                 \n" +
 "  /     \\ |__| ____   ____   ________  _  __ ____   ____ ______   ___________ \n" +
 " /  \\ /  \\|  |/    \\_/ __ \\ /  ___/\\ \\/ \\/ // __ \\_/ __ \\\\____ \\_/ __ \\_  __ \\\n" +

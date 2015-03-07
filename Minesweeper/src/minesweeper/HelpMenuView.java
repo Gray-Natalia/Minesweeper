@@ -6,9 +6,6 @@ package minesweeper;
 
 import java.util.Scanner;
 import java.io.Serializable;
-import java.util.Objects;
-
-
 
 /**
  *
@@ -68,7 +65,7 @@ public class HelpMenuView implements Serializable {
     }
 
         // displays the help menu
-    public final void display() {
+    private void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tHelp Menu");
         System.out.println("\n\t===============================================================");

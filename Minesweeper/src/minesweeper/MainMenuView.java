@@ -4,6 +4,7 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Scanner;
  */
 
 
-public class MainMenuView {
+public class MainMenuView implements Serializable {
     
     private static final String[][] menuItems = {
         {"P", "Play"},
@@ -57,7 +58,7 @@ public class MainMenuView {
         } while (!command.equals("X"));
     }
     
-   public static final void display() {
+   private static void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tMain Menu");
         System.out.println("\n\t===============================================================");

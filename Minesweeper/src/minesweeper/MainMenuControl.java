@@ -12,11 +12,6 @@ import java.io.Serializable;
  * convert to java bean by C Rubenstein
  */
 public class MainMenuControl implements Serializable {
-
-    public MainMenuControl() {
-    }
-    
-    
      
     public static void play() {
         //Natalia Gray added chooseLevel

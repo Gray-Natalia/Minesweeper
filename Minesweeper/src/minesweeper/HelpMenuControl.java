@@ -4,16 +4,14 @@
  */
 package minesweeper;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author Group
  */
-public class HelpMenuControl  {
-    
-    public HelpMenuControl() {
-        
-    } 
+public class HelpMenuControl  implements Serializable {
 
     public void displayHowToPlay() {
         System.out.println();

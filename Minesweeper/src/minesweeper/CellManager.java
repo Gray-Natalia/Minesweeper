@@ -395,7 +395,7 @@ public class CellManager implements Serializable{
 
     // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flaged, 11 unknown
     // Game end only: 12 clicked exploded, 13 undiscovered mine, 14 Incorrect Flag, 15 discovered mine.
-    public void flag(int row, char column) {
+    private void flag(int row, char column) {
         for (Cell cell : cells) {
             if (cell.getRow() == row && cell.getColumn() == column) {
                 cell.setState(10);
@@ -409,7 +409,7 @@ public class CellManager implements Serializable{
         flag(row, column);
     }
 
-    public void unknown(int row, char column) {
+    private void unknown(int row, char column) {
         for (Cell cell : cells) {
             if (cell.getRow() == row && cell.getColumn() == column) {
                 cell.setState(11);
@@ -453,7 +453,7 @@ public class CellManager implements Serializable{
     }
     
     // For checking for zeros.
-    public void addCheckCell(int row, char column) {
+    private void addCheckCell(int row, char column) {
 //        if (checkCells.size() > 0) {
 //            for (CheckCell checkCell : checkCells) {
 //                if (checkCell.getRow() == row && checkCell.getColumn() == column) {
@@ -468,7 +468,7 @@ public class CellManager implements Serializable{
 //        }
     }
     
-    public void removeCheckCell(int row, char column) {
+    private void removeCheckCell(int row, char column) {
         for (int i = 0; i < checkCells.size(); i++) {
             if (checkCells.get(i).getRow() == row && checkCells.get(i).getColumn() == column) {
                 checkCells.remove(checkCells.get(i));
@@ -478,7 +478,7 @@ public class CellManager implements Serializable{
         }
     }
 
-    public void clearCheckCells() {
+    private void clearCheckCells() {
         try {
             checkCells.clear();
         } catch (NullPointerException e) {
