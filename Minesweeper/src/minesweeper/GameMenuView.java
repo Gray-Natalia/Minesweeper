@@ -13,65 +13,60 @@ import java.util.Scanner;
  */
 
 
-public class BestTimesMenuView implements Serializable {
-        
+public class GameMenuView implements Serializable{
+    
     private static final String[][] menuItems = {
-        {"B", "Beginner"},
-        {"I", "Intermediate"},
-        {"E", "Expert"},
-        {"A", "All Difficulty Levels"},
-        {"X", "Exit to Main Menu"}
+        {"R", "Reveal Cell"},
+        {"F", "Flag Cell"},
+        {"?", "Mark Unknown"},
+        {"X", "Exit to Main Menu (Game progress will be lost.)"}
     }; 
   
-    BestTimesMenuControl bestTimesMenuControl = new BestTimesMenuControl();
-    
-    public BestTimesMenuView() {
+    public GameMenuView() {
 
     }
- 
     
-    public void getInput() {       
+    public static void getInput() {       
 
         String command;
         Scanner inFile = new Scanner(System.in);
         
         do {
-            this.display(); // display the menu
+            GameMenuView.display(); // display the menu
 
             // get commaned entered
             command = inFile.nextLine();
             command = command.trim().toUpperCase();
             
             switch (command) {
-                case "B":
-                    this.bestTimesMenuControl.beginnerBestTimes();
+                //Natalia Gray added chooseLevel
+                case "R":
+                    GameMenuControl.reveal();
                     break;
-                case "I":
-                    this.bestTimesMenuControl.intermediateBestTimes();
+                case "F":
+                    GameMenuControl.flag();
                     break;
-                case "E":
-                    this.bestTimesMenuControl.expertBestTimes();            
+                case "?":
+                    GameMenuControl.unknown();            
                     break;
-                case "A":
-                    this.bestTimesMenuControl.allBestTimes();
                 case "X":
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;
+                    continue;                    
             }
         } while (!command.equals("X"));
-
-        return;
     }
     
-   public final void display() {
+   public static final void display() {
+        CellManager cm = new CellManager();
+        cm.displayBoard();
         System.out.println("\n\t===============================================================");
-        System.out.println("\tBest Times");
+        System.out.println("\tGame Menu");
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following commands:");
 
-        for (int i = 0; i < BestTimesMenuView.menuItems.length; i++) {
+        for (int i = 0; i < GameMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
         }
         System.out.println("\t===============================================================\n");

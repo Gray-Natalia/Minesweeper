@@ -13,14 +13,29 @@ import java.io.Serializable;
 public class BestTimesMenuControl implements Serializable {
      
     public static void beginnerBestTimes() {
-        BestTimesPrint.printBeginnerBestTimes();
+        BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
+        System.out.println(btmb.getBestTimesBeginnerString());
     }
 
     public static void intermediateBestTimes() {
-        BestTimesPrint.printIntermediateBestTimes();        
+        BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
+        System.out.println(btmi.getBestTimesIntermediateString());
     }
     
     public static void expertBestTimes() {
-        BestTimesPrint.printExpertBestTimes();
+        BestTimeManagerExpert btme = new BestTimeManagerExpert();
+        System.out.println(btme.getBestTimesExpertString());
     }
+    
+    public static void allBestTimes() {
+        BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
+        System.out.println(btmb.getBestTimesBeginnerString());
+        
+        BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
+        System.out.println(btmi.getBestTimesIntermediateString());
+        
+        BestTimeManagerExpert btme = new BestTimeManagerExpert();
+        System.out.println(btme.getBestTimesExpertString());
+    }
+    
 }

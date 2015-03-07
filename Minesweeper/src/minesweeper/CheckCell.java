@@ -9,18 +9,19 @@ import java.io.Serializable;
 
 /**
  *
- * @author Keith Banner
+ * @author knban_000
  */
-public class Mine implements Serializable {
+public class CheckCell implements Serializable{
+
     private int row;
     private char column;
 
-    public Mine() {
-    }
-
-    public Mine(int row, char column) {
+    public CheckCell(int row, char column) {
         this.row = row;
         this.column = column;
+    }
+
+    public CheckCell() {
     }
 
     public int getRow() {
@@ -40,15 +41,10 @@ public class Mine implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Mine{" + "column=" + column + ", row=" + row + '}';
-    }
-
-    @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.row;
-        hash = 37 * hash + this.column;
+        hash = 89 * hash + this.row;
+        hash = 89 * hash + this.column;
         return hash;
     }
 
@@ -60,7 +56,7 @@ public class Mine implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Mine other = (Mine) obj;
+        final CheckCell other = (CheckCell) obj;
         if (this.row != other.row) {
             return false;
         }
@@ -69,5 +65,9 @@ public class Mine implements Serializable {
         }
         return true;
     }
-}
 
+    @Override
+    public String toString() {
+        return "CheckCell{" + "row=" + row + ", column=" + column + '}';
+    }
+}
