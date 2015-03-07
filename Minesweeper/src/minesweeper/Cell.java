@@ -10,18 +10,21 @@ import java.io.Serializable;
 /**
  *
  * @author knban_000
- * convert to java bean by C Rubenstein
  */
-public class ConstructorMineArray implements Serializable {
-    private char column;
+public class Cell implements Serializable {
     private int row;
-    
-    public ConstructorMineArray(char col, int ro) {
-        column = col;
-        row = ro;
+    private char column;
+    private int value;
+    private int state;
+
+    public Cell() {
     }
 
-    public ConstructorMineArray() {
+    public Cell(int row, char column, int value, int state) {
+        this.row = row;
+        this.column = column;
+        this.value = value;
+        this.state = state;
     }
 
     public char getColumn() {
@@ -40,11 +43,29 @@ public class ConstructorMineArray implements Serializable {
         this.row = row;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + this.column;
-        hash = 29 * hash + this.row;
+        int hash = 7;
+        hash = 11 * hash + this.column;
+        hash = 11 * hash + this.row;
+        hash = 11 * hash + this.value;
+        hash = 11 * hash + this.state;
         return hash;
     }
 
@@ -56,11 +77,17 @@ public class ConstructorMineArray implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ConstructorMineArray other = (ConstructorMineArray) obj;
+        final Cell other = (Cell) obj;
         if (this.column != other.column) {
             return false;
         }
         if (this.row != other.row) {
+            return false;
+        }
+        if (this.value != other.value) {
+            return false;
+        }
+        if (this.state != other.state) {
             return false;
         }
         return true;
@@ -68,7 +95,6 @@ public class ConstructorMineArray implements Serializable {
 
     @Override
     public String toString() {
-        return "ConstructorMineArray{" + "column=" + column + ", row=" + row + '}';
+        return "Cell{" + "column=" + column + ", row=" + row + ", value=" + value + ", state=" + state + '}';
     }
-    
 }

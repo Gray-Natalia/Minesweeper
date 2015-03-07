@@ -30,10 +30,11 @@ public class DifficultyLevelMenuControl implements Serializable  {
         System.out.println();
         this.displayHelpBorder();
         numberOfMines = 10;
-        numberOfColumns = 9;
         numberOfRows = 9;
+        numberOfColumns = 9;
         difficultyLevel = "Beginner";
-        displayAndStartSelectedLevel();
+        displaySelectedLevel();
+        startSelectedLevel();
     }
         
     public void intermediate() {
@@ -42,10 +43,11 @@ public class DifficultyLevelMenuControl implements Serializable  {
         System.out.println();
         displayHelpBorder();
         numberOfMines = 40;
-        numberOfColumns = 16;
         numberOfRows = 16;
+        numberOfColumns = 16;
         difficultyLevel = "Intermediate";
-        displayAndStartSelectedLevel();
+        displaySelectedLevel();
+        startSelectedLevel();
     }
             
     public void expert() {
@@ -54,37 +56,56 @@ public class DifficultyLevelMenuControl implements Serializable  {
         System.out.println();
         displayHelpBorder();
         numberOfMines = 99;
-        numberOfColumns = 30;
         numberOfRows = 16;
+        numberOfColumns = 30;
         difficultyLevel = "Expert";
-        displayAndStartSelectedLevel();
+        displaySelectedLevel();
+        startSelectedLevel();
     }
     
     public void beginnerPreset() {
         System.out.println();
-        this.displayHelpBorder();  
+        displayHelpBorder();  
         System.out.println("\tThis is a special preset board for testing the game.");
         displayHelpBorder();
-        CellNumberCalculatorPreset cellNumberCalculatorPreset = new CellNumberCalculatorPreset();
-        cellNumberCalculatorPreset.calculateNumMines();
+        numberOfMines = 10;
+        numberOfRows = 9;
+        numberOfColumns = 9;
+        MineManager mm = new MineManager();
+        mm.presetMines();
+        CellManager cm = new CellManager();
+        cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
+        GameMenuView.getInput();
+        
     }
     
-    public static void displayHelpBorder() {       
+    private static void displayHelpBorder() {       
         System.out.println(
-        "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        "\t===============================================================");
     }
     
-    public void displayAndStartSelectedLevel() {
+    private void displaySelectedLevel() {
         System.out.println("\tYou have selected " + difficultyLevel + "."
                 + "\n\tThere are " + numberOfRows + " rows,"
                 + "\n\t" + numberOfColumns + " columns,"
                 + "\n\tand " + numberOfMines + " mines.");
         displayHelpBorder();
-        
-        CellNumberCalculatorPreset cellNumberCalculator = new CellNumberCalculatorPreset();
-        cellNumberCalculator.calculateNumMines();
+    }
+    
+    public void startSelectedLevel() {
+        MineManager mm = new MineManager();
+        mm.generateMines(numberOfRows, numberOfColumns, numberOfMines);
+        CellManager cm = new CellManager();
+        cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
+        GameMenuView.getInput();
     }
 
+    
+    
+    
+    
+    
+    
     public int getNumberOfColumns() {
         return numberOfColumns;
     }

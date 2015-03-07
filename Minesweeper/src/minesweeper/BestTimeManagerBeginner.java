@@ -8,6 +8,7 @@ package minesweeper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -112,6 +113,7 @@ public class BestTimeManagerBeginner {
     }
     
     public void clearBestTimesBeginnerFile() {
+        bestTimesBeginner.clear();
         try {
             PrintWriter writer = new PrintWriter(BEST_TIMES_BEGINNER_FILE);
             writer.close();
@@ -162,8 +164,8 @@ public class BestTimeManagerBeginner {
     
     private String calculateAverageTime() {
         double total = 0;
-        for (int i = 0; i < bestTimesBeginner.size(); i++) {
-            total += bestTimesBeginner.get(i).getTime();
+        for (BestTime bestTimesBeginner1 : bestTimesBeginner) {
+            total += bestTimesBeginner1.getTime();
         }
         double average = total / bestTimesBeginner.size();
         
@@ -175,5 +177,22 @@ public class BestTimeManagerBeginner {
             output = (((int) average/60) + ":" + String.format("%02d",(int) average%60) + ".");
         }
         return output;
+    }
+    
+    private class BestTimeCompare implements Comparator<BestTime> {
+
+        @Override
+        public int compare(BestTime bestTime1, BestTime bestTime2) {
+            double bt1 = bestTime1.getTime();
+            double bt2 = bestTime2.getTime();
+
+            if (bt1 < bt2) {
+                return -1;
+            } else if (bt1 > bt2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 }
