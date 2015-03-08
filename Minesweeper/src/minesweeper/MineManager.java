@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
 public class MineManager implements Serializable{
     private static ArrayList<Mine> mines = new ArrayList<>();

@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
 public class BestTimeManagerIntermediate implements Serializable {
     // ArrayList type is bestTimesIntermediate (Uses BestTimeIntermediate constructor)

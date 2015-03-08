@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
 public class Cell implements Serializable {
     private int row;

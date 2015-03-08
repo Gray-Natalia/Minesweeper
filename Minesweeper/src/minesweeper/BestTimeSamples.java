@@ -8,7 +8,7 @@ package minesweeper;
 import java.io.Serializable;
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
 public class BestTimeSamples implements Serializable{
     public static void main(String args[]) {

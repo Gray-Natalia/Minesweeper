@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author knban_000
+ * @author Keith Banner
  */
 public class CellManager implements Serializable{
     private static ArrayList<Cell> cells = new ArrayList<>();
