@@ -175,13 +175,13 @@ public class CellManager implements Serializable{
         char undiscovered = 'U';
         char flagged = 'F';
         char unknown = '?';
-        char exploded = 175;
+        char exploded = '*';
         char mine = 'M';
         char incorrectFlag = 'X';
         
         StringBuilder boardPrint = new StringBuilder("\t  ");
         while (cells.get(currentCell).getRow() == 1) {
-            boardPrint.append("    ")
+            boardPrint.append("   ")
                     .append(cells.get(currentCell).getColumn());
             currentCell++;
         }

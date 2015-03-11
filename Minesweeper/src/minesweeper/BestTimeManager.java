@@ -67,6 +67,7 @@ public abstract class BestTimeManager {
             updateBestTimesFile();
         }
     }
+ 
   public void loadBestTimesFile() {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(BEST_TIMES_FILE));
@@ -91,6 +92,7 @@ public abstract class BestTimeManager {
             }
         }
     }
+  
    public void updateBestTimesFile() {
         if(bestTimes.size() > 10) {
             for(int i = 10; i < bestTimes.size(); i++) {
@@ -116,6 +118,7 @@ public abstract class BestTimeManager {
             }
         }
     }
+   
     public void clearBestTimesFile() {
         bestTimes.clear();
         try {
@@ -148,7 +151,7 @@ public abstract class BestTimeManager {
         return output;
     }
      private class BestTimeCompare implements Comparator<BestTime> {
-
+         
         @Override
         public int compare(BestTime bestTime1, BestTime bestTime2) {
             double bt1 = bestTime1.getTime();
