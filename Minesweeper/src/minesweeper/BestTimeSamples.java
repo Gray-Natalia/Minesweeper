@@ -17,9 +17,9 @@ public class BestTimeSamples implements Serializable{
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
         BestTimeManagerExpert btme = new BestTimeManagerExpert();
         
-        btmb.clearBestTimesBeginnerFile();
-        btmi.clearBestTimesIntermediateFile();
-        btme.clearBestTimesExpertFile();
+        btmb.clearBestTimesFile();
+        btmi.clearBestTimesFile();
+        btme.clearBestTimesFile();
         
         // Beginner
         btmb.addBestTime("John", 10.5);
@@ -59,8 +59,8 @@ public class BestTimeSamples implements Serializable{
         btme.addBestTime("Amy", 293);
         btme.addBestTime("Jane", 300);
         
-        System.out.println(btmb.getBestTimesBeginnerString());
-        System.out.println(btmi.getBestTimesIntermediateString());
-        System.out.println(btme.getBestTimesExpertString());
+        System.out.println(btmb.getBestTimesString());
+        System.out.println(btmi.getBestTimesString());
+        System.out.println(btme.getBestTimesString());
     }
 }
