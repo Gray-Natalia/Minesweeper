@@ -37,7 +37,7 @@ public class HelpMenuView implements Serializable {
         
         do {
             
-            this.display(); // display the menu
+            HelpMenuView.display(); // display the menu
             
             // get commaned entered
             command = inFile.nextLine();
@@ -65,7 +65,7 @@ public class HelpMenuView implements Serializable {
     }
 
         // displays the help menu
-    private void display() {
+    private static void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tHelp Menu");
         System.out.println("\n\t===============================================================");
