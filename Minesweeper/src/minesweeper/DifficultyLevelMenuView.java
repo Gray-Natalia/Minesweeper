@@ -4,15 +4,13 @@
  * and open the template in the editor.
  */
 package minesweeper;
-
-import java.io.Serializable;
-import java.util.Scanner;
-
 /**
  *
  * @author kalavic
  */
-public class DifficultyLevelMenuView implements Serializable {
+
+
+public class DifficultyLevelMenuView extends Menu {
     private final static String[][] menuItems = {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 
@@ -21,40 +19,33 @@ public class DifficultyLevelMenuView implements Serializable {
         {"X", "Exit To Main Menu"}
     };
     
-    // Create instance of the DifficultyLevelMenuControl (action) class
-    private DifficultyLevelMenuControl chooseLevelMenuControl = new DifficultyLevelMenuControl();
+    DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
     
-    // default constructor
     public DifficultyLevelMenuView() {
-        
-    } 
+        super(DifficultyLevelMenuView.menuItems);
+    }
     
-    // display the level menu and get the end users input selection
-    public void getInput() {       
-              
+    @Override
+   public void executeCommands() {
         String command;
-        Scanner inFile = new Scanner(System.in);
         
         do {
+            display("Difficulty Level Menu"); // display the menu
             
-            this.display(); // display the menu
-            
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+            command = getCommand();
             
             switch (command) {
                 case "B":
-                    chooseLevelMenuControl.beginner();
+                    difficultyLevelMenuControl.beginner();
                     break;
                 case "I":
-                    chooseLevelMenuControl.intermediate();
+                    difficultyLevelMenuControl.intermediate();
                     break;
                 case "E":
-                    chooseLevelMenuControl.expert();
+                    difficultyLevelMenuControl.expert();
                     break;
                 case "P":
-                    chooseLevelMenuControl.beginnerPreset();
+                    difficultyLevelMenuControl.beginnerPreset();
                     break;
                 case "X":
                     break;
@@ -62,20 +53,6 @@ public class DifficultyLevelMenuView implements Serializable {
                     System.out.println("Invalid command. Please enter a valid command.");
                     continue;
             }
-        } while (!command.equals("X"));  
-        
-    }
-
-        // displays the level menu
-    public final void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tLevel Menu");
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following levels:");
-
-        for (int i = 0; i < DifficultyLevelMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }
+        } while (!command.equals("X"));
+   }
 }

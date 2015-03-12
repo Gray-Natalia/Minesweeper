@@ -75,7 +75,8 @@ public class DifficultyLevelMenuControl implements Serializable  {
         mm.presetMines();
         CellManager cm = new CellManager();
         cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
-        GameMenuView.getInput();
+        GameMenuView gameMenuView = new GameMenuView();
+        gameMenuView.executeCommands();
         
     }
     
@@ -97,7 +98,8 @@ public class DifficultyLevelMenuControl implements Serializable  {
         mm.generateMines(numberOfRows, numberOfColumns, numberOfMines);
         CellManager cm = new CellManager();
         cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
-        GameMenuView.getInput();
+        GameMenuView gameMenuView = new GameMenuView();
+        gameMenuView.executeCommands();
     }
 
     

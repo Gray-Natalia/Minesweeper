@@ -18,17 +18,17 @@ public class MainMenuControl implements Serializable {
         GetPlayerName getPlayerName = new GetPlayerName();
         getPlayerName.getName();
         DifficultyLevelMenuView chooseLevelMenuView = new DifficultyLevelMenuView();
-        chooseLevelMenuView.getInput();
+        chooseLevelMenuView.executeCommands();
     }
 
     public static void viewBestTimes() {
         BestTimesMenuView bestTimesMenuView = new BestTimesMenuView();
-        bestTimesMenuView.getInput();
+        bestTimesMenuView.executeCommands();
     }
     
     public static void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.getInput();
+        helpMenu.executeCommands();
     }
     
 }

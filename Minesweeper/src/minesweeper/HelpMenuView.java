@@ -4,15 +4,12 @@
  */
 package minesweeper;
 
-import java.util.Scanner;
-import java.io.Serializable;
-
 /**
  *
  * @author Group, Alfonso Ramirez
  * 
  */
-public class HelpMenuView implements Serializable {
+public class HelpMenuView extends Menu {
         
     private final static String[][] menuItems = {
         {"P", "How to Play"},
@@ -26,24 +23,20 @@ public class HelpMenuView implements Serializable {
     
     // default constructor
     public HelpMenuView() {
-        
+        super(HelpMenuView.menuItems);
     } 
     
-    // display the help menu and get the end users input selection
-    public void getInput() {       
-              
+    @Override
+   public void executeCommands() {
         String command;
-        Scanner inFile = new Scanner(System.in);
         
         do {
+            display("Help Menu"); // display the menu
             
-            HelpMenuView.display(); // display the menu
-            
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+            command = getCommand();
             
             switch (command) {
+                
                 case "P":
                     helpMenuControl.displayHowToPlay();
                     break;
@@ -60,21 +53,5 @@ public class HelpMenuView implements Serializable {
                     continue;
             }
         } while (!command.equals("X"));  
-        
-         return;
-    }
-
-        // displays the help menu
-    private static void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tHelp Menu");
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
-
-        for (int i = 0; i < HelpMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }
-  
+   }
 }

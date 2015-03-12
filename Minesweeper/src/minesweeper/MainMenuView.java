@@ -4,16 +4,13 @@
  */
 package minesweeper;
 
-import java.io.Serializable;
-import java.util.Scanner;
-
 /**
  *
  * @author Keith Banner
  */
 
 
-public class MainMenuView implements Serializable {
+public class MainMenuView extends Menu {
     
     private static final String[][] menuItems = {
         {"P", "Play"},
@@ -23,20 +20,17 @@ public class MainMenuView implements Serializable {
     }; 
   
     public MainMenuView() {
-
+        super(MainMenuView.menuItems);
     }
     
-    public static void getInput() {       
-
+    @Override
+    public void executeCommands() {    
         String command;
-        Scanner inFile = new Scanner(System.in);
         
         do {
-            MainMenuView.display(); // display the menu
+            display("Main Menu");
 
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+            command = getCommand();
             
             switch (command) {
                 //Natalia Gray added chooseLevel
@@ -57,17 +51,4 @@ public class MainMenuView implements Serializable {
             }
         } while (!command.equals("X"));
     }
-    
-   private static void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tMain Menu");
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
-
-        for (int i = 0; i < MainMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }   
-    
 }

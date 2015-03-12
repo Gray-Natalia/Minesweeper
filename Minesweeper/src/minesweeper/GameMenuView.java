@@ -4,16 +4,13 @@
  */
 package minesweeper;
 
-import java.io.Serializable;
-import java.util.Scanner;
-
 /**
  *
  * @author Keith Banner
  */
 
 
-public class GameMenuView implements Serializable{
+public class GameMenuView extends Menu {
     
     private static final String[][] menuItems = {
         {"R", "Reveal Cell"},
@@ -23,20 +20,17 @@ public class GameMenuView implements Serializable{
     }; 
   
     public GameMenuView() {
-
+        super(GameMenuView.menuItems);
     }
     
-    public static void getInput() {       
-
+    @Override
+    public void executeCommands() {
         String command;
-        Scanner inFile = new Scanner(System.in);
         
         do {
-            GameMenuView.display(); // display the menu
-
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+            display("Game Menu"); // display the menu
+            
+            command = getCommand();
             
             switch (command) {
                 //Natalia Gray added chooseLevel
@@ -57,19 +51,4 @@ public class GameMenuView implements Serializable{
             }
         } while (!command.equals("X"));
     }
-    
-   public static final void display() {
-        CellManager cm = new CellManager();
-        cm.displayBoard();
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tGame Menu");
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
-
-        for (int i = 0; i < GameMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }   
-    
 }

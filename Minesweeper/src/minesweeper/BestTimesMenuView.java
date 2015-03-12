@@ -4,16 +4,13 @@
  */
 package minesweeper;
 
-import java.io.Serializable;
-import java.util.Scanner;
-
 /**
  *
  * @author Keith Banner
  */
 
 
-public class BestTimesMenuView implements Serializable {
+public class BestTimesMenuView extends Menu {
         
     private static final String[][] menuItems = {
         {"B", "Beginner"},
@@ -22,38 +19,32 @@ public class BestTimesMenuView implements Serializable {
         {"A", "All Difficulty Levels"},
         {"X", "Exit to Main Menu"}
     }; 
-  
-    BestTimesMenuControl bestTimesMenuControl = new BestTimesMenuControl();
     
     public BestTimesMenuView() {
-
+        super(BestTimesMenuView.menuItems);
     }
- 
     
-    public void getInput() {       
-
+   @Override
+   public void executeCommands() {
         String command;
-        Scanner inFile = new Scanner(System.in);
         
         do {
-            this.display(); // display the menu
-
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+            display("Best Times Menu"); // display the menu
+            
+            command = getCommand();
             
             switch (command) {
                 case "B":
-                    this.bestTimesMenuControl.beginnerBestTimes();
+                    BestTimesMenuControl.beginnerBestTimes();
                     break;
                 case "I":
-                    this.bestTimesMenuControl.intermediateBestTimes();
+                    BestTimesMenuControl.intermediateBestTimes();
                     break;
                 case "E":
-                    this.bestTimesMenuControl.expertBestTimes();            
+                    BestTimesMenuControl.expertBestTimes();            
                     break;
                 case "A":
-                    this.bestTimesMenuControl.allBestTimes();
+                    BestTimesMenuControl.allBestTimes();
                 case "X":
                     break;
                 default: 
@@ -61,20 +52,5 @@ public class BestTimesMenuView implements Serializable {
                     continue;
             }
         } while (!command.equals("X"));
-
-        return;
-    }
-    
-   public final void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tBest Times");
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
-
-        for (int i = 0; i < BestTimesMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }   
-    
+   }
 }

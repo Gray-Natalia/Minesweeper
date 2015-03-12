@@ -19,6 +19,7 @@ public class Minesweeper {
 "\\____|__  /__|___|  /\\___  >____  >  \\/\\_/  \\___  >\\___  >   __/ \\___  >__|   \n" +
 "        \\/        \\/     \\/     \\/              \\/     \\/|__|        \\/       ");
         
-        MainMenuView.getInput();
+        MainMenuView mainmenu = new MainMenuView();
+        mainmenu.executeCommands();
     }
 }
