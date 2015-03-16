@@ -2,7 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Views;
+
+import CIT260.Winter2014.Minesweeper.Controls.BestTimesMenuControl;
+import minesweeper.Menu;
 
 /**
  *

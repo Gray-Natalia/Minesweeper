@@ -2,9 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Controls;
 
+import CIT260.Winter2014.Minesweeper.Views.HelpMenuView;
+import CIT260.Winter2014.Minesweeper.Views.DifficultyLevelMenuView;
+import CIT260.Winter2014.Minesweeper.Views.BestTimesMenuView;
 import java.io.Serializable;
+import minesweeper.GetPlayerName;
 
 /**
  *

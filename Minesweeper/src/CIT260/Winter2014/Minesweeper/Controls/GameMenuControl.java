@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Controls;
 
 import java.io.Serializable;
+import minesweeper.CellManager;
 
 /**
  *

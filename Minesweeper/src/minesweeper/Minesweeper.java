@@ -5,6 +5,8 @@
  */
 package minesweeper;
 
+import CIT260.Winter2014.Minesweeper.Views.MainMenuView;
+
 /**
  *
  * @author kalavic

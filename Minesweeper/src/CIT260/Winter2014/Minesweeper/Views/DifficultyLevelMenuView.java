@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Views;
+
+import CIT260.Winter2014.Minesweeper.Controls.DifficultyLevelMenuControl;
+import minesweeper.Menu;
+
 /**
  *
  * @author kalavic

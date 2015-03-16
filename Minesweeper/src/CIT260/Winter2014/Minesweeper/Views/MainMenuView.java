@@ -2,7 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Views;
+
+import CIT260.Winter2014.Minesweeper.Controls.MainMenuControl;
+import minesweeper.Menu;
 
 /**
  *
@@ -10,38 +13,38 @@ package minesweeper;
  */
 
 
-public class GameMenuView extends Menu {
+public class MainMenuView extends Menu {
     
     private static final String[][] menuItems = {
-        {"R", "Reveal Cell"},
-        {"F", "Flag Cell"},
-        {"?", "Mark Unknown"},
-        {"X", "Exit to Main Menu (Game progress will be lost.)"}
+        {"P", "Play"},
+        {"V", "View Best Times"},
+        {"H", "Help"},
+        {"X", "Exit Minesweeper"}
     }; 
   
-    public GameMenuView() {
-        super(GameMenuView.menuItems);
+    public MainMenuView() {
+        super(MainMenuView.menuItems);
     }
     
     @Override
-    public void executeCommands() {
+    public void executeCommands() {    
         String command;
         
         do {
-            display("Game Menu"); // display the menu
-            
+            display("Main Menu");
+
             command = getCommand();
             
             switch (command) {
                 //Natalia Gray added chooseLevel
-                case "R":
-                    GameMenuControl.reveal();
+                case "P":
+                    MainMenuControl.play();
                     break;
-                case "F":
-                    GameMenuControl.flag();
+                case "V":
+                    MainMenuControl.viewBestTimes();
                     break;
-                case "?":
-                    GameMenuControl.unknown();            
+                case "H":
+                    MainMenuControl.displayHelpMenu();            
                     break;
                 case "X":
                     break;
