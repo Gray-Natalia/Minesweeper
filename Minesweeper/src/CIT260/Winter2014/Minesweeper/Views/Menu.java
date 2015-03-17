@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package minesweeper;
+package CIT260.Winter2014.Minesweeper.Views;
 
 import java.io.Serializable;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author knban_000
  */
-public abstract class Menu implements Serializable {
+public abstract class Menu implements Serializable, ViewInterface {
     private String[][] menuItems = null;
     
     public Menu() {
@@ -30,7 +30,7 @@ public abstract class Menu implements Serializable {
         this.menuItems = menuItems;
     }
     
-    protected final void display(String menuName) {
+    public void display(String menuName) {
         System.out.println("\n\t===============================================================");
         System.out.println("\t" + menuName);
         System.out.println("\n\t===============================================================");
@@ -51,7 +51,8 @@ public abstract class Menu implements Serializable {
         }
     }
     
-    protected final String getCommand() {
+    @Override
+    public String getCommand() {
         Scanner inFile = new Scanner(System.in);
         String command = inFile.nextLine();
         if(validCommand(command) == false) {
@@ -60,5 +61,5 @@ public abstract class Menu implements Serializable {
         return command;
     }
     
-    public abstract void executeCommands();
+    
 }

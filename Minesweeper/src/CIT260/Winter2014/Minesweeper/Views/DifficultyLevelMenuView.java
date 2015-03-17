@@ -6,7 +6,6 @@
 package CIT260.Winter2014.Minesweeper.Views;
 
 import CIT260.Winter2014.Minesweeper.Controls.DifficultyLevelMenuControl;
-import minesweeper.Menu;
 
 /**
  *

@@ -59,7 +59,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         System.out.println();
         displayHelpBorder();
         numberOfMines = 99;
-        numberOfRows = 16;
+        numberOfRows = 30;
         numberOfColumns = 30;
         difficultyLevel = "Expert";
         displaySelectedLevel();
