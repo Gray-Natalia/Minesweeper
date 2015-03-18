@@ -31,7 +31,8 @@ public class GameMenuView extends Menu {
         
         do {
             display("Game Menu"); // display the menu
-            
+            minesweeper.CellManager cm = new minesweeper.CellManager();
+            cm.displayBoard();
             command = getCommand();
             
             switch (command) {

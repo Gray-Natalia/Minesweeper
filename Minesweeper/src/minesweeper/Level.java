@@ -11,7 +11,7 @@ package minesweeper;
  */
 public enum Level {
 
-    BEGINNER(9, 9), INTERMEDIATE(16, 16), EXPERT(30, 30);
+    BEGINNER(9, 9), INTERMEDIATE(16, 16), EXPERT(16, 30);
     private final int row;
     private final int column;
 

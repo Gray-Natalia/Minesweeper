@@ -21,44 +21,46 @@ import java.util.Comparator;
  * @author cheryl
  */
 public abstract class BestTimeManager {
+
     // ArrayList type is bestTimesBeginner (Uses BestTimeBeginner constructor)
+
     protected ArrayList<BestTime> bestTimes;
     protected final String BEST_TIMES_FILE;
     // Number of values held in the best times list.
     int max = 10;
-     //Initializes the input and output streams
+    //Initializes the input and output streams
     ObjectOutputStream outputStream = null;
     ObjectInputStream inputStream = null;
 
     public BestTimeManager() {
-         bestTimes = new ArrayList<>();
-        BEST_TIMES_FILE = "best_times.dat"; 
+        bestTimes = new ArrayList<>();
+        BEST_TIMES_FILE = "best_times.dat";
     }
-     public BestTimeManager(String file) {
-         bestTimes = new ArrayList<>();
-        BEST_TIMES_FILE = file; 
+
+    public BestTimeManager(String file) {
+        bestTimes = new ArrayList<>();
+        BEST_TIMES_FILE = file;
     }
-    
+
     public ArrayList<BestTime> getBestTimes() {
         loadBestTimesFile();
         sort();
         return bestTimes;
     }
-    
+
     private void sort() {
         BestTimeManager.BestTimeCompare compare = new BestTimeManager.BestTimeCompare();
         Collections.sort(bestTimes, compare);
     }
-        
- public void addBestTime(String name, double time) {
+
+    public void addBestTime(String name, double time) {
         loadBestTimesFile();
-        if(bestTimes.size() >= 10 && time >= bestTimes.get(9).getTime()) {
+        if (bestTimes.size() >= 10 && time >= bestTimes.get(9).getTime()) {
             System.out.println("Sorry you did not make the top ten best times."
                     + "Better luck next time.");
-        }
-        else {
-            if(bestTimes.size() >= 10) {
-                for(int i = 9; i < bestTimes.size(); i++) {
+        } else {
+            if (bestTimes.size() >= 10) {
+                for (int i = 9; i < bestTimes.size(); i++) {
                     bestTimes.remove(bestTimes.get(i));
                 }
             }
@@ -67,8 +69,8 @@ public abstract class BestTimeManager {
             updateBestTimesFile();
         }
     }
- 
-  public void loadBestTimesFile() {
+
+    public void loadBestTimesFile() {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(BEST_TIMES_FILE));
             // This cast is unchecked and throws an error.
@@ -92,10 +94,10 @@ public abstract class BestTimeManager {
             }
         }
     }
-  
-   public void updateBestTimesFile() {
-        if(bestTimes.size() > 10) {
-            for(int i = 10; i < bestTimes.size(); i++) {
+
+    public void updateBestTimesFile() {
+        if (bestTimes.size() > 10) {
+            for (int i = 10; i < bestTimes.size(); i++) {
                 bestTimes.remove(bestTimes.get(i));
             }
         }
@@ -118,7 +120,7 @@ public abstract class BestTimeManager {
             }
         }
     }
-   
+
     public void clearBestTimesFile() {
         bestTimes.clear();
         try {
@@ -129,29 +131,31 @@ public abstract class BestTimeManager {
                     + "\nThe program will try to make a new file");
         }
     }
-   protected String convertTime(double time) {
+
+    protected String convertTime(double time) {
         String output;
-            output = (((int) time/60) + ":" + String.format("%02d",(int) time%60));
+        output = (((int) time / 60) + ":" + String.format("%02d", (int) time % 60));
         return output;
     }
-  protected String calculateAverageTime() {
+
+    protected String calculateAverageTime() {
         double total = 0;
         for (BestTime bestTimes1 : bestTimes) {
             total += bestTimes1.getTime();
         }
         double average = total / bestTimes.size();
-        
+
         String output;
         if (average < 60) {
             output = (String.format("%.2f", average) + " seconds.");
-        }
-        else {
-            output = (((int) average/60) + ":" + String.format("%02d",(int) average%60) + ".");
+        } else {
+            output = (((int) average / 60) + ":" + String.format("%02d", (int) average % 60) + ".");
         }
         return output;
     }
-     private class BestTimeCompare implements Comparator<BestTime> {
-         
+
+    private class BestTimeCompare implements Comparator<BestTime> {
+
         @Override
         public int compare(BestTime bestTime1, BestTime bestTime2) {
             double bt1 = bestTime1.getTime();
@@ -166,6 +170,7 @@ public abstract class BestTimeManager {
             }
         }
     }
-    public abstract String getBestTimesString();  
-    
+
+    public abstract String getBestTimesString();
+
 }
