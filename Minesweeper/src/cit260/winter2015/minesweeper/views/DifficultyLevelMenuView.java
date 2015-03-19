@@ -5,7 +5,6 @@
  */
 package cit260.winter2015.minesweeper.views;
 
-import cit260.winter2015.minesweeper.Menu;
 import cit260.winter2015.minesweeper.controls.DifficultyLevelMenuControl;
 
 /**

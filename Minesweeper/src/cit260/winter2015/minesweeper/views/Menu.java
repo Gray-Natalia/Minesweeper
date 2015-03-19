@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper;
+package cit260.winter2015.minesweeper.views;
 
+import cit260.winter2015.minesweeper.interfaces.DisplayInfo;
+import cit260.winter2015.minesweeper.interfaces.EnterInfo;
 import cit260.winter2015.minesweeper.interfaces.ViewInterface;
 import java.io.Serializable;
 import java.util.Scanner;
@@ -13,7 +15,7 @@ import java.util.Scanner;
  *
  * @author knban_000
  */
-public abstract class Menu implements Serializable, ViewInterface {
+public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, EnterInfo {
     private String[][] menuItems = null;
     protected final String menuName;
     

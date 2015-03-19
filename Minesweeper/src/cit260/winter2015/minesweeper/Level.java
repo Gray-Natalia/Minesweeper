@@ -11,21 +11,28 @@ package cit260.winter2015.minesweeper;
  */
 public enum Level {
 
-    BEGINNER(9, 9), INTERMEDIATE(16, 16), EXPERT(16, 30);
-    private final int row;
-    private final int column;
+    BEGINNER(9, 9, 10), INTERMEDIATE(16, 16, 40), EXPERT(16, 30, 99);
+    private final int rows;
+    private final int columns;
+    private final int mines;
 
-    Level(int row, int column) {
-        this.row = row;
-        this.column = column;
+    Level(int rows, int columns, int mines) {
+        this.rows = rows;
+        this.columns = columns;
+        this.mines = mines;
     }
 
-    public int getRow() {
-        return row;
+    public int getRows() {
+        return rows;
     }
 
-    public int getColumn() {
-        return column;
+    public int getColumns() {
+        return columns;
     }
 
+    public int getMines() {
+        return mines;
+    }
+
+    
 }

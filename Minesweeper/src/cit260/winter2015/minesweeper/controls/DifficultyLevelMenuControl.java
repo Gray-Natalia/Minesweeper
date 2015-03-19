@@ -8,9 +8,8 @@ package cit260.winter2015.minesweeper.controls;
 import java.io.Serializable;
 import java.util.Objects;
 import cit260.winter2015.minesweeper.CellManager;
-import cit260.winter2015.minesweeper.CellManager;
+import cit260.winter2015.minesweeper.Level;
 import cit260.winter2015.minesweeper.views.GameMenuView;
-import cit260.winter2015.minesweeper.MineManager;
 import cit260.winter2015.minesweeper.MineManager;
 
 /**
@@ -34,9 +33,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = 10;
-        numberOfRows = 9;
-        numberOfColumns = 9;
+        numberOfMines = Level.BEGINNER.getMines();
+        numberOfRows = Level.BEGINNER.getRows();
+        numberOfColumns = Level.BEGINNER.getColumns();
         difficultyLevel = "Beginner";
         displaySelectedLevel();
         startSelectedLevel();
@@ -47,9 +46,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = 40;
-        numberOfRows = 16;
-        numberOfColumns = 16;
+        numberOfMines = Level.INTERMEDIATE.getMines();
+        numberOfRows = Level.INTERMEDIATE.getRows();
+        numberOfColumns = Level.INTERMEDIATE.getColumns();
         difficultyLevel = "Intermediate";
         displaySelectedLevel();
         startSelectedLevel();
@@ -60,9 +59,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = 99;
-        numberOfRows = 16;
-        numberOfColumns = 30;
+        numberOfMines = Level.EXPERT.getMines();
+        numberOfRows = Level.EXPERT.getRows();
+        numberOfColumns = Level.EXPERT.getColumns();
         difficultyLevel = "Expert";
         displaySelectedLevel();
         startSelectedLevel();
