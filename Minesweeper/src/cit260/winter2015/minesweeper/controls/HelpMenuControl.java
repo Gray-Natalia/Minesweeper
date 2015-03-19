@@ -18,21 +18,21 @@ public class HelpMenuControl  implements Serializable {
     public void displayHowToPlay() {
         System.out.println();
         this.displayHelpBorder();             
-        System.out.println(HelpType.HOW_TO_PLAY);
+        System.out.println(HelpType.HOW_TO_PLAY.getHelpText());
         displayHelpBorder();
     }
         
     public void displayBasicStrategies() {
         System.out.println();
         displayHelpBorder();     
-        System.out.println(HelpType.BASIC_STRATEGIES); 
+        System.out.println(HelpType.BASIC_STRATEGIES.getHelpText()); 
         displayHelpBorder();
     }
             
     public void displayAbout() {
         System.out.println();
         displayHelpBorder();     
-        System.out.println(HelpType.ABOUT); 
+        System.out.println(HelpType.ABOUT.getHelpText()); 
         displayHelpBorder();
     }
     

@@ -16,7 +16,7 @@ public class HelpMenuView extends Menu {
     private final static String[][] menuItems = {
         {"P", "How to Play"},
         {"S", "Basic Strategies"}, 
-        {"A", "About"},
+        {"A", "About the Developers"},
         {"X", "Exit to Main Menu"}
     };
     private static final long serialVersionUID = 1L;

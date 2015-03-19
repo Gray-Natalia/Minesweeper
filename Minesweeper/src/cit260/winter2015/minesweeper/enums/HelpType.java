@@ -54,6 +54,7 @@ public enum HelpType {
                 + "\n"
                 + "\n\tНаталья Грей (Natalia Gray)"
                 + "\n\tUfa, Russia"
+                + "\n"
                 + "\n\tAndres Reyes"
                 + "\n\tGuayaquil, Ecuador"
                 + "\n"
