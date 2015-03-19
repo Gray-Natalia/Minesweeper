@@ -15,7 +15,9 @@ import java.util.Comparator;
  * @author Keith Banner
  */
 public class MineManager implements Serializable{
-    private static ArrayList<Mine> mines = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
+    
+    private static final ArrayList<Mine> mines = new ArrayList<>();
 
     public MineManager() {
     }

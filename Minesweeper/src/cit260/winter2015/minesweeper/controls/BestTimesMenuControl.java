@@ -6,10 +6,7 @@ package cit260.winter2015.minesweeper.controls;
 
 import java.io.Serializable;
 import cit260.winter2015.minesweeper.BestTimeManagerBeginner;
-import cit260.winter2015.minesweeper.BestTimeManagerBeginner;
 import cit260.winter2015.minesweeper.BestTimeManagerExpert;
-import cit260.winter2015.minesweeper.BestTimeManagerExpert;
-import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
 import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
 
 /**
@@ -17,6 +14,7 @@ import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
  * @author 
  */
 public class BestTimesMenuControl implements Serializable {
+    private static final long serialVersionUID = 1L;
      
     public static void beginnerBestTimes() {
         BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();

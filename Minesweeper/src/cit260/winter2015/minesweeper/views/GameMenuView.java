@@ -20,6 +20,7 @@ public class GameMenuView extends Menu {
         {"?", "Mark Unknown"},
         {"X", "Exit to Main Menu (Game progress will be lost.)"}
     }; 
+    private static final long serialVersionUID = 1L;
   
     public GameMenuView() {
         super("Game Menu", GameMenuView.menuItems);
@@ -51,7 +52,6 @@ public class GameMenuView extends Menu {
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;                    
             }
         } while (!command.equals("X"));
     }

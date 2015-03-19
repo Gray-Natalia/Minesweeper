@@ -8,7 +8,6 @@ import cit260.winter2015.minesweeper.views.BestTimesMenuView;
 import cit260.winter2015.minesweeper.views.DifficultyLevelMenuView;
 import java.io.Serializable;
 import cit260.winter2015.minesweeper.GetPlayerName;
-import cit260.winter2015.minesweeper.GetPlayerName;
 import cit260.winter2015.minesweeper.views.HelpMenuView;
 
 /**
@@ -17,6 +16,7 @@ import cit260.winter2015.minesweeper.views.HelpMenuView;
  * convert to java bean by C Rubenstein
  */
 public class MainMenuControl implements Serializable {
+    private static final long serialVersionUID = 1L;
      
     public static void play() {
         //Natalia Gray added chooseLevel

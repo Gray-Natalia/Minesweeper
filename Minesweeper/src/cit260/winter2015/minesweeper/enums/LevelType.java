@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper;
+package cit260.winter2015.minesweeper.enums;
 
 /**
  *
  * @author cheryl
  */
-public enum Level {
+public enum LevelType {
 
     BEGINNER(9, 9, 10), INTERMEDIATE(16, 16, 40), EXPERT(16, 30, 99);
     private final int rows;
     private final int columns;
     private final int mines;
 
-    Level(int rows, int columns, int mines) {
+    LevelType(int rows, int columns, int mines) {
         this.rows = rows;
         this.columns = columns;
         this.mines = mines;

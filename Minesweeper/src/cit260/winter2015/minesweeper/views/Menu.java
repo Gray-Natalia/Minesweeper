@@ -16,6 +16,8 @@ import java.util.Scanner;
  * @author knban_000
  */
 public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, EnterInfo {
+    private static final long serialVersionUID = 1L;
+    
     private String[][] menuItems = null;
     protected final String menuName;
     

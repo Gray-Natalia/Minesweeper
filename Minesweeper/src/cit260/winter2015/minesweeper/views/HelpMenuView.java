@@ -19,9 +19,10 @@ public class HelpMenuView extends Menu {
         {"A", "About"},
         {"X", "Exit to Main Menu"}
     };
+    private static final long serialVersionUID = 1L;
     
     // Create instance of the HelpMenuControl (action) class
-    private HelpMenuControl helpMenuControl = new HelpMenuControl();
+    private final HelpMenuControl helpMenuControl = new HelpMenuControl();
     
     // default constructor
     public HelpMenuView() {

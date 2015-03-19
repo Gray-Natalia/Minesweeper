@@ -73,6 +73,7 @@ public abstract class BestTimeManager {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void loadBestTimesFile() {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(BEST_TIMES_FILE));

@@ -20,6 +20,7 @@ public class MainMenuView extends Menu {
         {"H", "Help"},
         {"X", "Exit Minesweeper"}
     }; 
+    private static final long serialVersionUID = 1L;
   
     public MainMenuView() {
         super("Main Menu", MainMenuView.menuItems);
@@ -49,7 +50,6 @@ public class MainMenuView extends Menu {
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;                    
             }
         } while (!command.equals("X"));
     }

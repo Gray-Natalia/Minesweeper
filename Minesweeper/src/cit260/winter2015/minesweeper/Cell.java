@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author Keith Banner
  */
 public class Cell implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int row;
     private char column;
     private int value;
@@ -87,10 +88,7 @@ public class Cell implements Serializable {
         if (this.value != other.value) {
             return false;
         }
-        if (this.state != other.state) {
-            return false;
-        }
-        return true;
+        return this.state == other.state;
     }
 
     @Override

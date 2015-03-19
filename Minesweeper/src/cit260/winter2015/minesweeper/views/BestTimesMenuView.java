@@ -21,6 +21,7 @@ public class BestTimesMenuView extends Menu {
         {"A", "All Difficulty Levels"},
         {"X", "Exit to Main Menu"}
     }; 
+    private static final long serialVersionUID = 1L;
     
     public BestTimesMenuView() {
         super("Best Times Menu", BestTimesMenuView.menuItems);
@@ -47,11 +48,11 @@ public class BestTimesMenuView extends Menu {
                     break;
                 case "A":
                     BestTimesMenuControl.allBestTimes();
+                    break;
                 case "X":
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;
             }
         } while (!command.equals("X"));
    }

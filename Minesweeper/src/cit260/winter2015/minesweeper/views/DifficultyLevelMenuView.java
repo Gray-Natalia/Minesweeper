@@ -14,6 +14,7 @@ import cit260.winter2015.minesweeper.controls.DifficultyLevelMenuControl;
 
 
 public class DifficultyLevelMenuView extends Menu {
+    
     private final static String[][] menuItems = {
         {"B", "Beginner"},
         {"I", "Intermediate"}, 
@@ -21,6 +22,7 @@ public class DifficultyLevelMenuView extends Menu {
         {"P", "Preset Demo"},
         {"X", "Exit To Main Menu"}
     };
+    private static final long serialVersionUID = 1L;
     
     DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
     
@@ -54,7 +56,6 @@ public class DifficultyLevelMenuView extends Menu {
                     break;
                 default: 
                     System.out.println("Invalid command. Please enter a valid command.");
-                    continue;
             }
         } while (!command.equals("X"));
    }

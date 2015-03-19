@@ -8,7 +8,7 @@ package cit260.winter2015.minesweeper.controls;
 import java.io.Serializable;
 import java.util.Objects;
 import cit260.winter2015.minesweeper.CellManager;
-import cit260.winter2015.minesweeper.Level;
+import cit260.winter2015.minesweeper.enums.LevelType;
 import cit260.winter2015.minesweeper.views.GameMenuView;
 import cit260.winter2015.minesweeper.MineManager;
 
@@ -18,6 +18,7 @@ import cit260.winter2015.minesweeper.MineManager;
  * convert to java beans by C Rubenstein
  */
 public class DifficultyLevelMenuControl implements Serializable  {
+    private static final long serialVersionUID = 1L;
     
     public DifficultyLevelMenuControl() {
         
@@ -33,9 +34,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = Level.BEGINNER.getMines();
-        numberOfRows = Level.BEGINNER.getRows();
-        numberOfColumns = Level.BEGINNER.getColumns();
+        numberOfMines = LevelType.BEGINNER.getMines();
+        numberOfRows = LevelType.BEGINNER.getRows();
+        numberOfColumns = LevelType.BEGINNER.getColumns();
         difficultyLevel = "Beginner";
         displaySelectedLevel();
         startSelectedLevel();
@@ -46,9 +47,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = Level.INTERMEDIATE.getMines();
-        numberOfRows = Level.INTERMEDIATE.getRows();
-        numberOfColumns = Level.INTERMEDIATE.getColumns();
+        numberOfMines = LevelType.INTERMEDIATE.getMines();
+        numberOfRows = LevelType.INTERMEDIATE.getRows();
+        numberOfColumns = LevelType.INTERMEDIATE.getColumns();
         difficultyLevel = "Intermediate";
         displaySelectedLevel();
         startSelectedLevel();
@@ -59,9 +60,9 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = Level.EXPERT.getMines();
-        numberOfRows = Level.EXPERT.getRows();
-        numberOfColumns = Level.EXPERT.getColumns();
+        numberOfMines = LevelType.EXPERT.getMines();
+        numberOfRows = LevelType.EXPERT.getRows();
+        numberOfColumns = LevelType.EXPERT.getColumns();
         difficultyLevel = "Expert";
         displaySelectedLevel();
         startSelectedLevel();
@@ -172,10 +173,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         if (this.numberOfMines != other.numberOfMines) {
             return false;
         }
-        if (!Objects.equals(this.difficultyLevel, other.difficultyLevel)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.difficultyLevel, other.difficultyLevel);
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author Keith Banner
  */
 public class CheckCell implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private int row;
     private char column;
@@ -60,10 +61,7 @@ public class CheckCell implements Serializable{
         if (this.row != other.row) {
             return false;
         }
-        if (this.column != other.column) {
-            return false;
-        }
-        return true;
+        return this.column == other.column;
     }
 
     @Override
