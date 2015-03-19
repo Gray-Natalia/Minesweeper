@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @author 
  */
 public class GetPlayerName implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     String greeting;
     String ifnot;

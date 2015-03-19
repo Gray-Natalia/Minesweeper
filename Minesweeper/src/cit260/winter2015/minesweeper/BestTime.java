@@ -13,6 +13,7 @@ package cit260.winter2015.minesweeper;
 import java.io.Serializable;
 
 public class BestTime implements Serializable, Comparable<BestTime> {
+    private static final long serialVersionUID = 1L;
     
     private String playerName;
     private double time;

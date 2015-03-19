@@ -16,8 +16,10 @@ import java.util.Scanner;
  * @author Keith Banner
  */
 public class CellManager implements Serializable{
-    private static ArrayList<Cell> cells = new ArrayList<>();
-    private static ArrayList<CheckCell> checkCells = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
+    
+    private static final ArrayList<Cell> cells = new ArrayList<>();
+    private static final ArrayList<CheckCell> checkCells = new ArrayList<>();
 
     public ArrayList<Cell> getCells() {
         return cells;
@@ -306,7 +308,6 @@ public class CellManager implements Serializable{
                 return selectedRow;
             } else {
                 System.out.println("Invalid input. Please try again.\n");
-                continue;
             }
         }
         return selectedRow;
@@ -382,7 +383,6 @@ public class CellManager implements Serializable{
                         cell.setState(v);
                     }
                 }
-//                removeCheckCell(checkRow, checkColumn);
             }
         }
     }
