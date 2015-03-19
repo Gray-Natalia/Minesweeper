@@ -1,0 +1,58 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cit260.winter2015.minesweeper.views;
+
+import cit260.winter2015.minesweeper.Menu;
+import cit260.winter2015.minesweeper.controls.GameMenuControl;
+
+/**
+ *
+ * @author Keith Banner
+ */
+
+
+public class GameMenuView extends Menu {
+    
+    private static final String[][] menuItems = {
+        {"R", "Reveal Cell"},
+        {"F", "Flag Cell"},
+        {"?", "Mark Unknown"},
+        {"X", "Exit to Main Menu (Game progress will be lost.)"}
+    }; 
+  
+    public GameMenuView() {
+        super("Game Menu", GameMenuView.menuItems);
+    }
+    
+    @Override
+    public void executeCommands() {
+        String command;
+        
+        do {
+            display(); // display the menu
+            cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
+            cm.displayBoard();
+            command = getCommand();
+            
+            switch (command) {
+                //Natalia Gray added chooseLevel
+                case "R":
+                    GameMenuControl.reveal();
+                    break;
+                case "F":
+                    GameMenuControl.flag();
+                    break;
+                case "?":
+                    GameMenuControl.unknown();            
+                    break;
+                case "X":
+                    break;
+                default: 
+                    System.out.println("Invalid command. Please enter a valid command.");
+                    continue;                    
+            }
+        } while (!command.equals("X"));
+    }
+}
