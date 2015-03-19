@@ -32,7 +32,7 @@ public class MainMenuView extends Menu {
         do {
             display();
 
-            command = getCommand();
+            command = getInput();
             
             switch (command) {
                 //Natalia Gray added chooseLevel

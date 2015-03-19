@@ -54,7 +54,7 @@ public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, 
     }
     
     @Override
-    public String getCommand() {
+    public String getInput() {
         Scanner inFile = new Scanner(System.in);
         String command = inFile.nextLine();
         if(validCommand(command) == false) {

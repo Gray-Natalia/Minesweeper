@@ -35,7 +35,7 @@ public class HelpMenuView extends Menu {
         do {
             display(); // display the menu
             
-            command = getCommand();
+            command = getInput();
             
             switch (command) {
                 

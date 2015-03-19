@@ -10,5 +10,5 @@ package cit260.winter2015.minesweeper.interfaces;
  * @author knban_000
  */
 public interface DisplayInfo {
-    
+   public void display();
 }

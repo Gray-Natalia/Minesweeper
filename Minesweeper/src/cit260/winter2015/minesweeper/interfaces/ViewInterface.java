@@ -11,6 +11,4 @@ package cit260.winter2015.minesweeper.interfaces;
  */
 public interface ViewInterface {
    public void executeCommands(); 
-   public void display();
-   public String getCommand();
 }

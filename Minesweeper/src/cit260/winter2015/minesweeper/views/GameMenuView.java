@@ -34,7 +34,7 @@ public class GameMenuView extends Menu {
             // Display current board state.
             cm.displayBoard();
             display(); // display the menu
-            command = getCommand();
+            command = getInput();
             
             switch (command) {
                 //Natalia Gray added chooseLevel
