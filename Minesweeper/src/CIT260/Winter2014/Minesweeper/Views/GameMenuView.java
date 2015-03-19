@@ -22,7 +22,7 @@ public class GameMenuView extends Menu {
     }; 
   
     public GameMenuView() {
-        super(GameMenuView.menuItems);
+        super("Game Menu", GameMenuView.menuItems);
     }
     
     @Override
@@ -30,7 +30,7 @@ public class GameMenuView extends Menu {
         String command;
         
         do {
-            display("Game Menu"); // display the menu
+            display(); // display the menu
             minesweeper.CellManager cm = new minesweeper.CellManager();
             cm.displayBoard();
             command = getCommand();

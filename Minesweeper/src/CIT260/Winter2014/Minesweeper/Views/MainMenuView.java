@@ -22,7 +22,7 @@ public class MainMenuView extends Menu {
     }; 
   
     public MainMenuView() {
-        super(MainMenuView.menuItems);
+        super("Main Menu", MainMenuView.menuItems);
     }
     
     @Override
@@ -30,7 +30,7 @@ public class MainMenuView extends Menu {
         String command;
         
         do {
-            display("Main Menu");
+            display();
 
             command = getCommand();
             

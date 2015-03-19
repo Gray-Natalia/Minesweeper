@@ -14,11 +14,14 @@ import java.util.Scanner;
  */
 public abstract class Menu implements Serializable, ViewInterface {
     private String[][] menuItems = null;
+    protected final String menuName;
     
     public Menu() {
+        menuName = "Menu";
     }
 
-    public Menu(String[][] menuItems) {
+    public Menu(String menu, String[][] menuItems) {
+        menuName = menu;
         this.menuItems = menuItems;
     }
 
@@ -30,25 +33,21 @@ public abstract class Menu implements Serializable, ViewInterface {
         this.menuItems = menuItems;
     }
     
-    public void display(String menuName) {
+    @Override
+    public void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\t" + menuName);
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following commands:");
 
-        for (int i = 0; i < menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
+        for (String[] menuItem : menuItems) {
+            System.out.println("\t   " + menuItem[0] + "\t" + menuItem[1]);
         }
         System.out.println("\t===============================================================\n");
     }
     
     private boolean validCommand(String command) {
-        if(command == null) {
-            return false;
-        }
-        else {
-        return true;
-        }
+        return command != null;
     }
     
     @Override

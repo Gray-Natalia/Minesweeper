@@ -23,7 +23,7 @@ public class BestTimesMenuView extends Menu {
     }; 
     
     public BestTimesMenuView() {
-        super(BestTimesMenuView.menuItems);
+        super("Best Times Menu", BestTimesMenuView.menuItems);
     }
     
    @Override
@@ -31,7 +31,7 @@ public class BestTimesMenuView extends Menu {
         String command;
         
         do {
-            display("Best Times Menu"); // display the menu
+            display(); // display the menu
             
             command = getCommand();
             

@@ -16,41 +16,7 @@ public class BestTimeManagerIntermediate extends BestTimeManager {
     
 
     public BestTimeManagerIntermediate() {
-       super(BEST_TIMES_INTERMEDIATE_FILE);
-    }
-
-    @Override
-    public String getBestTimesString() {
-        loadBestTimesFile();
-        
-        StringBuilder bestTimesString  = new StringBuilder(""
-                + "\n\t==============================================================="
-                + "\n\tIntermediate Best Times"
-                + "\n\t==============================================================="
-                + "\n\t   Rank\t\tName\t\tTime"
-                + "\n\t---------------------------------------------------------------"
-                + "\n");
-        
-        int i = 0;
-        int x = bestTimes.size();
-        if (x > max) {
-            x = max;
-        }
-        while (i < x) {
-            bestTimesString.append("\t   ")
-                    .append(i + 1)
-                    .append(".\t\t")
-                    .append(bestTimes.get(i).getPlayerName())
-                    .append("\t\t")
-                    .append(convertTime(bestTimes.get(i).getTime()))
-                    .append("\n");
-            i++;
-        }
-        
-        bestTimesString.append("\tThe average best time is ")
-                .append(calculateAverageTime());
-        
-        return bestTimesString.toString();
+       super(BEST_TIMES_INTERMEDIATE_FILE, "Intermediate");
     }
 }  
 

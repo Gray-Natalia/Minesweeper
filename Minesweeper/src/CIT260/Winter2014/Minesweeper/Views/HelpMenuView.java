@@ -25,7 +25,7 @@ public class HelpMenuView extends Menu {
     
     // default constructor
     public HelpMenuView() {
-        super(HelpMenuView.menuItems);
+        super("Help Menu", HelpMenuView.menuItems);
     } 
     
     @Override
@@ -33,7 +33,7 @@ public class HelpMenuView extends Menu {
         String command;
         
         do {
-            display("Help Menu"); // display the menu
+            display(); // display the menu
             
             command = getCommand();
             

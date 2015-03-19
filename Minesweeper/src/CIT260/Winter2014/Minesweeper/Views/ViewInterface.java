@@ -11,6 +11,6 @@ package CIT260.Winter2014.Minesweeper.Views;
  */
 public interface ViewInterface {
    public void executeCommands(); 
-   public void display(String menuName);
+   public void display();
    public String getCommand();
 }

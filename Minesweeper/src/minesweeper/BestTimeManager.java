@@ -26,6 +26,7 @@ public abstract class BestTimeManager {
 
     protected ArrayList<BestTime> bestTimes;
     protected final String BEST_TIMES_FILE;
+    protected final String levelName;
     // Number of values held in the best times list.
     int max = 10;
     //Initializes the input and output streams
@@ -35,11 +36,13 @@ public abstract class BestTimeManager {
     public BestTimeManager() {
         bestTimes = new ArrayList<>();
         BEST_TIMES_FILE = "best_times.dat";
+        levelName = "Level";
     }
 
-    public BestTimeManager(String file) {
+    public BestTimeManager(String file, String level) {
         bestTimes = new ArrayList<>();
         BEST_TIMES_FILE = file;
+        levelName = level;
     }
 
     public ArrayList<BestTime> getBestTimes() {
@@ -171,6 +174,39 @@ public abstract class BestTimeManager {
         }
     }
 
-    public abstract String getBestTimesString();
-
+    public String getBestTimesString() {
+        
+        loadBestTimesFile();
+        
+        StringBuilder bestTimesString  = new StringBuilder(""
+                + "\n\t==============================================================="
+                + "\n\t" + levelName + " Best Times"
+                + "\n\t==============================================================="
+                + "\n\t   Rank\t\tName\t\tTime"
+                + "\n\t---------------------------------------------------------------"
+                + "\n");
+        
+        int i = 0;
+        int x = bestTimes.size();
+        if (x > max) {
+            x = max;
+        }
+        while (i < x) {
+            bestTimesString.append("\t   ")
+                    .append(i + 1)
+                    .append(".\t\t")
+                    .append(bestTimes.get(i).getPlayerName())
+                    .append("\t\t")
+                    .append(convertTime(bestTimes.get(i).getTime()))
+                    .append("\n");
+            i++;
+        }
+        
+        bestTimesString.append("\tThe ")
+                .append(levelName)
+                .append(" average best time is ")
+                .append(calculateAverageTime());
+        
+        return bestTimesString.toString();
+    }
 }

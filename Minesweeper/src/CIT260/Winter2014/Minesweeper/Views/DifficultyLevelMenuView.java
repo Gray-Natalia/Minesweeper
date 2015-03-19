@@ -25,7 +25,7 @@ public class DifficultyLevelMenuView extends Menu {
     DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
     
     public DifficultyLevelMenuView() {
-        super(DifficultyLevelMenuView.menuItems);
+        super("Difficulty Level Menu", DifficultyLevelMenuView.menuItems);
     }
     
     @Override
@@ -33,7 +33,7 @@ public class DifficultyLevelMenuView extends Menu {
         String command;
         
         do {
-            display("Difficulty Level Menu"); // display the menu
+            display(); // display the menu
             
             command = getCommand();
             
