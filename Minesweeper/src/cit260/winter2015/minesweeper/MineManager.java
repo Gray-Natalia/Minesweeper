@@ -83,9 +83,6 @@ public class MineManager implements Serializable{
         addMine(2,'A');
         addMine(3,'F');
         sort();
-        for (Mine mine : mines) {
-            System.out.println(mine.getRow() + "" + mine.getColumn());
-        }
     }
     
     // Nested Class

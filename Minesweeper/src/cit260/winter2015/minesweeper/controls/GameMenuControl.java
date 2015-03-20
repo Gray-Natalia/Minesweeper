@@ -17,19 +17,18 @@ public class GameMenuControl implements Serializable {
     public GameMenuControl() {
     }
 
-    public static void reveal() {
+    public static void click() {
         CellManager cm = new CellManager();
-        cm.clickReveal();
+        cm.click();
     }
 
-    public static void flag() {
+    public static void rightClick() {
         CellManager cm = new CellManager();
-        cm.clickFlag();
+        cm.rightClick();
     }
-
-    public static void unknown() {
+    
+    public static void twoButtonClick() {
         CellManager cm = new CellManager();
-        cm.clickUnknown();
+        cm.twoButtonClick();
     }
-
 }

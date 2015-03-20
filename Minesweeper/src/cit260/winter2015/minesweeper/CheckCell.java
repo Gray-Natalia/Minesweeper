@@ -15,9 +15,9 @@ public class CheckCell implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private int row;
-    private char column;
+    private int column;
 
-    public CheckCell(int row, char column) {
+    public CheckCell(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -33,7 +33,7 @@ public class CheckCell implements Serializable{
         this.row = row;
     }
 
-    public char getColumn() {
+    public int getColumn() {
         return column;
     }
 

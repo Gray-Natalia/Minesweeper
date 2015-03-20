@@ -9,26 +9,31 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  *
  * @author Keith Banner
  */
-public class CellManager implements Serializable{
+public class CellManager implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     private static final ArrayList<Cell> cells = new ArrayList<>();
     private static final ArrayList<CheckCell> checkCells = new ArrayList<>();
+    private static final ArrayList<CheckCell> checkCellsTemp = new ArrayList<>();
+
+    private static int[][] values;
+    private static int[][] states;
 
     public ArrayList<Cell> getCells() {
         return cells;
     }
-    
+
 //    public CellManager(ArrayList<Cell> cells) {
 //        cells = new ArrayList<>();
 //    }
-
     public CellManager() {
     }
 
@@ -36,8 +41,16 @@ public class CellManager implements Serializable{
         return cells.get(cells.size() - 1).getRow();
     }
 
+    private int getNumberOfRows() {
+        return cells.get(cells.size() - 1).getRow();
+    }
+
     private char getLastColumn() {
         return cells.get(cells.size() - 1).getColumn();
+    }
+
+    private int getNumberOfColumns() {
+        return cells.get(cells.size() - 1).getColumn() - 'A' + 1;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -105,8 +118,7 @@ public class CellManager implements Serializable{
                     addCell(currentRow, j, 15, 9); // Adds mine.
                     currentMineCheck++;
                     continue;
-                }
-                else {
+                } else {
                     tempCellValue = 0;
                     for (int k = 0; k < mm.getMines().size(); k++) {
 
@@ -162,17 +174,39 @@ public class CellManager implements Serializable{
             }
         }
         sort();
+        valueArray();
+        stateArray();
+    }
+
+    public void valueArray() {
+        int rows = getNumberOfRows();
+        int columns = getNumberOfColumns();
+
+        values = new int[rows][columns];
+        for (Cell cell : cells) {
+            int row = cell.getRow();
+            int column = cell.getColumn() - 65;
+            values[row - 1][column] = cell.getValue();
+        }
+    }
+
+    public void stateArray() {
+        int rows = getNumberOfRows();
+        int columns = getNumberOfColumns();
+
+        states = new int[rows][columns];
+        for (Cell cell : cells) {
+            int row = cell.getRow();
+            int column = cell.getColumn() - 65;
+            states[row - 1][column] = cell.getState();
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
     // During Game
     // Displays Game Board
-    public void displayBoard() {
-        
-        int currentCell = 0;
-        int currentRow = 1;
-        int counter = 0;
-        
+    public void displayBoardState() {
+
         // Symbols used in displaying board.
         char undiscovered = 'U';
         char flagged = 'F';
@@ -180,65 +214,102 @@ public class CellManager implements Serializable{
         char exploded = '*';
         char mine = 'M';
         char incorrectFlag = 'X';
-        
-        StringBuilder boardPrint = new StringBuilder("\t  ");
-        while (cells.get(currentCell).getRow() == 1) {
+        StringBuilder boardPrint = new StringBuilder("\t   ");
+
+        for (int i = 0; i < getNumberOfColumns(); i++) {
             boardPrint.append("   ")
-                    .append(cells.get(currentCell).getColumn());
-            currentCell++;
+                    .append((char) (i + 65));
         }
-        boardPrint.append("\n\t==========================================================================");
-        currentCell = 0;
+        boardPrint.append("\n\t=====");
+        for (int i = 0; i < getNumberOfColumns(); i++) {
+            boardPrint.append("====");
+        }
         boardPrint.append("\n");
-        while (currentCell < cells.size()) { //Rows
-            if (cells.get(currentCell).getColumn() == 'A' && (counter % 2 == 0)) {
-                boardPrint.append("\t")
-                        .append(currentRow)
-                        .append(".");
-                if (currentRow < 10) {
-                    boardPrint.append(" ");
+
+        for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int column = 0; column < getNumberOfColumns(); column++) {
+                if (column == 0) {
+                    boardPrint.append("\t")
+                            .append(row + 1)
+                            .append(".");
+                    if (row < 9) {
+                        boardPrint.append(" ");
+                    }
                 }
-                counter++;
+                if (states[row][column] == 9) {
+                    boardPrint.append("   ")
+                            .append(undiscovered);
+                } else if (states[row][column] == 10) {
+                    boardPrint.append("   ")
+                            .append(flagged);
+                } else if (states[row][column] == 11) {
+                    boardPrint.append("   ")
+                            .append(unknown);
+                } else if (states[row][column] == 12) {
+                    boardPrint.append("   ")
+                            .append(exploded);
+                } else if (states[row][column] == 13) {
+                    boardPrint.append("   ")
+                            .append(mine);
+                } else if (states[row][column] == 14) {
+                    boardPrint.append("   ")
+                            .append(incorrectFlag);
+                } else if (states[row][column] == 15) {
+                    boardPrint.append("   ")
+                            .append(mine);
+                } else {
+                    boardPrint.append("   ")
+                            .append(states[row][column]);
+                }
             }
-            if (cells.get(currentCell).getRow() == currentRow) {
-                if(cells.get(currentCell).getState() == 9) {
-                    boardPrint.append("   ")
-                        .append(undiscovered);
-                }
-                else if(cells.get(currentCell).getState() == 10){
-                    boardPrint.append("   ")
-                        .append(flagged);
-                }
-                else if(cells.get(currentCell).getState() == 11){
-                    boardPrint.append("   ")
-                        .append(unknown);
-                }
-                else if(cells.get(currentCell).getState() == 12){
-                    boardPrint.append("   ")
-                        .append(exploded);
-                }
-                else if(cells.get(currentCell).getState() == 13){
-                    boardPrint.append("   ")
-                        .append(mine);
-                }
-                else if(cells.get(currentCell).getState() == 14){
-                    boardPrint.append("   ")
-                        .append(incorrectFlag);
-                }
-                else if(cells.get(currentCell).getState() == 15){
-                    boardPrint.append("   ")
-                        .append(mine);
-                }
-                else {
-                    boardPrint.append("   ")
-                            .append(cells.get(currentCell).getState());
-                }
-                currentCell++;
-            } else {
-                currentRow++;
-                counter++;
-                boardPrint.append("\n\t--------------------------------------------------------------------------\n");
+            boardPrint.append("\n\t-----");
+            for (int i = 0; i < getNumberOfColumns(); i++) {
+                boardPrint.append("----");
             }
+            boardPrint.append("\n");
+        }
+        System.out.println(boardPrint);
+    }
+
+    public void displayBoardValue() {
+
+        // Symbols used in displaying board.
+        char mine = 'M';
+        StringBuilder boardPrint = new StringBuilder("\t   ");
+
+        for (int i = 0; i < getNumberOfColumns(); i++) {
+            boardPrint.append("   ")
+                    .append((char) (i + 65));
+        }
+        boardPrint.append("\n\t=====");
+        for (int i = 0; i < getNumberOfColumns(); i++) {
+            boardPrint.append("====");
+        }
+        boardPrint.append("\n");
+
+        for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int column = 0; column < getNumberOfColumns(); column++) {
+                if (column == 0) {
+                    boardPrint.append("\t")
+                            .append(row + 1)
+                            .append(".");
+                    if (row < 9) {
+                        boardPrint.append(" ");
+                    }
+                }
+                if (values[row][column] == 15) {
+                    boardPrint.append("   ")
+                            .append(mine);
+                } else {
+                    boardPrint.append("   ")
+                            .append(values[row][column]);
+                }
+            }
+            boardPrint.append("\n\t-----");
+            for (int i = 0; i < getNumberOfColumns(); i++) {
+                boardPrint.append("----");
+            }
+            boardPrint.append("\n");
         }
         System.out.println(boardPrint);
     }
@@ -249,14 +320,13 @@ public class CellManager implements Serializable{
         Scanner in = new Scanner(System.in);
 
         // Variable that stores the letter reperesenting the last column
-        CellManager cm = new CellManager();
-        String selectedColumn = null;
-        char letterOfLastColumn = cm.getLastColumn();
+        String selectedColumn;
+        char letterOfLastColumn = getLastColumn();
         char c = 'A';
 
         System.out.println("Select a column.");
 
-        boolean valid = false; // flag to indicate if valid character entered
+        boolean valid = false; // rightClick to indicate if valid character entered
         while (!valid) {
             // prompt for input
             System.out.println("Enter column value from A to " + letterOfLastColumn + ".");
@@ -279,7 +349,6 @@ public class CellManager implements Serializable{
                 return c;
             } else {
                 System.out.println("Invalid input. Please try again.\n");
-                continue;
             }
         }
         return c;
@@ -290,154 +359,201 @@ public class CellManager implements Serializable{
         Scanner in = new Scanner(System.in);
 
         // Variable that stores the letter reperesenting the last column
-        CellManager cm = new CellManager();
-        int lastRow = cm.getLastRow();
+        int lastRow = getLastRow();
 
         int selectedRow = 0;
         System.out.println("Select a row.");
 
-        boolean valid = false; // flag to indicate if valid character entered
-        while (!valid) {
-            // prompt for input
-            System.out.println("Enter row value from 1 to " + lastRow + ".");
+        boolean valid = false; // rightClick to indicate if valid character entered
+        do {
+            try {
+                // prompt for input
+                System.out.println("Enter row value from 1 to " + lastRow + ".");
 
-            // get input from user           
-            selectedRow = in.nextInt();
+                // get input from user
+                selectedRow = in.nextInt();
 
-            if (selectedRow <= lastRow && selectedRow >= 0) {
-                return selectedRow;
-            } else {
+                if (selectedRow <= lastRow && selectedRow >= 0) {
+                    return selectedRow;
+                } else {
+                    System.out.println("Invalid input. Please try again.\n");
+                }
+            } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please try again.\n");
+                in.next();
             }
-        }
+        } while (!valid);
+
         return selectedRow;
     }
 
     private int getValue(int row, char column) {
-        int value = 0;
-        for (Cell cell : cells) {
-            if (cell.getRow() == row && cell.getColumn() == column) {
-                value = cell.getValue();
-            }
-        }
-        return value;
+        return values[row][column];
     }
-    
+
     public void inputGetValue() {
         char column = getSelectedColumn();
         int row = getSelectedRow();
         getValue(row, column);
     }
 
-    private void reveal(int inputRow, char inputColumn) {
-        for (Cell cell : cells) {
-            char c = cell.getColumn();
-            int r = cell.getRow();
-            int v = cell.getValue();
-            int s = cell.getState();
-            if (s == 9 && r == inputRow && c == inputColumn) {
-                switch (v) {
+    private void revealCheckCells() {
+        for (CheckCell checkCell : checkCells) {
+            int row = checkCell.getRow();
+            int column = checkCell.getColumn();
+            int state = states[row][column];
+            int value = values[row][column];
+            if (state == 9) {
+                switch (value) {
                     case 15:
-                        cell.setState(12);
+                        states[row][column] = 12;
                         System.out.println("Game over. You clicked a mine.");
                         break;
                     case 0:
-                        cell.setState(0);
-                        addCheckCell(++inputRow, ++inputColumn);
-                        addCheckCell(++inputRow, inputColumn);
-                        addCheckCell(++inputRow, --inputColumn);
-                        addCheckCell(inputRow, ++inputColumn);
-                        addCheckCell(inputRow, inputColumn);
-                        addCheckCell(inputRow, --inputColumn);
-                        addCheckCell(--inputRow, ++inputColumn);
-                        addCheckCell(--inputRow, inputColumn);
-                        addCheckCell(--inputRow, --inputColumn);
+                        states[row][column] = 0;
+                        addCheckCellTemp(row + 1, column + 1);
+                        addCheckCellTemp(row + 1, column);
+                        addCheckCellTemp(row + 1, column - 1);
+                        addCheckCellTemp(row, column + 1);
+                        addCheckCellTemp(row, column - 1);
+                        addCheckCellTemp(row - 1, column + 1);
+                        addCheckCellTemp(row - 1, column);
+                        addCheckCellTemp(row - 1, column - 1);
                         break;
                     default:
-                        cell.setState(v);
+                        states[row][column] = value;
                 }
+            } else {
+
             }
         }
-        if (checkCells.size() > 0) {
-            for (CheckCell checkCell : checkCells) {
-                int checkRow = checkCell.getRow();
-                char checkColumn = checkCell.getColumn();
-                for (Cell cell : cells) {
-                    char c = cell.getColumn();
-                    int r = cell.getRow();
-                    int v = cell.getValue();
-                    int s = cell.getState();
-                    if (s == 9 && r == checkRow && c == checkColumn && v == 0) {
-                        cell.setState(0);
-//                        addCheckCell(checkRow++, checkColumn++);
-//                        addCheckCell(checkRow++, checkColumn)  ;
-//                        addCheckCell(checkRow++, checkColumn--);
-//                        addCheckCell(checkRow  , checkColumn++);
-//                        addCheckCell(checkRow  , checkColumn)  ;
-//                        addCheckCell(checkRow  , checkColumn--);
-//                        addCheckCell(checkRow--, checkColumn++);
-//                        addCheckCell(checkRow--, checkColumn)  ;
-//                        addCheckCell(checkRow--, checkColumn--);
-                    }
-                    else if (s == 9 && r == checkRow && c == checkColumn) {
-                        cell.setState(v);
-                    }
-                }
-            }
-        }
+        clearCheckCells();
+        checkCellTempCopy();
+
     }
-    
-    public void clickReveal() {
-        char column = getSelectedColumn();
-        int row = getSelectedRow();
-        reveal(row, column);
+
+    public void click() {
+        int column = getSelectedColumn() - 65;
+        int row = getSelectedRow() - 1;
+        if (states[row][column] == 10) {
+            System.out.println("Flag must be removed before revealing cell.");
+        } else if (states[row][column] == 11) {
+            System.out.println("Question mark must be removed before revealing cell.");
+        } else if (states[row][column] == 9) {
+            addCheckCell(row, column);
+            revealCheckCells();
+            checkWin();
+        } else {
+            System.out.println("Cell already revealed.");
+        }
     }
 
     // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flaged, 11 unknown
     // Game end only: 12 clicked exploded, 13 undiscovered mine, 14 Incorrect Flag, 15 discovered mine.
-    private void flag(int row, char column) {
-        for (Cell cell : cells) {
-            if (cell.getRow() == row && cell.getColumn() == column) {
-                cell.setState(10);
-            }
+    public void rightClick() {
+        int column = getSelectedColumn() - 65;
+        int row = getSelectedRow() - 1;
+        if (states[row][column] == 9) {
+            states[row][column] = 10;
+        } // Already Flagged - Set Unknown
+        else if (states[row][column] == 10) {
+            states[row][column] = 11;
+        } // Already Unknown - Set Undiscovered
+        else if (states[row][column] == 11) {
+            states[row][column] = 9;
         }
-    }
-    
-    public void clickFlag() {
-        char column = getSelectedColumn();
-        int row = getSelectedRow();
-        flag(row, column);
     }
 
-    private void unknown(int row, char column) {
-        for (Cell cell : cells) {
-            if (cell.getRow() == row && cell.getColumn() == column) {
-                cell.setState(11);
+    // Functionality for when a user clicks with both mouse buttons.
+    // Reveals all cells touching number if the number shown has been marked with flags.
+    public void twoButtonClick() {
+        int columns = getNumberOfColumns() - 1;
+        int rows = getNumberOfRows() - 1;
+        int column = getSelectedColumn() - 65;
+        int row = getSelectedRow() - 1;
+        int state = states[row][column];
+        int value = values[row][column];
+        int counter = 0;
+        System.out.println("Column: " + column + " Row: " + row);
+        if (state == 9) {
+            System.out.println("Can only be used on revealed cells.");
+        }
+        if (state > 0 && state < 9) {
+            if (row < rows && column < columns && states[row + 1][column + 1] == 10) {
+                counter++;
+                System.out.println(counter + " flag touching.");
+            }
+            if (row < rows && states[row + 1][column] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (row < rows && column > 0 && states[row + 1][column - 1] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (column < columns && states[row][column + 1] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (column > 0 && states[row][column - 1] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (row > 0 && column < columns && states[row - 1][column + 1] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (row > 0 && states[row - 1][column] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (row > 0 && column > 0 && states[row - 1][column - 1] == 10) {
+                counter++;
+                System.out.println(counter + " flags touching.");
+            }
+            if (counter == value) {
+                addCheckCell(row + 1, column + 1);
+                addCheckCell(row + 1, column + 1);
+                addCheckCell(row + 1, column);
+                addCheckCell(row + 1, column - 1);
+                addCheckCell(row, column + 1);
+                addCheckCell(row, column);
+                addCheckCell(row, column - 1);
+                addCheckCell(row - 1, column + 1);
+                addCheckCell(row - 1, column);
+                addCheckCell(row - 1, column - 1);
+                System.out.println("Checking Cells");
+                revealCheckCells();
+                checkWin();
+            } else {
+                System.out.println("Not enough flags.");
             }
         }
-    }
-    
-    public void clickUnknown() {
-        char column = getSelectedColumn();
-        int row = getSelectedRow();
-        unknown(row, column);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
     // End Game
+    public void checkWin() {
+        OUTER:
+        {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int column = 0; column < getNumberOfColumns(); column++) {
+                    if (states[row][column] == 9 && values[row][column] != 15) {
+                        break OUTER;
+                    }
+                }
+            }
+            System.out.println("Congratulations, you win!");
+            winGame();
+        }
+    }
+
     public void winGame() {
-        for (Cell cell : cells) {
-            if (cell.getState() < 9) {
-            } // Number already revealed.
-            else if (cell.getState() == 9 && cell.getValue() < 9) {
-                cell.setState(cell.getValue());
-                // Reveals Number
-            } else if (cell.getState() == 9 && cell.getValue() == 15) {
-                cell.setState(13); // Undiscovered Mine
-            } else if (cell.getState() == 10 && cell.getValue() == 15) {
-                cell.setState(15); // Discovered Mine
-            } else if (cell.getState() == 10 && cell.getValue() != 15) {
-                cell.setState(14); // Incorrect Flag
+        for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int column = 0; column < getNumberOfColumns(); column++) {
+                if (states[row][column] == 10 && values[row][column] == 15) {
+                    states[row][column] = 15;
+                }
             }
         }
     }
@@ -451,29 +567,19 @@ public class CellManager implements Serializable{
             }
         }
     }
-    
+
     // For checking for zeros.
-    private void addCheckCell(int row, char column) {
-//        if (checkCells.size() > 0) {
-//            for (CheckCell checkCell : checkCells) {
-//                if (checkCell.getRow() == row && checkCell.getColumn() == column) {
-//                }
-//                else {
-//                    checkCells.add(new CheckCell(row, column));
-//                }
-//            }
-//        }
-//        else {
-            checkCells.add(new CheckCell(row, column));
-//        }
-    }
-    
-    private void removeCheckCell(int row, char column) {
-        for (int i = 0; i < checkCells.size(); i++) {
-            if (checkCells.get(i).getRow() == row && checkCells.get(i).getColumn() == column) {
-                checkCells.remove(checkCells.get(i));
-            }
-            else {
+    private void addCheckCell(int row, int column) {
+        if (row >= 0 && row < getNumberOfRows() && column >= 0 && column < getNumberOfColumns()) {
+            if (checkCells.size() > 0) {
+                for (CheckCell checkCell : checkCells) {
+                    if (checkCell.getRow() == row && checkCell.getColumn() == column) {
+                    } else {
+                        checkCells.add(new CheckCell(row, column));
+                    }
+                }
+            } else {
+                checkCells.add(new CheckCell(row, column));
             }
         }
     }
@@ -483,6 +589,39 @@ public class CellManager implements Serializable{
             checkCells.clear();
         } catch (NullPointerException e) {
 
+        }
+    }
+
+    private void addCheckCellTemp(int row, int column) {
+        if (row >= 0 && row < getNumberOfRows() && column >= 0 && column < getNumberOfColumns()) {
+            if (checkCellsTemp.size() > 0) {
+                for (CheckCell checkCellTemp : checkCellsTemp) {
+                    if (checkCellTemp.getRow() == row && checkCellTemp.getColumn() == column) {
+                        break;
+                    }
+                }
+                checkCellsTemp.add(new CheckCell(row, column));
+            } else {
+                checkCellsTemp.add(new CheckCell(row, column));
+            }
+        }
+    }
+
+    private void clearCheckCellsTemp() {
+        try {
+            checkCellsTemp.clear();
+        } catch (NullPointerException e) {
+
+        }
+    }
+
+    private void checkCellTempCopy() {
+        if (checkCellsTemp.size() > 0) {
+            for (CheckCell checkCellTemp : checkCellsTemp) {
+                checkCells.add(new CheckCell(checkCellTemp.getRow(), checkCellTemp.getColumn()));
+            }
+            clearCheckCellsTemp();
+            revealCheckCells();
         }
     }
 }

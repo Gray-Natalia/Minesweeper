@@ -15,9 +15,9 @@ import cit260.winter2015.minesweeper.controls.GameMenuControl;
 public class GameMenuView extends Menu {
     
     private static final String[][] menuItems = {
-        {"R", "Reveal Cell"},
-        {"F", "Flag Cell"},
-        {"?", "Mark Unknown"},
+        {"C", "Click: Reveal Cell"},
+        {"R", "Right Click: Flag Cell, Mark Unknown"},
+        {"T", "Two Button Click: Reveals all cells touching"},
         {"X", "Exit to Main Menu (Game progress will be lost.)"}
     }; 
     private static final long serialVersionUID = 1L;
@@ -33,20 +33,20 @@ public class GameMenuView extends Menu {
         do {
             cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
             // Display current board state.
-            cm.displayBoard();
+            cm.displayBoardState();
             display(); // display the menu
             command = getInput();
             
             switch (command) {
                 //Natalia Gray added chooseLevel
+                case "C":
+                    GameMenuControl.click();
+                    break;
                 case "R":
-                    GameMenuControl.reveal();
+                    GameMenuControl.rightClick();
                     break;
-                case "F":
-                    GameMenuControl.flag();
-                    break;
-                case "?":
-                    GameMenuControl.unknown();            
+                case "T":
+                    GameMenuControl.twoButtonClick();
                     break;
                 case "X":
                     break;
