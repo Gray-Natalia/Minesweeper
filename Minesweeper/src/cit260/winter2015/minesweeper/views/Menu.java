@@ -5,6 +5,7 @@
  */
 package cit260.winter2015.minesweeper.views;
 
+import cit260.winter2015.minesweeper.exceptions.MenuException;
 import cit260.winter2015.minesweeper.interfaces.DisplayInfo;
 import cit260.winter2015.minesweeper.interfaces.EnterInfo;
 import cit260.winter2015.minesweeper.interfaces.ViewInterface;
@@ -56,13 +57,21 @@ public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, 
     }
     
     @Override
-    public String getInput() {
-        Scanner inFile = new Scanner(System.in);
-        String command = inFile.nextLine();
-        if(validCommand(command) == false) {
+    public String getInput() throws MenuException{
+        Scanner in = new Scanner(System.in);
+        String command = null;
+        try {
+            command = in.nextLine();
+            if(command.length() < 1) {
+                throw new MenuException();
+            }
+        } catch (MenuException e) {
+            System.err.println("No input detected. Please try again.");
+            in.next();
+        } finally {
+            command = command.trim().toUpperCase();
+            return command;
         }
-        command = command.trim().toUpperCase();
-        return command;
     }
     
     

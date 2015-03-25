@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.interfaces;
-
-import cit260.winter2015.minesweeper.exceptions.MenuException;
+package cit260.winter2015.minesweeper.exceptions;
 
 /**
  *
  * @author knban_000
  */
-public interface EnterInfo {
-   public String getInput() throws MenuException;
+public class MenuException extends Exception{
+
+    public MenuException() {
+    }
+    
+    public MenuException(String message) {
+        super(message);
+    }
 }

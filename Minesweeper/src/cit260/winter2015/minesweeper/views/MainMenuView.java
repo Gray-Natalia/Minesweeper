@@ -5,11 +5,8 @@
 package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.MainMenuControl;
+import cit260.winter2015.minesweeper.exceptions.MenuException;
 
-/**
- *
- * @author Keith Banner
- */
 
 
 public class MainMenuView extends Menu {
@@ -28,12 +25,24 @@ public class MainMenuView extends Menu {
     
     @Override
     public void executeCommands() {    
-        String command;
+        String command = null;
         
         do {
             display();
 
-            command = getInput();
+            try {
+                command = getInput();
+            } catch (MenuException e) {
+            }
+                
+            try {
+            if (!command.equals("P") || !"V".equals(command)
+                    || !"H".equals(command) || !"X".equals(command)) {
+                throw new MenuException();
+            }
+            } catch (MenuException ex) {
+                System.err.println("Invalid command. Please enter a valid command.");
+            }
             
             switch (command) {
                 //Natalia Gray added chooseLevel
@@ -44,12 +53,12 @@ public class MainMenuView extends Menu {
                     MainMenuControl.viewBestTimes();
                     break;
                 case "H":
-                    MainMenuControl.displayHelpMenu();            
+                    MainMenuControl.displayHelpMenu();
                     break;
                 case "X":
                     break;
-                default: 
-                    System.out.println("Invalid command. Please enter a valid command.");
+//                default: 
+//                    System.out.println("Invalid command. Please enter a valid command.");
             }
         } while (!command.equals("X"));
     }

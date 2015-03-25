@@ -5,6 +5,9 @@
 package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.GameMenuControl;
+import cit260.winter2015.minesweeper.exceptions.MenuException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,14 +31,17 @@ public class GameMenuView extends Menu {
     
     @Override
     public void executeCommands() {
-        String command;
+        String command = null;
         
         do {
             cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
             // Display current board state.
             cm.displayBoardState();
             display(); // display the menu
-            command = getInput();
+            try {
+                command = getInput();
+            } catch (MenuException ex) {
+            }
             
             switch (command) {
                 //Natalia Gray added chooseLevel

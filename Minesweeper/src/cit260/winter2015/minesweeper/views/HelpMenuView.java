@@ -5,6 +5,9 @@
 package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.HelpMenuControl;
+import cit260.winter2015.minesweeper.exceptions.MenuException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,12 +34,14 @@ public class HelpMenuView extends Menu {
     
     @Override
    public void executeCommands() {
-        String command;
+        String command = null;
         
         do {
             display(); // display the menu
-            
-            command = getInput();
+            try {
+                command = getInput();
+            } catch (MenuException ex) {
+            }
             
             switch (command) {
                 
