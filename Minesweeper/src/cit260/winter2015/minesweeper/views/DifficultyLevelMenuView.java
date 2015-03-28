@@ -7,13 +7,8 @@ package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.DifficultyLevelMenuControl;
 import cit260.winter2015.minesweeper.exceptions.MenuException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
-/**
- *
- * @author kalavic
- */
 
 
 public class DifficultyLevelMenuView extends Menu {
@@ -34,7 +29,7 @@ public class DifficultyLevelMenuView extends Menu {
     }
     
     @Override
-   public void executeCommands() {
+   public void executeCommands() throws EndGameException {
         String command = null;
         
         do {

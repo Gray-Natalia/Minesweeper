@@ -6,6 +6,7 @@ package cit260.winter2015.minesweeper.controls;
 
 import java.io.Serializable;
 import cit260.winter2015.minesweeper.CellManager;
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
 /**
  *
@@ -17,7 +18,7 @@ public class GameMenuControl implements Serializable {
     public GameMenuControl() {
     }
 
-    public static void click() {
+    public static void click() throws EndGameException {
         CellManager cm = new CellManager();
         cm.click();
     }
@@ -27,7 +28,7 @@ public class GameMenuControl implements Serializable {
         cm.rightClick();
     }
     
-    public static void twoButtonClick() {
+    public static void twoButtonClick() throws EndGameException {
         CellManager cm = new CellManager();
         cm.twoButtonClick();
     }

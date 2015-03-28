@@ -15,6 +15,8 @@ import java.util.Comparator;
  * @author Keith Banner
  */
 public class MineManager implements Serializable{
+    public static int numberOfMines;
+    
     private static final long serialVersionUID = 1L;
     
     private static final ArrayList<Mine> mines = new ArrayList<>();
@@ -47,7 +49,8 @@ public class MineManager implements Serializable{
         return mines.get(index).getRow();
     }
     
-    public void generateMines(int rows, int columns, int numberOfMines) {
+    public void generateMines(int rows, int columns, int numMines) {
+        numberOfMines = numMines;
         clearMines();
         for (int i = 0; i < numberOfMines; i++) {
             addMine(1 + (int) (Math.random() * rows), (char) ('A' + (char) (Math.random() * columns)));
@@ -65,12 +68,10 @@ public class MineManager implements Serializable{
             }
         }
         sort();
-        for (Mine mine : mines) {
-            System.out.println(mine.getRow() + "" + mine.getColumn());
-        }
     }
     
     public void presetMines() {
+        numberOfMines = 10;
         clearMines();
         addMine(9,'D');
         addMine(2,'C');

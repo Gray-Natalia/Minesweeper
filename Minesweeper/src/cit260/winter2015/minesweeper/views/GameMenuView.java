@@ -6,13 +6,8 @@ package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.GameMenuControl;
 import cit260.winter2015.minesweeper.exceptions.MenuException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
-/**
- *
- * @author Keith Banner
- */
 
 
 public class GameMenuView extends Menu {
@@ -30,12 +25,13 @@ public class GameMenuView extends Menu {
     }
     
     @Override
-    public void executeCommands() {
+    public void executeCommands() throws EndGameException{
         String command = null;
         
         do {
             cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
             // Display current board state.
+            cm.displayMinesRemaining();
             cm.displayBoardState();
             display(); // display the menu
             try {

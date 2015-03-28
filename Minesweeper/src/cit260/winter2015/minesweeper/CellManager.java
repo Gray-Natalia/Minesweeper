@@ -5,6 +5,7 @@
  */
 package cit260.winter2015.minesweeper;
 
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -204,6 +205,12 @@ public class CellManager implements Serializable {
 
     //////////////////////////////////////////////////////////////////////////////////////
     // During Game
+    
+    // Displays number of mines left
+    public void displayMinesRemaining() {
+        System.out.println(MineManager.numberOfMines + " mines remaining");
+    }
+    
     // Displays Game Board
     public void displayBoardState() {
 
@@ -405,10 +412,6 @@ public class CellManager implements Serializable {
             int value = values[row][column];
             if (state == 9) {
                 switch (value) {
-                    case 15:
-                        states[row][column] = 12;
-                        System.out.println("Game over. You clicked a mine.");
-                        break;
                     case 0:
                         states[row][column] = 0;
                         addCheckCellTemp(row + 1, column + 1);
@@ -432,13 +435,17 @@ public class CellManager implements Serializable {
 
     }
 
-    public void click() {
+    public void click() throws EndGameException {
         int column = getSelectedColumn() - 65;
         int row = getSelectedRow() - 1;
         if (states[row][column] == 10) {
             System.out.println("Flag must be removed before revealing cell.");
         } else if (states[row][column] == 11) {
             System.out.println("Question mark must be removed before revealing cell.");
+        } else if (values[row][column] == 15) {
+            states[row][column] = 12;
+            System.out.println("Game over. You clicked a mine.");
+            loseGame();
         } else if (states[row][column] == 9) {
             addCheckCell(row, column);
             revealCheckCells();
@@ -454,19 +461,21 @@ public class CellManager implements Serializable {
         int column = getSelectedColumn() - 65;
         int row = getSelectedRow() - 1;
         if (states[row][column] == 9) {
-            states[row][column] = 10;
-        } // Already Flagged - Set Unknown
+            states[row][column] = 10; // Undiscovered - Set Flag
+            MineManager.numberOfMines--; // Decrease Mine counter
+        } 
         else if (states[row][column] == 10) {
-            states[row][column] = 11;
-        } // Already Unknown - Set Undiscovered
+            states[row][column] = 11; // Already Flagged - Set Unknown
+            MineManager.numberOfMines++; // Increase Mine counter
+        } 
         else if (states[row][column] == 11) {
-            states[row][column] = 9;
+            states[row][column] = 9; // Already Unknown - Set Undiscovered
         }
     }
 
     // Functionality for when a user clicks with both mouse buttons.
     // Reveals all cells touching number if the number shown has been marked with flags.
-    public void twoButtonClick() {
+    public void twoButtonClick() throws EndGameException {
         int columns = getNumberOfColumns() - 1;
         int rows = getNumberOfRows() - 1;
         int column = getSelectedColumn() - 65;
@@ -512,17 +521,18 @@ public class CellManager implements Serializable {
                 System.out.println(counter + " flags touching.");
             }
             if (counter == value) {
-                addCheckCell(row + 1, column + 1);
-                addCheckCell(row + 1, column + 1);
-                addCheckCell(row + 1, column);
-                addCheckCell(row + 1, column - 1);
-                addCheckCell(row, column + 1);
-                addCheckCell(row, column);
-                addCheckCell(row, column - 1);
-                addCheckCell(row - 1, column + 1);
-                addCheckCell(row - 1, column);
-                addCheckCell(row - 1, column - 1);
+                addCheckCellTemp(row + 1, column + 1);
+                addCheckCellTemp(row + 1, column + 1);
+                addCheckCellTemp(row + 1, column);
+                addCheckCellTemp(row + 1, column - 1);
+                addCheckCellTemp(row, column + 1);
+                addCheckCellTemp(row, column);
+                addCheckCellTemp(row, column - 1);
+                addCheckCellTemp(row - 1, column + 1);
+                addCheckCellTemp(row - 1, column);
+                addCheckCellTemp(row - 1, column - 1);
                 System.out.println("Checking Cells");
+                checkCellTempCopy();
                 revealCheckCells();
                 checkWin();
             } else {
@@ -533,7 +543,7 @@ public class CellManager implements Serializable {
 
     //////////////////////////////////////////////////////////////////////////////////////
     // End Game
-    public void checkWin() {
+    public void checkWin() throws EndGameException {
         OUTER:
         {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -548,24 +558,30 @@ public class CellManager implements Serializable {
         }
     }
 
-    public void winGame() {
+    public void winGame() throws EndGameException {
         for (int row = 0; row < getNumberOfRows(); row++) {
             for (int column = 0; column < getNumberOfColumns(); column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
-                    states[row][column] = 15;
+                    states[row][column] = 15; // Discovered Mine
                 }
             }
         }
+        displayBoardState();
+        throw new EndGameException();
     }
 
-    public void loseGame() {
-        for (Cell cell : cells) {
-            if (cell.getState() == 10 && cell.getValue() == 15) {
-                cell.setState(15); // Discovered Mine
-            } else if (cell.getState() == 10 && cell.getValue() != 15) {
-                cell.setState(14); // Incorrect Flag
+    public void loseGame() throws EndGameException {
+        for (int row = 0; row < getNumberOfRows(); row++) {
+            for (int column = 0; column < getNumberOfColumns(); column++) {
+                if (states[row][column] == 10 && values[row][column] == 15) {
+                    states[row][column] = 15; // Discovered Mine
+                } else if (states[row][column] == 10 && values[row][column] != 15) {
+                    states[row][column] = 14; // Incorrect Flag
+                }
             }
         }
+        displayBoardState();
+        throw new EndGameException();
     }
 
     // For checking for zeros.

@@ -11,6 +11,7 @@ import cit260.winter2015.minesweeper.CellManager;
 import cit260.winter2015.minesweeper.enums.LevelType;
 import cit260.winter2015.minesweeper.views.GameMenuView;
 import cit260.winter2015.minesweeper.MineManager;
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
 /**
  *
@@ -29,7 +30,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
     private int numberOfMines;
     private String difficultyLevel;
     
-    public void beginner() {
+    public void beginner() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -42,7 +43,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
         
-    public void intermediate() {
+    public void intermediate() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -55,7 +56,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
             
-    public void expert() {
+    public void expert() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -68,7 +69,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
     
-    public void beginnerPreset() {
+    public void beginnerPreset() throws EndGameException {
         System.out.println();
         displayHelpBorder();  
         System.out.println("\tThis is a special preset board for testing the game.");
@@ -98,7 +99,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         displayHelpBorder();
     }
     
-    public void startSelectedLevel() {
+    public void startSelectedLevel() throws EndGameException {
         MineManager mm = new MineManager();
         mm.generateMines(numberOfRows, numberOfColumns, numberOfMines);
         CellManager cm = new CellManager();

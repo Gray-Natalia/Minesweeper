@@ -5,7 +5,10 @@
 package cit260.winter2015.minesweeper.views;
 
 import cit260.winter2015.minesweeper.controls.MainMenuControl;
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 import cit260.winter2015.minesweeper.exceptions.MenuException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -46,9 +49,14 @@ public class MainMenuView extends Menu {
             
             switch (command) {
                 //Natalia Gray added chooseLevel
-                case "P":
-                    MainMenuControl.play();
-                    break;
+                case "P": {
+                    try {
+                        MainMenuControl.play();
+                    } catch (EndGameException ex) {
+                        break;
+                    }
+                }
+                break;
                 case "V":
                     MainMenuControl.viewBestTimes();
                     break;

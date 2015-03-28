@@ -5,10 +5,12 @@
  */
 package cit260.winter2015.minesweeper.interfaces;
 
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
+
 /**
  *
  * @author cheryl
  */
 public interface ViewInterface {
-   public void executeCommands(); 
+   public void executeCommands() throws EndGameException; 
 }
