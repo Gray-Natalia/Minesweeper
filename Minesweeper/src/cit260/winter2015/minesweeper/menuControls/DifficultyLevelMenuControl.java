@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.controls;
+package cit260.winter2015.minesweeper.menuControls;
 
 import java.io.Serializable;
 import java.util.Objects;
 import cit260.winter2015.minesweeper.CellManager;
 import cit260.winter2015.minesweeper.enums.LevelType;
-import cit260.winter2015.minesweeper.views.GameMenuView;
+import cit260.winter2015.minesweeper.menuViews.GameMenuView;
 import cit260.winter2015.minesweeper.MineManager;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 

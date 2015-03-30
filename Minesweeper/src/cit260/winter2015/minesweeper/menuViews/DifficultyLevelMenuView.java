@@ -3,42 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.views;
+package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.controls.DifficultyLevelMenuControl;
-import cit260.winter2015.minesweeper.exceptions.MenuException;
+import cit260.winter2015.minesweeper.menuControls.DifficultyLevelMenuControl;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
-
-
 public class DifficultyLevelMenuView extends Menu {
-    
+
     private final static String[][] menuItems = {
         {"B", "Beginner"},
-        {"I", "Intermediate"}, 
+        {"I", "Intermediate"},
         {"E", "Expert"},
         {"P", "Preset Demo"},
         {"X", "Exit To Main Menu"}
     };
     private static final long serialVersionUID = 1L;
-    
+
     DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
-    
+
     public DifficultyLevelMenuView() {
         super("Difficulty Level Menu", DifficultyLevelMenuView.menuItems);
     }
-    
+
     @Override
-   public void executeCommands() throws EndGameException {
-        String command = null;
-        
+    public void executeCommands() throws EndGameException {
+        String command;
+
         do {
             display(); // display the menu
-            try {
-                command = getInput();
-            } catch (MenuException ex) {
-            }
-            
+
+            command = getInput();
+
             switch (command) {
                 case "B":
                     difficultyLevelMenuControl.beginner();
@@ -54,9 +49,9 @@ public class DifficultyLevelMenuView extends Menu {
                     break;
                 case "X":
                     break;
-                default: 
+                default:
                     System.out.println("Invalid command. Please enter a valid command.");
             }
         } while (!command.equals("X"));
-   }
+    }
 }

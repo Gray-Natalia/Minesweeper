@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.views;
+package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.exceptions.MenuException;
 import cit260.winter2015.minesweeper.interfaces.DisplayInfo;
 import cit260.winter2015.minesweeper.interfaces.EnterInfo;
 import cit260.winter2015.minesweeper.interfaces.ViewInterface;
@@ -17,11 +16,12 @@ import java.util.Scanner;
  * @author knban_000
  */
 public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, EnterInfo {
+
     private static final long serialVersionUID = 1L;
-    
+
     private String[][] menuItems = null;
     protected final String menuName;
-    
+
     public Menu() {
         menuName = "Menu";
     }
@@ -38,7 +38,7 @@ public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, 
     public void setMenuItems(String[][] menuItems) {
         this.menuItems = menuItems;
     }
-    
+
     @Override
     public void display() {
         System.out.println("\n\t===============================================================");
@@ -52,27 +52,11 @@ public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, 
         System.out.println("\t===============================================================\n");
     }
     
-    private boolean validCommand(String command) {
-        return command != null;
-    }
-    
     @Override
-    public String getInput() throws MenuException{
+    public String getInput() {
         Scanner in = new Scanner(System.in);
-        String command = null;
-        try {
-            command = in.nextLine();
-            if(command.length() < 1) {
-                throw new MenuException();
-            }
-        } catch (MenuException e) {
-            System.err.println("No input detected. Please try again.");
-            in.next();
-        } finally {
-            command = command.trim().toUpperCase();
-            return command;
-        }
+        String command = in.nextLine();
+        command = command.trim().toUpperCase();
+        return command;
     }
-    
-    
 }

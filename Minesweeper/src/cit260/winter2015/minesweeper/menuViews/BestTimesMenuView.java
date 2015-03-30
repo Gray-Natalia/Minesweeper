@@ -2,12 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.views;
+package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.controls.BestTimesMenuControl;
-import cit260.winter2015.minesweeper.exceptions.MenuException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import cit260.winter2015.minesweeper.menuControls.BestTimesMenuControl;
 
 /**
  *
@@ -32,14 +29,12 @@ public class BestTimesMenuView extends Menu {
     
    @Override
    public void executeCommands() {
-        String command = null;
+        String command;
         
         do {
             display(); // display the menu
-            try {
-                command = getInput();
-            } catch (MenuException ex) {
-            }
+            
+            command = getInput();
             
             switch (command) {
                 case "B":

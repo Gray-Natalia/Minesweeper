@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.views;
+package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.controls.GameMenuControl;
-import cit260.winter2015.minesweeper.exceptions.MenuException;
+import cit260.winter2015.minesweeper.menuControls.GameMenuControl;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
 
@@ -26,18 +25,17 @@ public class GameMenuView extends Menu {
     
     @Override
     public void executeCommands() throws EndGameException{
-        String command = null;
+        String command;
         
         do {
             cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
             // Display current board state.
             cm.displayMinesRemaining();
             cm.displayBoardState();
+            
             display(); // display the menu
-            try {
-                command = getInput();
-            } catch (MenuException ex) {
-            }
+            
+            command = getInput();
             
             switch (command) {
                 //Natalia Gray added chooseLevel

@@ -2,61 +2,42 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.views;
+package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.controls.MainMenuControl;
+import cit260.winter2015.minesweeper.menuControls.MainMenuControl;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.exceptions.MenuException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
 
 public class MainMenuView extends Menu {
-    
+
     private static final String[][] menuItems = {
         {"P", "Play"},
         {"V", "View Best Times"},
         {"H", "Help"},
         {"X", "Exit Minesweeper"}
-    }; 
+    };
     private static final long serialVersionUID = 1L;
-  
+
     public MainMenuView() {
         super("Main Menu", MainMenuView.menuItems);
     }
-    
+
     @Override
-    public void executeCommands() {    
-        String command = null;
-        
+    public void executeCommands() {
+        String command;
+
         do {
             display();
+            command = getInput();
 
-            try {
-                command = getInput();
-            } catch (MenuException e) {
-            }
-                
-            try {
-            if (!command.equals("P") || !"V".equals(command)
-                    || !"H".equals(command) || !"X".equals(command)) {
-                throw new MenuException();
-            }
-            } catch (MenuException ex) {
-                System.err.println("Invalid command. Please enter a valid command.");
-            }
-            
             switch (command) {
                 //Natalia Gray added chooseLevel
-                case "P": {
+                case "P":
                     try {
                         MainMenuControl.play();
                     } catch (EndGameException ex) {
                         break;
                     }
-                }
-                break;
+                    break;
                 case "V":
                     MainMenuControl.viewBestTimes();
                     break;
@@ -65,8 +46,8 @@ public class MainMenuView extends Menu {
                     break;
                 case "X":
                     break;
-//                default: 
-//                    System.out.println("Invalid command. Please enter a valid command.");
+                default:
+                    System.out.println("Invalid command. Please enter a valid command.");
             }
         } while (!command.equals("X"));
     }

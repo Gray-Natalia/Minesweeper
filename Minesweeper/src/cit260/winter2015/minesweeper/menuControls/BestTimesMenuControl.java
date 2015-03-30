@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.winter2015.minesweeper.controls;
+package cit260.winter2015.minesweeper.menuControls;
 
 import java.io.Serializable;
 import cit260.winter2015.minesweeper.BestTimeManagerBeginner;

@@ -5,7 +5,7 @@
  */
 package cit260.winter2015.minesweeper;
 
-import cit260.winter2015.minesweeper.views.MainMenuView;
+import cit260.winter2015.minesweeper.menuViews.MainMenuView;
 
 /**
  *
