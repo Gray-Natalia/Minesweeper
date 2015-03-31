@@ -8,9 +8,11 @@ package cit260.winter2015.minesweeper.menuControls;
 import java.io.Serializable;
 import java.util.Objects;
 import cit260.winter2015.minesweeper.CellManager;
+import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.enums.LevelType;
 import cit260.winter2015.minesweeper.menuViews.GameMenuView;
 import cit260.winter2015.minesweeper.MineManager;
+import static cit260.winter2015.minesweeper.enums.LevelType.BEGINNER;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
 /**
@@ -23,22 +25,14 @@ public class DifficultyLevelMenuControl implements Serializable  {
     
     public DifficultyLevelMenuControl() {
         
-    } 
-    
-    private int numberOfColumns;
-    private int numberOfRows;
-    private int numberOfMines;
-    private String difficultyLevel;
+    }
     
     public void beginner() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = LevelType.BEGINNER.getMines();
-        numberOfRows = LevelType.BEGINNER.getRows();
-        numberOfColumns = LevelType.BEGINNER.getColumns();
-        difficultyLevel = "Beginner";
+        LevelType.setBeginner();
         displaySelectedLevel();
         startSelectedLevel();
     }
@@ -48,10 +42,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = LevelType.INTERMEDIATE.getMines();
-        numberOfRows = LevelType.INTERMEDIATE.getRows();
-        numberOfColumns = LevelType.INTERMEDIATE.getColumns();
-        difficultyLevel = "Intermediate";
+        LevelType.setIntermediate();
         displaySelectedLevel();
         startSelectedLevel();
     }
@@ -61,10 +52,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         //we will create a board of this level
         System.out.println();
         displayHelpBorder();
-        numberOfMines = LevelType.EXPERT.getMines();
-        numberOfRows = LevelType.EXPERT.getRows();
-        numberOfColumns = LevelType.EXPERT.getColumns();
-        difficultyLevel = "Expert";
+        LevelType.setExpert();
         displaySelectedLevel();
         startSelectedLevel();
     }
@@ -74,13 +62,11 @@ public class DifficultyLevelMenuControl implements Serializable  {
         displayHelpBorder();  
         System.out.println("\tThis is a special preset board for testing the game.");
         displayHelpBorder();
-        numberOfMines = 10;
-        numberOfRows = 9;
-        numberOfColumns = 9;
+        GameVariables.setGameVariables("Preset", BEGINNER.getRows(), BEGINNER.getColumns(), BEGINNER.getMines());
         MineManager mm = new MineManager();
         mm.presetMines();
         CellManager cm = new CellManager();
-        cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
+        cm.calculateCellValues();
         GameMenuView gameMenuView = new GameMenuView();
         gameMenuView.executeCommands();
         
@@ -92,94 +78,19 @@ public class DifficultyLevelMenuControl implements Serializable  {
     }
     
     private void displaySelectedLevel() {
-        System.out.println("\tYou have selected " + difficultyLevel + "."
-                + "\n\tThere are " + numberOfRows + " rows,"
-                + "\n\t" + numberOfColumns + " columns,"
-                + "\n\tand " + numberOfMines + " mines.");
+        System.out.println("\tYou have selected " + GameVariables.getDifficultyLevel() + "."
+                + "\n\tThere are " + GameVariables.getNumberOfRows() + " rows,"
+                + "\n\t" + GameVariables.getNumberOfColumns() + " columns,"
+                + "\n\tand " + GameVariables.getNumberOfMines() + " mines.");
         displayHelpBorder();
     }
     
     public void startSelectedLevel() throws EndGameException {
         MineManager mm = new MineManager();
-        mm.generateMines(numberOfRows, numberOfColumns, numberOfMines);
+        mm.generateMines();
         CellManager cm = new CellManager();
-        cm.calculateCellValues(numberOfRows, numberOfColumns, numberOfMines);
+        cm.calculateCellValues();
         GameMenuView gameMenuView = new GameMenuView();
         gameMenuView.executeCommands();
     }
-
-    
-    
-    
-    
-    
-    
-    public int getNumberOfColumns() {
-        return numberOfColumns;
-    }
-
-    public void setNumberOfColumns(int numberOfColumns) {
-        this.numberOfColumns = numberOfColumns;
-    }
-
-    public int getNumberOfRows() {
-        return numberOfRows;
-    }
-
-    public void setNumberOfRows(int numberOfRows) {
-        this.numberOfRows = numberOfRows;
-    }
-
-    public int getNumberOfMines() {
-        return numberOfMines;
-    }
-
-    public void setNumberOfMines(int numberOfMines) {
-        this.numberOfMines = numberOfMines;
-    }
-
-    public String getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(String difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.numberOfColumns;
-        hash = 29 * hash + this.numberOfRows;
-        hash = 29 * hash + this.numberOfMines;
-        hash = 29 * hash + Objects.hashCode(this.difficultyLevel);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DifficultyLevelMenuControl other = (DifficultyLevelMenuControl) obj;
-        if (this.numberOfColumns != other.numberOfColumns) {
-            return false;
-        }
-        if (this.numberOfRows != other.numberOfRows) {
-            return false;
-        }
-        if (this.numberOfMines != other.numberOfMines) {
-            return false;
-        }
-        return Objects.equals(this.difficultyLevel, other.difficultyLevel);
-    }
-
-    @Override
-    public String toString() {
-        return "DifficultyLevelMenuControl{" + "numberOfColumns=" + numberOfColumns + ", numberOfRows=" + numberOfRows + ", numberOfMines=" + numberOfMines + ", difficultyLevel=" + difficultyLevel + '}';
-    }
-    
 }

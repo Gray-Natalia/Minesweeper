@@ -15,20 +15,15 @@ import java.util.Scanner;
 public class GetPlayerName implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    String greeting;
-    String ifnot;
-    String namePrompt;
-    String playerName;
-    
-    public String getName() {
-        greeting = "Welcome to Minesweeper.";
-        namePrompt = "Please enter your name.";
-        ifnot = "\nPlayer name must contain 3 to 15 characters."
+    public static void getName() {
+        String greeting = "Welcome to Minesweeper.";
+        String namePrompt = "Please enter your name.";
+        String ifnot = "\nPlayer name must contain 3 to 15 characters."
                 + " Please try Again.";
        
         Scanner input = new Scanner (System.in);
         System.out.println(greeting + "\n" + namePrompt);
-        playerName = input.nextLine();
+        String playerName = input.nextLine();
     
         //Checks for minumum of 3 characters and max of 15.
         //Loops if incorrect input.
@@ -39,7 +34,7 @@ public class GetPlayerName implements Serializable {
             playerName = input.nextLine();
         }
         System.out.println("Great " + playerName +", Go ahead!!!");
-        return playerName;
+        GameVariables.setPlayerName(playerName);
     }  
 }
     

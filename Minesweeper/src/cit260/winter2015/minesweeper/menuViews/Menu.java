@@ -5,7 +5,6 @@
  */
 package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.interfaces.DisplayInfo;
 import cit260.winter2015.minesweeper.interfaces.EnterInfo;
 import cit260.winter2015.minesweeper.interfaces.ViewInterface;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.util.Scanner;
  *
  * @author knban_000
  */
-public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, EnterInfo {
+public abstract class Menu implements Serializable, ViewInterface, EnterInfo {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,7 +38,6 @@ public abstract class Menu implements Serializable, ViewInterface, DisplayInfo, 
         this.menuItems = menuItems;
     }
 
-    @Override
     public void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\t" + menuName);

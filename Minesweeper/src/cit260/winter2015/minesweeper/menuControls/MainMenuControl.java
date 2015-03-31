@@ -7,7 +7,6 @@ package cit260.winter2015.minesweeper.menuControls;
 import cit260.winter2015.minesweeper.menuViews.BestTimesMenuView;
 import cit260.winter2015.minesweeper.menuViews.DifficultyLevelMenuView;
 import java.io.Serializable;
-import cit260.winter2015.minesweeper.GetPlayerName;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 import cit260.winter2015.minesweeper.menuViews.HelpMenuView;
 
@@ -20,9 +19,6 @@ public class MainMenuControl implements Serializable {
     private static final long serialVersionUID = 1L;
      
     public static void play() throws EndGameException {
-        //Natalia Gray added chooseLevel
-        GetPlayerName getPlayerName = new GetPlayerName();
-        getPlayerName.getName();
         DifficultyLevelMenuView chooseLevelMenuView = new DifficultyLevelMenuView();
         chooseLevelMenuView.executeCommands();
     }

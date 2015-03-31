@@ -18,6 +18,11 @@ import java.util.Scanner;
  * @author Keith Banner
  */
 public class CellManager implements Serializable {
+    
+    private static int rows;
+    private static int columns;
+    private static int numberOfMines;
+    private static int minesRemaining;
 
     private static final long serialVersionUID = 1L;
 
@@ -31,27 +36,16 @@ public class CellManager implements Serializable {
     public ArrayList<Cell> getCells() {
         return cells;
     }
-
-//    public CellManager(ArrayList<Cell> cells) {
-//        cells = new ArrayList<>();
-//    }
+    
     public CellManager() {
     }
 
     private int getLastRow() {
-        return cells.get(cells.size() - 1).getRow();
+        return rows;
     }
-
-    private int getNumberOfRows() {
-        return cells.get(cells.size() - 1).getRow();
-    }
-
+    
     private char getLastColumn() {
-        return cells.get(cells.size() - 1).getColumn();
-    }
-
-    private int getNumberOfColumns() {
-        return cells.get(cells.size() - 1).getColumn() - 'A' + 1;
+        return (char) (columns + 'A' - 1);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -102,9 +96,14 @@ public class CellManager implements Serializable {
 
     // Values: 0 empty, 1-8 numbers, 15 mine
     // State: 9 undiscovered.
-    public void calculateCellValues(int rows, int columns, int mines) {
+    public void calculateCellValues() {
         clearCells();
         clearCheckCells();
+        clearCheckCellsTemp();
+        rows = GameVariables.numberOfRows;
+        columns = GameVariables.numberOfColumns;
+        numberOfMines = GameVariables.numberOfMines;
+        minesRemaining = numberOfMines;
         MineManager mm = new MineManager();
         int currentMineCheck = 0;
         int currentRow;
@@ -113,7 +112,7 @@ public class CellManager implements Serializable {
         for (int i = 0; i < rows; i++) {
             currentRow = i + 1;
             for (j = 'A'; j < columns + 'A'; j++) {
-                if (currentMineCheck < mines
+                if (currentMineCheck < numberOfMines
                         && mm.getMineColumn(currentMineCheck) == j
                         && mm.getMineRow(currentMineCheck) == currentRow) {
                     addCell(currentRow, j, 15, 9); // Adds mine.
@@ -180,8 +179,6 @@ public class CellManager implements Serializable {
     }
 
     public void valueArray() {
-        int rows = getNumberOfRows();
-        int columns = getNumberOfColumns();
 
         values = new int[rows][columns];
         for (Cell cell : cells) {
@@ -192,8 +189,6 @@ public class CellManager implements Serializable {
     }
 
     public void stateArray() {
-        int rows = getNumberOfRows();
-        int columns = getNumberOfColumns();
 
         states = new int[rows][columns];
         for (Cell cell : cells) {
@@ -206,9 +201,9 @@ public class CellManager implements Serializable {
     //////////////////////////////////////////////////////////////////////////////////////
     // During Game
     
-    // Displays number of mines left
+    // Displays number of numberOfMines left
     public void displayMinesRemaining() {
-        System.out.println(MineManager.numberOfMines + " mines remaining");
+        System.out.println(minesRemaining + " mines remaining");
     }
     
     // Displays Game Board
@@ -223,18 +218,18 @@ public class CellManager implements Serializable {
         char incorrectFlag = 'X';
         StringBuilder boardPrint = new StringBuilder("\t   ");
 
-        for (int i = 0; i < getNumberOfColumns(); i++) {
+        for (int i = 0; i < columns; i++) {
             boardPrint.append("   ")
                     .append((char) (i + 65));
         }
         boardPrint.append("\n\t=====");
-        for (int i = 0; i < getNumberOfColumns(); i++) {
+        for (int i = 0; i < columns; i++) {
             boardPrint.append("====");
         }
         boardPrint.append("\n");
 
-        for (int row = 0; row < getNumberOfRows(); row++) {
-            for (int column = 0; column < getNumberOfColumns(); column++) {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
                 if (column == 0) {
                     boardPrint.append("\t")
                             .append(row + 1)
@@ -270,7 +265,7 @@ public class CellManager implements Serializable {
                 }
             }
             boardPrint.append("\n\t-----");
-            for (int i = 0; i < getNumberOfColumns(); i++) {
+            for (int i = 0; i < columns; i++) {
                 boardPrint.append("----");
             }
             boardPrint.append("\n");
@@ -284,18 +279,18 @@ public class CellManager implements Serializable {
         char mine = 'M';
         StringBuilder boardPrint = new StringBuilder("\t   ");
 
-        for (int i = 0; i < getNumberOfColumns(); i++) {
+        for (int i = 0; i < columns; i++) {
             boardPrint.append("   ")
                     .append((char) (i + 65));
         }
         boardPrint.append("\n\t=====");
-        for (int i = 0; i < getNumberOfColumns(); i++) {
+        for (int i = 0; i < columns; i++) {
             boardPrint.append("====");
         }
         boardPrint.append("\n");
 
-        for (int row = 0; row < getNumberOfRows(); row++) {
-            for (int column = 0; column < getNumberOfColumns(); column++) {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
                 if (column == 0) {
                     boardPrint.append("\t")
                             .append(row + 1)
@@ -313,7 +308,7 @@ public class CellManager implements Serializable {
                 }
             }
             boardPrint.append("\n\t-----");
-            for (int i = 0; i < getNumberOfColumns(); i++) {
+            for (int i = 0; i < columns; i++) {
                 boardPrint.append("----");
             }
             boardPrint.append("\n");
@@ -462,11 +457,11 @@ public class CellManager implements Serializable {
         int row = getSelectedRow() - 1;
         if (states[row][column] == 9) {
             states[row][column] = 10; // Undiscovered - Set Flag
-            MineManager.numberOfMines--; // Decrease Mine counter
+            minesRemaining--; // Decrease Mine counter
         } 
         else if (states[row][column] == 10) {
             states[row][column] = 11; // Already Flagged - Set Unknown
-            MineManager.numberOfMines++; // Increase Mine counter
+            minesRemaining++; // Increase Mine counter
         } 
         else if (states[row][column] == 11) {
             states[row][column] = 9; // Already Unknown - Set Undiscovered
@@ -476,8 +471,6 @@ public class CellManager implements Serializable {
     // Functionality for when a user clicks with both mouse buttons.
     // Reveals all cells touching number if the number shown has been marked with flags.
     public void twoButtonClick() throws EndGameException {
-        int columns = getNumberOfColumns() - 1;
-        int rows = getNumberOfRows() - 1;
         int column = getSelectedColumn() - 65;
         int row = getSelectedRow() - 1;
         int state = states[row][column];
@@ -546,8 +539,8 @@ public class CellManager implements Serializable {
     public void checkWin() throws EndGameException {
         OUTER:
         {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int column = 0; column < getNumberOfColumns(); column++) {
+            for (int row = 0; row < rows; row++) {
+                for (int column = 0; column < columns; column++) {
                     if (states[row][column] == 9 && values[row][column] != 15) {
                         break OUTER;
                     }
@@ -559,8 +552,8 @@ public class CellManager implements Serializable {
     }
 
     public void winGame() throws EndGameException {
-        for (int row = 0; row < getNumberOfRows(); row++) {
-            for (int column = 0; column < getNumberOfColumns(); column++) {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
                     states[row][column] = 15; // Discovered Mine
                 }
@@ -571,8 +564,8 @@ public class CellManager implements Serializable {
     }
 
     public void loseGame() throws EndGameException {
-        for (int row = 0; row < getNumberOfRows(); row++) {
-            for (int column = 0; column < getNumberOfColumns(); column++) {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
                     states[row][column] = 15; // Discovered Mine
                 } else if (states[row][column] == 10 && values[row][column] != 15) {
@@ -586,7 +579,7 @@ public class CellManager implements Serializable {
 
     // For checking for zeros.
     private void addCheckCell(int row, int column) {
-        if (row >= 0 && row < getNumberOfRows() && column >= 0 && column < getNumberOfColumns()) {
+        if (row >= 0 && row < rows && column >= 0 && column < columns) {
             if (checkCells.size() > 0) {
                 for (CheckCell checkCell : checkCells) {
                     if (checkCell.getRow() == row && checkCell.getColumn() == column) {
@@ -609,7 +602,7 @@ public class CellManager implements Serializable {
     }
 
     private void addCheckCellTemp(int row, int column) {
-        if (row >= 0 && row < getNumberOfRows() && column >= 0 && column < getNumberOfColumns()) {
+        if (row >= 0 && row < rows && column >= 0 && column < columns) {
             if (checkCellsTemp.size() > 0) {
                 for (CheckCell checkCellTemp : checkCellsTemp) {
                     if (checkCellTemp.getRow() == row && checkCellTemp.getColumn() == column) {

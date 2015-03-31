@@ -4,6 +4,7 @@
  */
 package cit260.winter2015.minesweeper.menuViews;
 
+import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.menuControls.GameMenuControl;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
@@ -32,7 +33,6 @@ public class GameMenuView extends Menu {
             // Display current board state.
             cm.displayMinesRemaining();
             cm.displayBoardState();
-            
             display(); // display the menu
             
             command = getInput();
