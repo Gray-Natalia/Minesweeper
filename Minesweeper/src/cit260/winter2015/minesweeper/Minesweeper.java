@@ -6,22 +6,34 @@
 package cit260.winter2015.minesweeper;
 
 import cit260.winter2015.minesweeper.menuViews.MainMenuView;
+import cit260.winter2015.minesweeper.swing.MainFrame;
+import javax.lang.model.type.ErrorType;
 
 /**
  *
  * @author kalavic
  */
 public class Minesweeper {
+
+    public static MainFrame mainFrame;
+    
     public static void main(String[] args) {
-        
-        System.out.println("   _____  .__                                                                 \n" +
-"  /     \\ |__| ____   ____   ________  _  __ ____   ____ ______   ___________ \n" +
-" /  \\ /  \\|  |/    \\_/ __ \\ /  ___/\\ \\/ \\/ // __ \\_/ __ \\\\____ \\_/ __ \\_  __ \\\n" +
-"/    Y    \\  |   |  \\  ___/ \\___ \\  \\     /\\  ___/\\  ___/|  |_> >  ___/|  | \\/\n" +
-"\\____|__  /__|___|  /\\___  >____  >  \\/\\_/  \\___  >\\___  >   __/ \\___  >__|   \n" +
-"        \\/        \\/     \\/     \\/              \\/     \\/|__|        \\/       ");
-        
-        MainMenuView mainmenu = new MainMenuView();
-        mainmenu.executeCommands();
+        try {
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    Minesweeper.mainFrame = new MainFrame();
+
+                    Minesweeper.mainFrame.setVisible(true);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Game crashed: " + e.getMessage());
+        } finally {
+            if (mainFrame != null) {
+                mainFrame.dispose();
+            }
+        }
     }
 }
