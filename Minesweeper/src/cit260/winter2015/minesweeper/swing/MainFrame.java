@@ -7,8 +7,6 @@ package cit260.winter2015.minesweeper.swing;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -18,9 +16,12 @@ import javax.swing.*;
 public class MainFrame extends JFrame {
 
     public static JPanel mainPanel;
+    static CardLayout card;
+    
+    // Declare all cards that will be used in GUI
     static MainMenu mainMenu;
     static LevelSelection levelSelection;
-    static CardLayout card;
+    static BestTimesMenu bestTimesMenu;
     
     public MainFrame() {
         
@@ -29,7 +30,7 @@ public class MainFrame extends JFrame {
         setPreferredSize(new Dimension(500,400));
         setMinimumSize(new Dimension(300, 200));
         setMaximumSize(null);
-        setLayout(null);   
+        setLayout(null);
         setLocationRelativeTo(null);
         setResizable(true);
         pack();
@@ -39,35 +40,19 @@ public class MainFrame extends JFrame {
         mainPanel.setBackground(new java.awt.Color(0, 51, 153));
         mainPanel.setBounds(0, 0, 500, 400);
         
+        // Assign class location to variable for each panel or card.
         mainMenu = new cit260.winter2015.minesweeper.swing.MainMenu();
         levelSelection = new cit260.winter2015.minesweeper.swing.LevelSelection();
+        bestTimesMenu = new cit260.winter2015.minesweeper.swing.BestTimesMenu();
         
         card = new CardLayout();
         mainPanel.setLayout(card);
-//        add(mainPanel);
         setContentPane(mainPanel);
         
+        // Assign card name to each card or panel.
         mainPanel.add(mainMenu, "mainMenu");
         mainPanel.add(levelSelection, "levelSelection");
-
-        mainMenu.add(new JLabel("Main Menu"));
-        JButton btn1 = new JButton("Show second");
-        mainMenu.add(btn1);
-        btn1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                card.show(mainPanel, "levelSelection");
-            }
-        }
-        );
-
-        levelSelection.add(new JLabel("Level Selection"));
-        JButton btn2 = new JButton("Show First");
-        levelSelection.add(btn2);
-        btn2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                card.show(mainPanel, "mainMenu");
-            }
-        });
+        mainPanel.add(bestTimesMenu, "bestTimes");
     }
 
     /**
@@ -79,57 +64,28 @@ public class MainFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        mainMenu1 = new cit260.winter2015.minesweeper.swing.MainMenu();
+        levelSelection1 = new cit260.winter2015.minesweeper.swing.LevelSelection();
+        bestTimesMenu1 = new cit260.winter2015.minesweeper.swing.BestTimesMenu();
+        helpMenu1 = new cit260.winter2015.minesweeper.swing.HelpMenu();
+        inGame1 = new cit260.winter2015.minesweeper.swing.InGame();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainMenu1, "card2");
+        getContentPane().add(levelSelection1, "card3");
+        getContentPane().add(bestTimesMenu1, "card4");
+        getContentPane().add(helpMenu1, "card5");
+        getContentPane().add(inGame1, "card6");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private cit260.winter2015.minesweeper.swing.BestTimesMenu bestTimesMenu1;
+    private cit260.winter2015.minesweeper.swing.HelpMenu helpMenu1;
+    private cit260.winter2015.minesweeper.swing.InGame inGame1;
+    private cit260.winter2015.minesweeper.swing.LevelSelection levelSelection1;
+    private cit260.winter2015.minesweeper.swing.MainMenu mainMenu1;
     // End of variables declaration//GEN-END:variables
 }
