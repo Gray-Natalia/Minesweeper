@@ -39,8 +39,8 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jbQuitToMain = new javax.swing.JButton();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jpTextPanel = new javax.swing.JPanel();
+        jViewCard = new javax.swing.JPanel();
+        jpBestTimesInstructions = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jBestTimes = new javax.swing.JTextArea();
         jpBegBestTimes = new javax.swing.JPanel();
@@ -136,7 +136,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
         jpTitlePanel.add(jlTitle, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setLayout(new java.awt.CardLayout());
+        jViewCard.setLayout(new java.awt.CardLayout());
 
         jBestTimes.setEditable(false);
         jBestTimes.setColumns(20);
@@ -148,18 +148,18 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jBestTimes.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jBestTimes);
 
-        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
-        jpTextPanel.setLayout(jpTextPanelLayout);
-        jpTextPanelLayout.setHorizontalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpBestTimesInstructionsLayout = new javax.swing.GroupLayout(jpBestTimesInstructions);
+        jpBestTimesInstructions.setLayout(jpBestTimesInstructionsLayout);
+        jpBestTimesInstructionsLayout.setHorizontalGroup(
+            jpBestTimesInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
-        jpTextPanelLayout.setVerticalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpBestTimesInstructionsLayout.setVerticalGroup(
+            jpBestTimesInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
 
-        jPanel1.add(jpTextPanel, "card2");
+        jViewCard.add(jpBestTimesInstructions, "BTInstructions");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -176,7 +176,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jpBegBestTimes, "card3");
+        jViewCard.add(jpBegBestTimes, "BegCard");
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -193,7 +193,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jpIntBestTimes, "card4");
+        jViewCard.add(jpIntBestTimes, "IntCard");
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -210,7 +210,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jpExpBestTimes, "card5");
+        jViewCard.add(jpExpBestTimes, "ExpCard");
 
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
@@ -229,7 +229,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jpAllBestTimes, "card6");
+        jViewCard.add(jpAllBestTimes, "AllBTCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -241,7 +241,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
                     .addContainerGap()
                     .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())
                 .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -257,17 +257,14 @@ public class BestTimesMenu extends javax.swing.JPanel {
                             .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(6, 6, 6))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addContainerGap()))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBeginnerBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeginnerBestTimesActionPerformed
-        try {
-            LevelSelectionControl.beginner();
-        } catch (EndGameException ex) {
-            // Todo
-        }
+     jViewCard.show(jViewCard,"BegCard");
+     jViewCard.
     }//GEN-LAST:event_jbBeginnerBestTimesActionPerformed
 
     private void jbIntermediateBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntermediateBestTimesActionPerformed
@@ -301,7 +298,6 @@ public class BestTimesMenu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea jBestTimes;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -311,6 +307,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JPanel jViewCard;
     private javax.swing.JButton jbAllBestTimes;
     private javax.swing.JButton jbBeginnerBestTimes;
     private javax.swing.JButton jbExpertBestTimes;
@@ -319,10 +316,10 @@ public class BestTimesMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jlTitle;
     private javax.swing.JPanel jpAllBestTimes;
     private javax.swing.JPanel jpBegBestTimes;
+    private javax.swing.JPanel jpBestTimesInstructions;
     private javax.swing.JPanel jpButtonPanel;
     private javax.swing.JPanel jpExpBestTimes;
     private javax.swing.JPanel jpIntBestTimes;
-    private javax.swing.JPanel jpTextPanel;
     private javax.swing.JPanel jpTitlePanel;
     // End of variables declaration//GEN-END:variables
 }
