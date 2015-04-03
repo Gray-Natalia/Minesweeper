@@ -6,7 +6,6 @@
 package cit260.winter2015.minesweeper.menuControls;
 
 import java.io.Serializable;
-import java.util.Objects;
 import cit260.winter2015.minesweeper.CellManager;
 import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.enums.LevelType;
@@ -20,14 +19,14 @@ import cit260.winter2015.minesweeper.exceptions.EndGameException;
  * @author kalavic
  * convert to java beans by C Rubenstein
  */
-public class DifficultyLevelMenuControl implements Serializable  {
+public class LevelSelectionControl implements Serializable  {
     private static final long serialVersionUID = 1L;
     
-    public DifficultyLevelMenuControl() {
+    public LevelSelectionControl() {
         
     }
     
-    public void beginner() throws EndGameException {
+    public static void beginner() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -37,7 +36,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
         
-    public void intermediate() throws EndGameException {
+    public static void intermediate() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -47,7 +46,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
             
-    public void expert() throws EndGameException {
+    public static void expert() throws EndGameException {
         //for now here will be the description of the level, in the future
         //we will create a board of this level
         System.out.println();
@@ -57,7 +56,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         startSelectedLevel();
     }
     
-    public void beginnerPreset() throws EndGameException {
+    public static void beginnerPreset() throws EndGameException {
         System.out.println();
         displayHelpBorder();  
         System.out.println("\tThis is a special preset board for testing the game.");
@@ -77,7 +76,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         "\t===============================================================");
     }
     
-    private void displaySelectedLevel() {
+    private static void displaySelectedLevel() {
         System.out.println("\tYou have selected " + GameVariables.getDifficultyLevel() + "."
                 + "\n\tThere are " + GameVariables.getNumberOfRows() + " rows,"
                 + "\n\t" + GameVariables.getNumberOfColumns() + " columns,"
@@ -85,7 +84,7 @@ public class DifficultyLevelMenuControl implements Serializable  {
         displayHelpBorder();
     }
     
-    public void startSelectedLevel() throws EndGameException {
+    private static void startSelectedLevel() throws EndGameException {
         MineManager mm = new MineManager();
         mm.generateMines();
         CellManager cm = new CellManager();

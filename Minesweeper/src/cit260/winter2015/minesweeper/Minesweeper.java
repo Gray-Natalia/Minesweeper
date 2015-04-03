@@ -5,9 +5,9 @@
  */
 package cit260.winter2015.minesweeper;
 
-import cit260.winter2015.minesweeper.menuViews.MainMenuView;
 import cit260.winter2015.minesweeper.swing.MainFrame;
-import javax.lang.model.type.ErrorType;
+
+
 
 /**
  *
@@ -21,6 +21,7 @@ public class Minesweeper {
         try {
 
             java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     Minesweeper.mainFrame = new MainFrame();
 
@@ -28,7 +29,6 @@ public class Minesweeper {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
             System.err.println("Game crashed: " + e.getMessage());
         } finally {
             if (mainFrame != null) {

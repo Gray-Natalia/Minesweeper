@@ -5,20 +5,69 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
-import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.menuControls.MainMenuControl;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
  *
  * @author knban_000
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+    public static JPanel mainPanel;
+    static MainMenu mainMenu;
+    static LevelSelection levelSelection;
+    static CardLayout card;
+    
     public MainFrame() {
-        initComponents();
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Minesweeper");
+        setPreferredSize(new Dimension(500,400));
+        setMinimumSize(new Dimension(300, 200));
+        setMaximumSize(null);
+        setLayout(null);   
+        setLocationRelativeTo(null);
+        setResizable(true);
+        pack();
+        setVisible(true);
+        
+        mainPanel = new JPanel();
+        mainPanel.setBackground(new java.awt.Color(0, 51, 153));
+        mainPanel.setBounds(0, 0, 500, 400);
+        
+        mainMenu = new cit260.winter2015.minesweeper.swing.MainMenu();
+        levelSelection = new cit260.winter2015.minesweeper.swing.LevelSelection();
+        
+        card = new CardLayout();
+        mainPanel.setLayout(card);
+//        add(mainPanel);
+        setContentPane(mainPanel);
+        
+        mainPanel.add(mainMenu, "mainMenu");
+        mainPanel.add(levelSelection, "levelSelection");
+
+        mainMenu.add(new JLabel("Main Menu"));
+        JButton btn1 = new JButton("Show second");
+        mainMenu.add(btn1);
+        btn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                card.show(mainPanel, "levelSelection");
+            }
+        }
+        );
+
+        levelSelection.add(new JLabel("Level Selection"));
+        JButton btn2 = new JButton("Show First");
+        levelSelection.add(btn2);
+        btn2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                card.show(mainPanel, "mainMenu");
+            }
+        });
     }
 
     /**
@@ -30,184 +79,57 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jlTitle = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jbPlay = new javax.swing.JButton();
-        jbBestTimesMenu = new javax.swing.JButton();
-        jbHelpMenu = new javax.swing.JButton();
-        jbExitMinesweeper = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtMainText = new javax.swing.JTextArea();
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Minesweeper");
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jlTitle.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
-        jlTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitle.setText("Minesweeper");
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jbPlay.setText("Play");
-        jbPlay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPlayActionPerformed(evt);
-            }
-        });
-
-        jbBestTimesMenu.setText("View Best Times");
-        jbBestTimesMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBestTimesMenuActionPerformed(evt);
-            }
-        });
-
-        jbHelpMenu.setText("Help");
-        jbHelpMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbHelpMenuActionPerformed(evt);
-            }
-        });
-
-        jbExitMinesweeper.setText("Exit Minesweeper");
-        jbExitMinesweeper.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExitMinesweeperActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbExitMinesweeper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbBestTimesMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbHelpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbPlay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbBestTimesMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbHelpMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbExitMinesweeper)
-                .addContainerGap(133, Short.MAX_VALUE))
-        );
-
-        jtMainText.setEditable(false);
-        jtMainText.setColumns(20);
-        jtMainText.setLineWrap(true);
-        jtMainText.setRows(5);
-        jtMainText.setText("Welcome to Minesweeper.\nClick one of the buttons to begin.");
-        jtMainText.setWrapStyleWord(true);
-        jtMainText.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        jScrollPane1.setViewportView(jtMainText);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-                    .addComponent(jlTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPlayActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
-            MainMenuControl.play();
-        } catch (EndGameException ex) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jbPlayActionPerformed
+        //</editor-fold>
 
-    private void jbBestTimesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBestTimesMenuActionPerformed
-        MainMenuControl.viewBestTimes();
-//        Example
-//        PlayerName playerName = new PlayerName();
-//        playerName.setVisible(true);
-        
-    }//GEN-LAST:event_jbBestTimesMenuActionPerformed
-
-    private void jbHelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHelpMenuActionPerformed
-        MainMenuControl.displayHelpMenu();
-    }//GEN-LAST:event_jbHelpMenuActionPerformed
-
-    private void jbExitMinesweeperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitMinesweeperActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jbExitMinesweeperActionPerformed
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbBestTimesMenu;
-    private javax.swing.JButton jbExitMinesweeper;
-    private javax.swing.JButton jbHelpMenu;
-    private javax.swing.JButton jbPlay;
-    private javax.swing.JLabel jlTitle;
-    private javax.swing.JTextArea jtMainText;
     // End of variables declaration//GEN-END:variables
 }

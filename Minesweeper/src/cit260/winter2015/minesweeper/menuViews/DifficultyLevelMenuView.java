@@ -5,7 +5,7 @@
  */
 package cit260.winter2015.minesweeper.menuViews;
 
-import cit260.winter2015.minesweeper.menuControls.DifficultyLevelMenuControl;
+import cit260.winter2015.minesweeper.menuControls.LevelSelectionControl;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 
 public class DifficultyLevelMenuView extends Menu {
@@ -19,7 +19,7 @@ public class DifficultyLevelMenuView extends Menu {
     };
     private static final long serialVersionUID = 1L;
 
-    DifficultyLevelMenuControl difficultyLevelMenuControl = new DifficultyLevelMenuControl();
+    LevelSelectionControl difficultyLevelMenuControl = new LevelSelectionControl();
 
     public DifficultyLevelMenuView() {
         super("Difficulty Level Menu", DifficultyLevelMenuView.menuItems);
