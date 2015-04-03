@@ -31,24 +31,22 @@ public class LevelSelection extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jpButtonPanel = new javax.swing.JPanel();
         jbBeginner = new javax.swing.JButton();
         jbIntermediate = new javax.swing.JButton();
         jbExpert = new javax.swing.JButton();
         jbPreset = new javax.swing.JButton();
         jbQuitToMain = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jpTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
+        jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 51, 153));
         setPreferredSize(new java.awt.Dimension(500, 400));
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
-
-        jPanel3.setBackground(new java.awt.Color(0, 51, 153));
+        jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
 
         jbBeginner.setText("Beginner");
         jbBeginner.addActionListener(new java.awt.event.ActionListener() {
@@ -86,19 +84,19 @@ public class LevelSelection extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
+        jpButtonPanel.setLayout(jpButtonPanelLayout);
+        jpButtonPanelLayout.setHorizontalGroup(
+            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jbBeginner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbIntermediate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbExpert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbPreset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpButtonPanelLayout.setVerticalGroup(
+            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpButtonPanelLayout.createSequentialGroup()
                 .addComponent(jbBeginner)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbIntermediate)
@@ -108,7 +106,7 @@ public class LevelSelection extends javax.swing.JPanel {
                 .addComponent(jbPreset)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbQuitToMain)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTextArea1.setEditable(false);
@@ -121,19 +119,20 @@ public class LevelSelection extends javax.swing.JPanel {
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jTextArea1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
+        jpTextPanel.setLayout(jpTextPanelLayout);
+        jpTextPanelLayout.setHorizontalGroup(
+            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpTextPanelLayout.setVerticalGroup(
+            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 153));
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
+        jpTitlePanel.setLayout(new java.awt.BorderLayout());
 
         jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         jlTitle.setForeground(new java.awt.Color(240, 240, 240));
@@ -142,30 +141,7 @@ public class LevelSelection extends javax.swing.JPanel {
         jlTitle.setToolTipText("");
         jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
-        jPanel4.add(jlTitle, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jpTitlePanel.add(jlTitle, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -173,13 +149,28 @@ public class LevelSelection extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+                .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(6, 6, 6))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap()))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -221,10 +212,6 @@ public class LevelSelection extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbBeginner;
@@ -233,5 +220,8 @@ public class LevelSelection extends javax.swing.JPanel {
     private javax.swing.JButton jbPreset;
     private javax.swing.JButton jbQuitToMain;
     private javax.swing.JLabel jlTitle;
+    private javax.swing.JPanel jpButtonPanel;
+    private javax.swing.JPanel jpTextPanel;
+    private javax.swing.JPanel jpTitlePanel;
     // End of variables declaration//GEN-END:variables
 }

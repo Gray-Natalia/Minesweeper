@@ -31,21 +31,23 @@ public class MainMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jpButtonPanel = new javax.swing.JPanel();
         jbPlay = new javax.swing.JButton();
         jbBestTimesMenu = new javax.swing.JButton();
         jbHelpMenu = new javax.swing.JButton();
         jbExitMinesweeper = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jpTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 153));
 
-        jPanel3.setBackground(new java.awt.Color(0, 51, 153));
-        jPanel3.setPreferredSize(new java.awt.Dimension(142, 332));
+        jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpButtonPanel.setName(""); // NOI18N
+        jpButtonPanel.setOpaque(false);
+        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
 
         jbPlay.setText("Play");
         jbPlay.addActionListener(new java.awt.event.ActionListener() {
@@ -75,18 +77,18 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
+        jpButtonPanel.setLayout(jpButtonPanelLayout);
+        jpButtonPanelLayout.setHorizontalGroup(
+            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jbPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbBestTimesMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbHelpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbExitMinesweeper, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpButtonPanelLayout.setVerticalGroup(
+            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpButtonPanelLayout.createSequentialGroup()
                 .addComponent(jbPlay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbBestTimesMenu)
@@ -107,18 +109,18 @@ public class MainMenu extends javax.swing.JPanel {
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jTextArea1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
+        jpTextPanel.setLayout(jpTextPanelLayout);
+        jpTextPanelLayout.setHorizontalGroup(
+            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpTextPanelLayout.setVerticalGroup(
+            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 153));
+        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
 
         jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         jlTitle.setForeground(new java.awt.Color(240, 240, 240));
@@ -128,15 +130,15 @@ public class MainMenu extends javax.swing.JPanel {
         jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpTitlePanelLayout = new javax.swing.GroupLayout(jpTitlePanel);
+        jpTitlePanel.setLayout(jpTitlePanelLayout);
+        jpTitlePanelLayout.setHorizontalGroup(
+            jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jpTitlePanelLayout.setVerticalGroup(
+            jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTitlePanelLayout.createSequentialGroup()
                 .addComponent(jlTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -147,20 +149,20 @@ public class MainMenu extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -187,9 +189,6 @@ public class MainMenu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbBestTimesMenu;
@@ -197,5 +196,8 @@ public class MainMenu extends javax.swing.JPanel {
     private javax.swing.JButton jbHelpMenu;
     private javax.swing.JButton jbPlay;
     private javax.swing.JLabel jlTitle;
+    private javax.swing.JPanel jpButtonPanel;
+    private javax.swing.JPanel jpTextPanel;
+    private javax.swing.JPanel jpTitlePanel;
     // End of variables declaration//GEN-END:variables
 }
