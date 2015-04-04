@@ -6,7 +6,7 @@
 package cit260.winter2015.minesweeper.swing;
 
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.menuControls.LevelSelectionControl;
+import cit260.winter2015.minesweeper.menuControls.HelpMenuControl;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
 
 /**
@@ -32,10 +32,9 @@ public class HelpMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         jpButtonPanel = new javax.swing.JPanel();
-        jbBeginner = new javax.swing.JButton();
-        jbIntermediate = new javax.swing.JButton();
-        jbExpert = new javax.swing.JButton();
-        jbPreset = new javax.swing.JButton();
+        jbHowToPlay = new javax.swing.JButton();
+        jbBasicStrategies = new javax.swing.JButton();
+        jbAboutTheDevelopers = new javax.swing.JButton();
         jbQuitToMain = new javax.swing.JButton();
         jpTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,31 +47,24 @@ public class HelpMenu extends javax.swing.JPanel {
 
         jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jbBeginner.setText("Beginner");
-        jbBeginner.addActionListener(new java.awt.event.ActionListener() {
+        jbHowToPlay.setText("How to Play");
+        jbHowToPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBeginnerActionPerformed(evt);
+                jbHowToPlayActionPerformed(evt);
             }
         });
 
-        jbIntermediate.setText("Intermediate");
-        jbIntermediate.addActionListener(new java.awt.event.ActionListener() {
+        jbBasicStrategies.setText("Basic Strategies");
+        jbBasicStrategies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbIntermediateActionPerformed(evt);
+                jbBasicStrategiesActionPerformed(evt);
             }
         });
 
-        jbExpert.setText("Expert");
-        jbExpert.addActionListener(new java.awt.event.ActionListener() {
+        jbAboutTheDevelopers.setText("About the Developers");
+        jbAboutTheDevelopers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExpertActionPerformed(evt);
-            }
-        });
-
-        jbPreset.setText("Preset Beginner");
-        jbPreset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPresetActionPerformed(evt);
+                jbAboutTheDevelopersActionPerformed(evt);
             }
         });
 
@@ -88,25 +80,22 @@ public class HelpMenu extends javax.swing.JPanel {
         jpButtonPanel.setLayout(jpButtonPanelLayout);
         jpButtonPanelLayout.setHorizontalGroup(
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbBeginner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbIntermediate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbExpert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbPreset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbHowToPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbBasicStrategies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbAboutTheDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
         );
         jpButtonPanelLayout.setVerticalGroup(
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButtonPanelLayout.createSequentialGroup()
-                .addComponent(jbBeginner)
+                .addComponent(jbHowToPlay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbIntermediate)
+                .addComponent(jbBasicStrategies)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbExpert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbPreset)
+                .addComponent(jbAboutTheDevelopers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbQuitToMain)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         jTextArea1.setEditable(false);
@@ -174,37 +163,29 @@ public class HelpMenu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbBeginnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeginnerActionPerformed
+    private void jbHowToPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHowToPlayActionPerformed
         try {
-            LevelSelectionControl.beginner();
+            HelpMenuControl.displayHowToPlay();
         } catch (EndGameException ex) {
             // Todo
         }
-    }//GEN-LAST:event_jbBeginnerActionPerformed
+    }//GEN-LAST:event_jbHowToPlayActionPerformed
 
-    private void jbIntermediateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntermediateActionPerformed
+    private void jbBasicStrategiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBasicStrategiesActionPerformed
         try {
-            LevelSelectionControl.intermediate();
+            HelpMenuControl.displayBasicStrategies();
         } catch (EndGameException ex) {
             // Todo
         }
-    }//GEN-LAST:event_jbIntermediateActionPerformed
+    }//GEN-LAST:event_jbBasicStrategiesActionPerformed
 
-    private void jbExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExpertActionPerformed
+    private void jbAboutTheDevelopersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAboutTheDevelopersActionPerformed
         try {
-            LevelSelectionControl.expert();
+            HelpMenuControl.displayAbout();
         } catch (EndGameException ex) {
             // Todo
         }
-    }//GEN-LAST:event_jbExpertActionPerformed
-
-    private void jbPresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPresetActionPerformed
-        try {
-            LevelSelectionControl.beginnerPreset();
-        } catch (EndGameException ex) {
-            // Todo
-        }
-    }//GEN-LAST:event_jbPresetActionPerformed
+    }//GEN-LAST:event_jbAboutTheDevelopersActionPerformed
 
     private void jbQuitToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitToMainActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
@@ -214,10 +195,9 @@ public class HelpMenu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jbBeginner;
-    private javax.swing.JButton jbExpert;
-    private javax.swing.JButton jbIntermediate;
-    private javax.swing.JButton jbPreset;
+    private javax.swing.JButton jbAboutTheDevelopers;
+    private javax.swing.JButton jbBasicStrategies;
+    private javax.swing.JButton jbHowToPlay;
     private javax.swing.JButton jbQuitToMain;
     private javax.swing.JLabel jlTitle;
     private javax.swing.JPanel jpButtonPanel;

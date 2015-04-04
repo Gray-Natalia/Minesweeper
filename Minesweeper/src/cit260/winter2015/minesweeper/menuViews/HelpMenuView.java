@@ -4,6 +4,7 @@
  */
 package cit260.winter2015.minesweeper.menuViews;
 
+import cit260.winter2015.minesweeper.exceptions.EndGameException;
 import cit260.winter2015.minesweeper.menuControls.HelpMenuControl;
 
 /**
@@ -30,7 +31,7 @@ public class HelpMenuView extends Menu {
     }
 
     @Override
-    public void executeCommands() {
+    public void executeCommands()throws EndGameException {
         String command;
 
         do {
@@ -41,13 +42,13 @@ public class HelpMenuView extends Menu {
             switch (command) {
 
                 case "P":
-                    helpMenuControl.displayHowToPlay();
+                    HelpMenuControl.displayHowToPlay();
                     break;
                 case "S":
-                    helpMenuControl.displayBasicStrategies();
+                    HelpMenuControl.displayBasicStrategies();
                     break;
                 case "A":
-                    helpMenuControl.displayAbout();
+                    HelpMenuControl.displayAbout();
                     break;
                 case "X":
                     break;

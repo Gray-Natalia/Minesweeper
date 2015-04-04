@@ -70,61 +70,50 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jbBeginner" max="32767" attributes="0"/>
-              <Component id="jbIntermediate" alignment="0" max="32767" attributes="0"/>
-              <Component id="jbExpert" alignment="0" max="32767" attributes="0"/>
-              <Component id="jbPreset" max="32767" attributes="0"/>
+              <Component id="jbHowToPlay" max="32767" attributes="0"/>
+              <Component id="jbBasicStrategies" alignment="0" max="32767" attributes="0"/>
+              <Component id="jbAboutTheDevelopers" alignment="0" max="32767" attributes="0"/>
               <Component id="jbQuitToMain" alignment="0" pref="142" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jbBeginner" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbHowToPlay" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbIntermediate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbBasicStrategies" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbExpert" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbPreset" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbAboutTheDevelopers" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jbQuitToMain" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="178" max="32767" attributes="0"/>
+                  <EmptySpace pref="212" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jbBeginner">
+        <Component class="javax.swing.JButton" name="jbHowToPlay">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Beginner"/>
+            <Property name="text" type="java.lang.String" value="How to Play"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBeginnerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbHowToPlayActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbIntermediate">
+        <Component class="javax.swing.JButton" name="jbBasicStrategies">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Intermediate"/>
+            <Property name="text" type="java.lang.String" value="Basic Strategies"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbIntermediateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBasicStrategiesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbExpert">
+        <Component class="javax.swing.JButton" name="jbAboutTheDevelopers">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Expert"/>
+            <Property name="text" type="java.lang.String" value="About the Developers"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbExpertActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jbPreset">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Preset Beginner"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPresetActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAboutTheDevelopersActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbQuitToMain">
