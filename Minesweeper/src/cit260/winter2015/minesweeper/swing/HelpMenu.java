@@ -5,6 +5,7 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
+import cit260.winter2015.minesweeper.enums.HelpType;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
 import cit260.winter2015.minesweeper.menuControls.HelpMenuControl;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
@@ -166,6 +167,7 @@ public class HelpMenu extends javax.swing.JPanel {
     private void jbHowToPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHowToPlayActionPerformed
         try {
             HelpMenuControl.displayHowToPlay();
+            jTextArea1.setText(HelpType.HOW_TO_PLAY.getHelpText());
         } catch (EndGameException ex) {
             // Todo
         }
@@ -174,6 +176,7 @@ public class HelpMenu extends javax.swing.JPanel {
     private void jbBasicStrategiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBasicStrategiesActionPerformed
         try {
             HelpMenuControl.displayBasicStrategies();
+            jTextArea1.setText(HelpType.BASIC_STRATEGIES.getHelpText());
         } catch (EndGameException ex) {
             // Todo
         }
@@ -182,6 +185,7 @@ public class HelpMenu extends javax.swing.JPanel {
     private void jbAboutTheDevelopersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAboutTheDevelopersActionPerformed
         try {
             HelpMenuControl.displayAbout();
+            jTextArea1.setText(HelpType.ABOUT.getHelpText());
         } catch (EndGameException ex) {
             // Todo
         }
