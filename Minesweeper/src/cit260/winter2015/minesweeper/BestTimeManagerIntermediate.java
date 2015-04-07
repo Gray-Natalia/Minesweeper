@@ -18,5 +18,10 @@ public class BestTimeManagerIntermediate extends BestTimeManager {
     public BestTimeManagerIntermediate() {
        super(BEST_TIMES_INTERMEDIATE_FILE, "Intermediate");
     }
+    
+    public static String getBestTimesString() {
+        BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
+        return btmi.setBestTimesString();
+    }
 }  
 

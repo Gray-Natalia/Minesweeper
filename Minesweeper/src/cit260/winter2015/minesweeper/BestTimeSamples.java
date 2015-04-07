@@ -60,8 +60,8 @@ public class BestTimeSamples implements Serializable{
         btme.addBestTime("Amy", 293);
         btme.addBestTime("Jane", 300);
         
-        System.out.println(btmb.getBestTimesString());
-        System.out.println(btmi.getBestTimesString());
-        System.out.println(btme.getBestTimesString());
+        System.out.println(btmb.setBestTimesString());
+        System.out.println(btmi.setBestTimesString());
+        System.out.println(btme.setBestTimesString());
     }
 }

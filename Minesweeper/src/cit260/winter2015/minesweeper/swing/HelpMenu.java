@@ -6,9 +6,8 @@
 package cit260.winter2015.minesweeper.swing;
 
 import cit260.winter2015.minesweeper.enums.HelpType;
-import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.menuControls.HelpMenuControl;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
+import java.awt.CardLayout;
 
 /**
  *
@@ -33,13 +32,24 @@ public class HelpMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         jpButtonPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jbHowToPlay = new javax.swing.JButton();
         jbBasicStrategies = new javax.swing.JButton();
         jbAboutTheDevelopers = new javax.swing.JButton();
         jbQuitToMain = new javax.swing.JButton();
-        jpTextPanel = new javax.swing.JPanel();
+        jpViewCard = new javax.swing.JPanel();
+        jpMenuInstructions = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jpHowToPlay = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jBestTimes = new javax.swing.JTextArea();
+        jpBasicStrategies = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jpAboutTheDevelopers = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
 
@@ -47,6 +57,12 @@ public class HelpMenu extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(500, 400));
 
         jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Help Menu");
 
         jbHowToPlay.setText("How to Play");
         jbHowToPlay.addActionListener(new java.awt.event.ActionListener() {
@@ -83,12 +99,15 @@ public class HelpMenu extends javax.swing.JPanel {
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jbHowToPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbBasicStrategies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbAboutTheDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+            .addComponent(jbAboutTheDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+            .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpButtonPanelLayout.setVerticalGroup(
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButtonPanelLayout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbHowToPlay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbBasicStrategies)
@@ -96,29 +115,100 @@ public class HelpMenu extends javax.swing.JPanel {
                 .addComponent(jbAboutTheDevelopers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbQuitToMain)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jpViewCard.setLayout(new java.awt.CardLayout());
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setColumns(20);
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(5);
+        jTextArea3.setText("Please click one of the buttons on the left to view a help topic.");
+        jTextArea3.setWrapStyleWord(true);
+        jTextArea3.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jTextArea3.setName(""); // NOI18N
+        jScrollPane4.setViewportView(jTextArea3);
+
+        javax.swing.GroupLayout jpMenuInstructionsLayout = new javax.swing.GroupLayout(jpMenuInstructions);
+        jpMenuInstructions.setLayout(jpMenuInstructionsLayout);
+        jpMenuInstructionsLayout.setHorizontalGroup(
+            jpMenuInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        );
+        jpMenuInstructionsLayout.setVerticalGroup(
+            jpMenuInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+        );
+
+        jpViewCard.add(jpMenuInstructions, "helpMenuInstructions");
+
+        jBestTimes.setEditable(false);
+        jBestTimes.setColumns(20);
+        jBestTimes.setLineWrap(true);
+        jBestTimes.setRows(5);
+        jBestTimes.setText(HelpType.HOW_TO_PLAY.getHelpText());
+        jBestTimes.setToolTipText("");
+        jBestTimes.setWrapStyleWord(true);
+        jBestTimes.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jScrollPane1.setViewportView(jBestTimes);
+
+        javax.swing.GroupLayout jpHowToPlayLayout = new javax.swing.GroupLayout(jpHowToPlay);
+        jpHowToPlay.setLayout(jpHowToPlayLayout);
+        jpHowToPlayLayout.setHorizontalGroup(
+            jpHowToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jpHowToPlayLayout.setVerticalGroup(
+            jpHowToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+        );
+
+        jpViewCard.add(jpHowToPlay, "howToPlay");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Double Click on this text to change it to the text that belongs in the help menu.");
-        jTextArea1.setToolTipText("");
+        jTextArea1.setText(HelpType.BASIC_STRATEGIES.getHelpText());
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane2.setViewportView(jTextArea1);
 
-        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
-        jpTextPanel.setLayout(jpTextPanelLayout);
-        jpTextPanelLayout.setHorizontalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+        javax.swing.GroupLayout jpBasicStrategiesLayout = new javax.swing.GroupLayout(jpBasicStrategies);
+        jpBasicStrategies.setLayout(jpBasicStrategiesLayout);
+        jpBasicStrategiesLayout.setHorizontalGroup(
+            jpBasicStrategiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
-        jpTextPanelLayout.setVerticalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+        jpBasicStrategiesLayout.setVerticalGroup(
+            jpBasicStrategiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
+
+        jpViewCard.add(jpBasicStrategies, "basicStrategies");
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setText(HelpType.ABOUT.getHelpText());
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jScrollPane3.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jpAboutTheDevelopersLayout = new javax.swing.GroupLayout(jpAboutTheDevelopers);
+        jpAboutTheDevelopers.setLayout(jpAboutTheDevelopersLayout);
+        jpAboutTheDevelopersLayout.setHorizontalGroup(
+            jpAboutTheDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        );
+        jpAboutTheDevelopersLayout.setVerticalGroup(
+            jpAboutTheDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+        );
+
+        jpViewCard.add(jpAboutTheDevelopers, "aboutTheDevelopers");
 
         jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
         jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
@@ -137,58 +227,42 @@ public class HelpMenu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(6, 6, 6))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap()))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbHowToPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHowToPlayActionPerformed
-        try {
-            HelpMenuControl.displayHowToPlay();
-            jTextArea1.setText(HelpType.HOW_TO_PLAY.getHelpText());
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "howToPlay");
     }//GEN-LAST:event_jbHowToPlayActionPerformed
 
     private void jbBasicStrategiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBasicStrategiesActionPerformed
-        try {
-            HelpMenuControl.displayBasicStrategies();
-            jTextArea1.setText(HelpType.BASIC_STRATEGIES.getHelpText());
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "basicStrategies");
     }//GEN-LAST:event_jbBasicStrategiesActionPerformed
 
     private void jbAboutTheDevelopersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAboutTheDevelopersActionPerformed
-        try {
-            HelpMenuControl.displayAbout();
-            jTextArea1.setText(HelpType.ABOUT.getHelpText());
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "aboutTheDevelopers");
     }//GEN-LAST:event_jbAboutTheDevelopersActionPerformed
 
     private void jbQuitToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitToMainActionPerformed
@@ -197,15 +271,26 @@ public class HelpMenu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea jBestTimes;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton jbAboutTheDevelopers;
     private javax.swing.JButton jbBasicStrategies;
     private javax.swing.JButton jbHowToPlay;
     private javax.swing.JButton jbQuitToMain;
     private javax.swing.JLabel jlTitle;
+    private javax.swing.JPanel jpAboutTheDevelopers;
+    private javax.swing.JPanel jpBasicStrategies;
     private javax.swing.JPanel jpButtonPanel;
-    private javax.swing.JPanel jpTextPanel;
+    private javax.swing.JPanel jpHowToPlay;
+    private javax.swing.JPanel jpMenuInstructions;
     private javax.swing.JPanel jpTitlePanel;
+    private javax.swing.JPanel jpViewCard;
     // End of variables declaration//GEN-END:variables
 }

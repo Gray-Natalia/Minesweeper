@@ -8,7 +8,6 @@ import cit260.winter2015.minesweeper.menuViews.BestTimesMenuView;
 import cit260.winter2015.minesweeper.menuViews.DifficultyLevelMenuView;
 import java.io.Serializable;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.menuViews.HelpMenuView;
 
 /**
  *
@@ -27,10 +26,4 @@ public class MainMenuControl implements Serializable {
         BestTimesMenuView bestTimesMenuView = new BestTimesMenuView();
         bestTimesMenuView.executeCommands();
     }
-    
-    public static void displayHelpMenu() {
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.executeCommands();
-    }
-    
 }

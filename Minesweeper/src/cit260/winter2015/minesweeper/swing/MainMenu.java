@@ -6,7 +6,6 @@
 package cit260.winter2015.minesweeper.swing;
 
 import cit260.winter2015.minesweeper.Minesweeper;
-import cit260.winter2015.minesweeper.menuControls.MainMenuControl;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
 
 /**
@@ -36,6 +35,7 @@ public class MainMenu extends javax.swing.JPanel {
         jbBestTimesMenu = new javax.swing.JButton();
         jbHelpMenu = new javax.swing.JButton();
         jbExitMinesweeper = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jpTextPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -77,6 +77,11 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Main Menu");
+
         javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
         jpButtonPanel.setLayout(jpButtonPanelLayout);
         jpButtonPanelLayout.setHorizontalGroup(
@@ -85,10 +90,13 @@ public class MainMenu extends javax.swing.JPanel {
             .addComponent(jbBestTimesMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbHelpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbExitMinesweeper, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpButtonPanelLayout.setVerticalGroup(
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButtonPanelLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPlay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbBestTimesMenu)
@@ -96,7 +104,7 @@ public class MainMenu extends javax.swing.JPanel {
                 .addComponent(jbHelpMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbExitMinesweeper)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextArea1.setEditable(false);
@@ -117,7 +125,7 @@ public class MainMenu extends javax.swing.JPanel {
         );
         jpTextPanelLayout.setVerticalGroup(
             jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
         jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
@@ -161,8 +169,8 @@ public class MainMenu extends javax.swing.JPanel {
                 .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -172,15 +180,11 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPlayActionPerformed
 
     private void jbBestTimesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBestTimesMenuActionPerformed
-        MainMenuControl.viewBestTimes();
-        //        Example
-        //        PlayerName playerName = new PlayerName();
-        //        playerName.setVisible(true);
-
+        MainFrame.card.show(mainPanel, "bestTimesMenu");
     }//GEN-LAST:event_jbBestTimesMenuActionPerformed
 
     private void jbHelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHelpMenuActionPerformed
-        MainMenuControl.displayHelpMenu();
+        MainFrame.card.show(mainPanel, "helpMenu");
     }//GEN-LAST:event_jbHelpMenuActionPerformed
 
     private void jbExitMinesweeperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitMinesweeperActionPerformed
@@ -189,6 +193,7 @@ public class MainMenu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbBestTimesMenu;

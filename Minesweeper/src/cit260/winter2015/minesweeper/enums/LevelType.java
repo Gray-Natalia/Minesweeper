@@ -6,6 +6,7 @@
 package cit260.winter2015.minesweeper.enums;
 
 import cit260.winter2015.minesweeper.GameVariables;
+import cit260.winter2015.minesweeper.Minesweeper;
 
 /**
  *
@@ -18,6 +19,8 @@ public enum LevelType {
     private final int rows;
     private final int columns;
     private final int mines;
+    public static int CELL_SIZE = 30;
+    public static int NUM_IMAGES = 15;
 
     LevelType(String difficulty, int rows, int columns, int mines) {
         this.difficulty = difficulty;

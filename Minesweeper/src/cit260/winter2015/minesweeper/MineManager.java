@@ -110,7 +110,6 @@ public class MineManager implements Serializable {
                 if (m1c < m2c) {
                     return -1;
                 } else if (m1c == m2c) {
-                    System.out.println("Duplicate Mine");
                     return 0;
                 } else {
                     return 1;

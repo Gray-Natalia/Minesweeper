@@ -12,7 +12,6 @@ public class MainMenuView extends Menu {
     private static final String[][] menuItems = {
         {"P", "Play"},
         {"V", "View Best Times"},
-        {"H", "Help"},
         {"X", "Exit Minesweeper"}
     };
     private static final long serialVersionUID = 1L;
@@ -40,9 +39,6 @@ public class MainMenuView extends Menu {
                     break;
                 case "V":
                     MainMenuControl.viewBestTimes();
-                    break;
-                case "H":
-                    MainMenuControl.displayHelpMenu();
                     break;
                 case "X":
                     break;

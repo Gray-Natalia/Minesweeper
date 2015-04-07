@@ -17,29 +17,28 @@ public class BestTimesMenuControl implements Serializable {
     private static final long serialVersionUID = 1L;
      
     public static void beginnerBestTimes() {
-        BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
-        System.out.println(btmb.getBestTimesString());
+        BestTimeManagerBeginner.getBestTimesString();
     }
 
     public static void intermediateBestTimes() {
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
-        System.out.println(btmi.getBestTimesString());
+        System.out.println(btmi.setBestTimesString());
     }
     
     public static void expertBestTimes() {
         BestTimeManagerExpert btme = new BestTimeManagerExpert();
-        System.out.println(btme.getBestTimesString());
+        System.out.println(btme.setBestTimesString());
     }
     
     public static void allBestTimes() {
         BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
-        System.out.println(btmb.getBestTimesString());
+        System.out.println(btmb.setBestTimesString());
         
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
-        System.out.println(btmi.getBestTimesString());
+        System.out.println(btmi.setBestTimesString());
         
         BestTimeManagerExpert btme = new BestTimeManagerExpert();
-        System.out.println(btme.getBestTimesString());
+        System.out.println(btme.setBestTimesString());
     }
     
 }

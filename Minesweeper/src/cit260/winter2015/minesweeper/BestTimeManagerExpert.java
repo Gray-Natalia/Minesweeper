@@ -18,4 +18,9 @@ public class BestTimeManagerExpert extends BestTimeManager {
     public BestTimeManagerExpert() {
         super(BEST_TIMES_EXPERT_FILE, "Expert");
     }
+    
+    public static String getBestTimesString() {
+        BestTimeManagerExpert btme = new BestTimeManagerExpert();
+        return btme.setBestTimesString();
+    }
 }

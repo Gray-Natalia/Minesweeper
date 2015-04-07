@@ -5,9 +5,11 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
-import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import cit260.winter2015.minesweeper.menuControls.LevelSelectionControl;
+import cit260.winter2015.minesweeper.BestTimeManagerBeginner;
+import cit260.winter2015.minesweeper.BestTimeManagerExpert;
+import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
+import java.awt.CardLayout;
 
 /**
  *
@@ -37,9 +39,10 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jbExpertBestTimes = new javax.swing.JButton();
         jbAllBestTimes = new javax.swing.JButton();
         jbQuitToMain = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
-        jViewCard = new javax.swing.JPanel();
+        jpViewCard = new javax.swing.JPanel();
         jpBestTimesInstructions = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jBestTimes = new javax.swing.JTextArea();
@@ -60,30 +63,32 @@ public class BestTimesMenu extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(500, 400));
 
         jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
 
-        jbBeginnerBestTimes.setText("Beginner Best Times");
+        jbBeginnerBestTimes.setText("Beginner Times");
+        jbBeginnerBestTimes.setActionCommand("Beginner Times");
         jbBeginnerBestTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBeginnerBestTimesActionPerformed(evt);
             }
         });
 
-        jbIntermediateBestTimes.setText("Intermediate Best Times");
+        jbIntermediateBestTimes.setText("Intermediate Times");
         jbIntermediateBestTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbIntermediateBestTimesActionPerformed(evt);
             }
         });
 
-        jbExpertBestTimes.setText("Expert Best Times");
+        jbExpertBestTimes.setText("Expert Times");
         jbExpertBestTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbExpertBestTimesActionPerformed(evt);
             }
         });
 
-        jbAllBestTimes.setText("All Best Times");
-        jbAllBestTimes.setActionCommand("All Best Times");
+        jbAllBestTimes.setText("All Times");
+        jbAllBestTimes.setToolTipText("");
         jbAllBestTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAllBestTimesActionPerformed(evt);
@@ -98,6 +103,11 @@ public class BestTimesMenu extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Best Times Menu");
+
         javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
         jpButtonPanel.setLayout(jpButtonPanelLayout);
         jpButtonPanelLayout.setHorizontalGroup(
@@ -107,10 +117,13 @@ public class BestTimesMenu extends javax.swing.JPanel {
             .addComponent(jbExpertBestTimes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbAllBestTimes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
         );
         jpButtonPanelLayout.setVerticalGroup(
             jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButtonPanelLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbBeginnerBestTimes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbIntermediateBestTimes)
@@ -136,13 +149,14 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
         jpTitlePanel.add(jlTitle, java.awt.BorderLayout.CENTER);
 
-        jViewCard.setLayout(new java.awt.CardLayout());
+        jpViewCard.setPreferredSize(new java.awt.Dimension(172, 332));
+        jpViewCard.setLayout(new java.awt.CardLayout());
 
         jBestTimes.setEditable(false);
         jBestTimes.setColumns(20);
         jBestTimes.setLineWrap(true);
         jBestTimes.setRows(5);
-        jBestTimes.setText("Please click the link on the left to view the top ten best times for that level.");
+        jBestTimes.setText("Please click a button on the left to view the top ten best times for that level.");
         jBestTimes.setToolTipText("");
         jBestTimes.setWrapStyleWord(true);
         jBestTimes.setMargin(new java.awt.Insets(5, 5, 5, 5));
@@ -156,139 +170,147 @@ public class BestTimesMenu extends javax.swing.JPanel {
         );
         jpBestTimesInstructionsLayout.setVerticalGroup(
             jpBestTimesInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jViewCard.add(jpBestTimesInstructions, "BTInstructions");
+        jpViewCard.add(jpBestTimesInstructions, "BTInstructions");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setText(BestTimeManagerBeginner.getBestTimesString());
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jTextArea1.setName(""); // NOI18N
         jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jpBegBestTimesLayout = new javax.swing.GroupLayout(jpBegBestTimes);
         jpBegBestTimes.setLayout(jpBegBestTimesLayout);
         jpBegBestTimesLayout.setHorizontalGroup(
             jpBegBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jpBegBestTimesLayout.setVerticalGroup(
             jpBegBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jViewCard.add(jpBegBestTimes, "BegCard");
+        jpViewCard.add(jpBegBestTimes, "BegCard");
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
+        jTextArea2.setText(BestTimeManagerIntermediate.getBestTimesString());
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane3.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout jpIntBestTimesLayout = new javax.swing.GroupLayout(jpIntBestTimes);
         jpIntBestTimes.setLayout(jpIntBestTimesLayout);
         jpIntBestTimesLayout.setHorizontalGroup(
             jpIntBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jpIntBestTimesLayout.setVerticalGroup(
             jpIntBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jViewCard.add(jpIntBestTimes, "IntCard");
+        jpViewCard.add(jpIntBestTimes, "IntCard");
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
+        jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
+        jTextArea3.setText(BestTimeManagerExpert.getBestTimesString());
+        jTextArea3.setWrapStyleWord(true);
+        jTextArea3.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jTextArea3.setName(""); // NOI18N
         jScrollPane4.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout jpExpBestTimesLayout = new javax.swing.GroupLayout(jpExpBestTimes);
         jpExpBestTimes.setLayout(jpExpBestTimesLayout);
         jpExpBestTimesLayout.setHorizontalGroup(
             jpExpBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jpExpBestTimesLayout.setVerticalGroup(
             jpExpBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jViewCard.add(jpExpBestTimes, "ExpCard");
+        jpViewCard.add(jpExpBestTimes, "ExpCard");
 
+        jTextArea4.setEditable(false);
         jTextArea4.setColumns(20);
+        jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
+        jTextArea4.setText(BestTimeManagerBeginner.getBestTimesString() + "\n" + BestTimeManagerIntermediate.getBestTimesString() + "\n" + BestTimeManagerExpert.getBestTimesString());
+        jTextArea4.setWrapStyleWord(true);
+        jTextArea4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea4.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane5.setViewportView(jTextArea4);
 
         javax.swing.GroupLayout jpAllBestTimesLayout = new javax.swing.GroupLayout(jpAllBestTimes);
         jpAllBestTimes.setLayout(jpAllBestTimesLayout);
         jpAllBestTimesLayout.setHorizontalGroup(
             jpAllBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jpAllBestTimesLayout.setVerticalGroup(
             jpAllBestTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAllBestTimesLayout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jViewCard.add(jpAllBestTimes, "AllBTCard");
+        jpViewCard.add(jpAllBestTimes, "AllBTCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(6, 6, 6))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap()))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBeginnerBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeginnerBestTimesActionPerformed
-     jViewCard.show(jViewCard,"BegCard");
-     jViewCard.
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "BegCard");
     }//GEN-LAST:event_jbBeginnerBestTimesActionPerformed
 
     private void jbIntermediateBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntermediateBestTimesActionPerformed
-        try {
-            LevelSelectionControl.intermediate();
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "IntCard");
     }//GEN-LAST:event_jbIntermediateBestTimesActionPerformed
 
     private void jbExpertBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExpertBestTimesActionPerformed
-        try {
-            LevelSelectionControl.expert();
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "ExpCard");
     }//GEN-LAST:event_jbExpertBestTimesActionPerformed
 
     private void jbAllBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAllBestTimesActionPerformed
-        try {
-            LevelSelectionControl.beginnerPreset();
-        } catch (EndGameException ex) {
-            // Todo
-        }
+        CardLayout cl =(CardLayout)(jpViewCard.getLayout());
+        cl.show(jpViewCard, "AllBTCard");
     }//GEN-LAST:event_jbAllBestTimesActionPerformed
 
     private void jbQuitToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitToMainActionPerformed
@@ -298,6 +320,7 @@ public class BestTimesMenu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea jBestTimes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -307,7 +330,6 @@ public class BestTimesMenu extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JPanel jViewCard;
     private javax.swing.JButton jbAllBestTimes;
     private javax.swing.JButton jbBeginnerBestTimes;
     private javax.swing.JButton jbExpertBestTimes;
@@ -321,5 +343,6 @@ public class BestTimesMenu extends javax.swing.JPanel {
     private javax.swing.JPanel jpExpBestTimes;
     private javax.swing.JPanel jpIntBestTimes;
     private javax.swing.JPanel jpTitlePanel;
+    private javax.swing.JPanel jpViewCard;
     // End of variables declaration//GEN-END:variables
 }

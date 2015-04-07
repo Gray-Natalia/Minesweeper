@@ -16,6 +16,9 @@ import cit260.winter2015.minesweeper.swing.MainFrame;
 public class Minesweeper {
 
     public static MainFrame mainFrame;
+    public static MineManager mm = new MineManager();
+    public static CellManager cm = new CellManager();
+    public static GameVariables gameVariables = new GameVariables();
     
     public static void main(String[] args) {
         try {
@@ -24,7 +27,6 @@ public class Minesweeper {
                 @Override
                 public void run() {
                     Minesweeper.mainFrame = new MainFrame();
-
                     Minesweeper.mainFrame.setVisible(true);
                 }
             });

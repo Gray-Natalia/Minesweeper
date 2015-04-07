@@ -31,7 +31,7 @@ public class GameMenuView extends Menu {
         do {
             cit260.winter2015.minesweeper.CellManager cm = new cit260.winter2015.minesweeper.CellManager();
             // Display current board state.
-            cm.displayMinesRemaining();
+            cm.setStatusBarMinesRemaining();
             cm.displayBoardState();
             display(); // display the menu
             

@@ -5,20 +5,25 @@
  */
 package cit260.winter2015.minesweeper;
 
+import cit260.winter2015.minesweeper.enums.LevelType;
 import cit260.winter2015.minesweeper.exceptions.EndGameException;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Keith Banner
  */
 public class CellManager implements Serializable {
-    
+
     private static int rows;
     private static int columns;
     private static int numberOfMines;
@@ -32,18 +37,22 @@ public class CellManager implements Serializable {
 
     private static int[][] values;
     private static int[][] states;
+    
+    private String statusBarMessage;
+
+    private Image[] img;
 
     public ArrayList<Cell> getCells() {
         return cells;
     }
-    
+
     public CellManager() {
     }
 
     private int getLastRow() {
         return rows;
     }
-    
+
     private char getLastColumn() {
         return (char) (columns + 'A' - 1);
     }
@@ -200,12 +209,33 @@ public class CellManager implements Serializable {
 
     //////////////////////////////////////////////////////////////////////////////////////
     // During Game
-    
     // Displays number of numberOfMines left
-    public void displayMinesRemaining() {
-        System.out.println(minesRemaining + " mines remaining");
+    public void setStatusBarMinesRemaining() {
+        statusBarMessage = minesRemaining + " mines remaining";
     }
     
+    public String getStatusBarMessage() {
+        System.out.println("test");
+        System.out.println(statusBarMessage);
+        return statusBarMessage;
+    }
+
+    public void loadImages() {
+        img = new Image[LevelType.NUM_IMAGES];
+        
+        for (int i = 0; i < 15; i++) {
+            img[i] = new ImageIcon("images/" + i + ".png").getImage();
+        }
+    }
+
+    public void paintComponent(Graphics g) {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                g.drawImage(img[states[row][column]], row * LevelType.CELL_SIZE, column * LevelType.CELL_SIZE, (ImageObserver) this);
+            }
+        }
+    }
+
     // Displays Game Board
     public void displayBoardState() {
 
@@ -458,12 +488,10 @@ public class CellManager implements Serializable {
         if (states[row][column] == 9) {
             states[row][column] = 10; // Undiscovered - Set Flag
             minesRemaining--; // Decrease Mine counter
-        } 
-        else if (states[row][column] == 10) {
+        } else if (states[row][column] == 10) {
             states[row][column] = 11; // Already Flagged - Set Unknown
             minesRemaining++; // Increase Mine counter
-        } 
-        else if (states[row][column] == 11) {
+        } else if (states[row][column] == 11) {
             states[row][column] = 9; // Already Unknown - Set Undiscovered
         }
     }

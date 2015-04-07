@@ -5,9 +5,11 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
+import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.Minesweeper;
-import cit260.winter2015.minesweeper.menuControls.MainMenuControl;
+import cit260.winter2015.minesweeper.enums.LevelType;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
+import java.awt.Dimension;
 
 /**
  *
@@ -15,11 +17,23 @@ import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
  */
 public class InGame extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form MainMenu
      */
     public InGame() {
         initComponents();
+    }
+    
+    public void startGame() {
+        Minesweeper.mm.generateMines();
+        Minesweeper.cm.calculateCellValues();
+        Minesweeper.cm.loadImages();
+        Minesweeper.cm.setStatusBarMinesRemaining();
+        statusBar.setText("Mines Remaining: " + GameVariables.getNumberOfMines());
+        jpBoard.setPreferredSize(new Dimension(GameVariables.getNumberOfColumns() * LevelType.CELL_SIZE, GameVariables.getNumberOfRows() * LevelType.CELL_SIZE));
+        System.out.println("Number of Columns: " + GameVariables.getNumberOfColumns() + ", width: " + jpBoard.getWidth());
+        Minesweeper.mainFrame.resizeWindow(jpBoard.getWidth() + 10, jpBoard.getHeight() + 100);
     }
 
     /**
@@ -31,94 +45,15 @@ public class InGame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpButtonPanel = new javax.swing.JPanel();
-        jbPlay = new javax.swing.JButton();
-        jbBestTimesMenu = new javax.swing.JButton();
-        jbHelpMenu = new javax.swing.JButton();
-        jbExitMinesweeper = new javax.swing.JButton();
-        jpTextPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
+        jpBottomBar = new javax.swing.JPanel();
+        jbMainMenu = new javax.swing.JButton();
+        jbPause = new javax.swing.JButton();
+        statusBar = new javax.swing.JLabel();
+        jpBoard = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 51, 153));
-
-        jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
-        jpButtonPanel.setName(""); // NOI18N
-        jpButtonPanel.setOpaque(false);
-        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
-
-        jbPlay.setText("Play");
-        jbPlay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPlayActionPerformed(evt);
-            }
-        });
-
-        jbBestTimesMenu.setText("View Best Times");
-        jbBestTimesMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBestTimesMenuActionPerformed(evt);
-            }
-        });
-
-        jbHelpMenu.setText("Help");
-        jbHelpMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbHelpMenuActionPerformed(evt);
-            }
-        });
-
-        jbExitMinesweeper.setText("Exit Minesweeper");
-        jbExitMinesweeper.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExitMinesweeperActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
-        jpButtonPanel.setLayout(jpButtonPanelLayout);
-        jpButtonPanelLayout.setHorizontalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbBestTimesMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbHelpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbExitMinesweeper, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-        );
-        jpButtonPanelLayout.setVerticalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpButtonPanelLayout.createSequentialGroup()
-                .addComponent(jbPlay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbBestTimesMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbHelpMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbExitMinesweeper)
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Welcome to Minesweeper. Please select a button to begin.");
-        jTextArea1.setToolTipText("");
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
-        jpTextPanel.setLayout(jpTextPanelLayout);
-        jpTextPanelLayout.setHorizontalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jpTextPanelLayout.setVerticalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
 
         jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -134,7 +69,7 @@ public class InGame extends javax.swing.JPanel {
         jpTitlePanel.setLayout(jpTitlePanelLayout);
         jpTitlePanelLayout.setHorizontalGroup(
             jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jlTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpTitlePanelLayout.setVerticalGroup(
             jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,61 +78,104 @@ public class InGame extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jpBottomBar.setBackground(new java.awt.Color(0, 51, 153));
+
+        jbMainMenu.setText("Quit to MainMenu");
+        jbMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMainMenuActionPerformed(evt);
+            }
+        });
+
+        jbPause.setText("Pause");
+        jbPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPauseActionPerformed(evt);
+            }
+        });
+
+        statusBar.setBackground(new java.awt.Color(0, 51, 153));
+        statusBar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        statusBar.setForeground(new java.awt.Color(255, 255, 255));
+        statusBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        statusBar.setText("Mines Remaining: " + GameVariables.getNumberOfMines());
+        statusBar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout jpBottomBarLayout = new javax.swing.GroupLayout(jpBottomBar);
+        jpBottomBar.setLayout(jpBottomBarLayout);
+        jpBottomBarLayout.setHorizontalGroup(
+            jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBottomBarLayout.createSequentialGroup()
+                .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbPause)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpBottomBarLayout.setVerticalGroup(
+            jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jpBottomBarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbMainMenu)
+                    .addComponent(jbPause)))
+            .addGroup(jpBottomBarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(statusBar))
+        );
+
+        javax.swing.GroupLayout jpBoardLayout = new javax.swing.GroupLayout(jpBoard);
+        jpBoard.setLayout(jpBoardLayout);
+        jpBoardLayout.setHorizontalGroup(
+            jpBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+        jpBoardLayout.setVerticalGroup(
+            jpBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 303, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpBottomBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jpBottomBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPlayActionPerformed
-        MainFrame.card.show(mainPanel, "levelSelection");
-    }//GEN-LAST:event_jbPlayActionPerformed
+    private void jbMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMainMenuActionPerformed
+        MainFrame.card.show(mainPanel, "mainMenu");
+    }//GEN-LAST:event_jbMainMenuActionPerformed
 
-    private void jbBestTimesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBestTimesMenuActionPerformed
-        MainMenuControl.viewBestTimes();
-        //        Example
-        //        PlayerName playerName = new PlayerName();
-        //        playerName.setVisible(true);
-
-    }//GEN-LAST:event_jbBestTimesMenuActionPerformed
-
-    private void jbHelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHelpMenuActionPerformed
-        MainMenuControl.displayHelpMenu();
-    }//GEN-LAST:event_jbHelpMenuActionPerformed
-
-    private void jbExitMinesweeperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitMinesweeperActionPerformed
-        Minesweeper.mainFrame.dispose();
-    }//GEN-LAST:event_jbExitMinesweeperActionPerformed
+    private void jbPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPauseActionPerformed
+        System.out.println(GameVariables.getNumberOfMines());
+//        MainFrame.card.show(mainPanel, "paused");
+    }//GEN-LAST:event_jbPauseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jbBestTimesMenu;
-    private javax.swing.JButton jbExitMinesweeper;
-    private javax.swing.JButton jbHelpMenu;
-    private javax.swing.JButton jbPlay;
+    private javax.swing.JButton jbMainMenu;
+    private javax.swing.JButton jbPause;
     private javax.swing.JLabel jlTitle;
-    private javax.swing.JPanel jpButtonPanel;
-    private javax.swing.JPanel jpTextPanel;
+    private javax.swing.JPanel jpBoard;
+    private javax.swing.JPanel jpBottomBar;
     private javax.swing.JPanel jpTitlePanel;
+    private javax.swing.JLabel statusBar;
     // End of variables declaration//GEN-END:variables
 }

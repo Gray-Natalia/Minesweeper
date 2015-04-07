@@ -19,4 +19,9 @@ public class BestTimeManagerBeginner extends BestTimeManager {
     public BestTimeManagerBeginner() {
         super(BEST_TIMES_BEGINNER_FILE, "Beginner");
     }
+    
+    public static String getBestTimesString() {
+        BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
+        return btmb.setBestTimesString();
+    }
 }

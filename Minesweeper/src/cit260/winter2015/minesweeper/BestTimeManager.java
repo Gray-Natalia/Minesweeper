@@ -174,17 +174,14 @@ public abstract class BestTimeManager {
             }
         }
     }
-
-    public String getBestTimesString() {
+    
+    public String setBestTimesString() {
         
         loadBestTimesFile();
         
         StringBuilder bestTimesString  = new StringBuilder(""
-                + "\n\t==============================================================="
-                + "\n\t" + levelName + " Best Times"
-                + "\n\t==============================================================="
-                + "\n\t   Rank\t\tName\t\tTime"
-                + "\n\t---------------------------------------------------------------"
+                + "\n   Rank\tName\tTime"
+                + "\n---------------------------------------------------------------"
                 + "\n");
         
         int i = 0;
@@ -193,17 +190,17 @@ public abstract class BestTimeManager {
             x = max;
         }
         while (i < x) {
-            bestTimesString.append("\t   ")
+            bestTimesString.append("   ")
                     .append(i + 1)
-                    .append(".\t\t")
+                    .append(".\t")
                     .append(bestTimes.get(i).getPlayerName())
-                    .append("\t\t")
+                    .append("\t")
                     .append(convertTime(bestTimes.get(i).getTime()))
                     .append("\n");
             i++;
         }
         
-        bestTimesString.append("\tThe ")
+        bestTimesString.append("The ")
                 .append(levelName)
                 .append(" average best time is ")
                 .append(calculateAverageTime());

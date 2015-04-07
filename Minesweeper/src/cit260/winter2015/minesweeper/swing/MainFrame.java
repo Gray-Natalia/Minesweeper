@@ -22,6 +22,9 @@ public class MainFrame extends JFrame {
     static MainMenu mainMenu;
     static LevelSelection levelSelection;
     static BestTimesMenu bestTimesMenu;
+    static HelpMenu helpMenu;
+    static InGame inGame;
+    static Paused paused;
     
     public MainFrame() {
         
@@ -32,7 +35,7 @@ public class MainFrame extends JFrame {
         setMaximumSize(null);
         setLayout(null);
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
         pack();
         setVisible(true);
         
@@ -41,9 +44,12 @@ public class MainFrame extends JFrame {
         mainPanel.setBounds(0, 0, 500, 400);
         
         // Assign class location to variable for each panel or card.
-        mainMenu = new cit260.winter2015.minesweeper.swing.MainMenu();
-        levelSelection = new cit260.winter2015.minesweeper.swing.LevelSelection();
-        bestTimesMenu = new cit260.winter2015.minesweeper.swing.BestTimesMenu();
+        mainMenu = new MainMenu();
+        levelSelection = new LevelSelection();
+        bestTimesMenu = new BestTimesMenu();
+        helpMenu = new HelpMenu();
+        inGame = new InGame();
+        paused = new Paused();
         
         card = new CardLayout();
         mainPanel.setLayout(card);
@@ -52,7 +58,17 @@ public class MainFrame extends JFrame {
         // Assign card name to each card or panel.
         mainPanel.add(mainMenu, "mainMenu");
         mainPanel.add(levelSelection, "levelSelection");
-        mainPanel.add(bestTimesMenu, "bestTimes");
+        mainPanel.add(bestTimesMenu, "bestTimesMenu");
+        mainPanel.add(helpMenu, "helpMenu");
+        mainPanel.add(inGame, "inGame");
+        mainPanel.add(paused, "paused");
+    }
+    
+    public void resizeWindow(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        revalidate();
+        repaint();
+        pack();
     }
 
     /**
