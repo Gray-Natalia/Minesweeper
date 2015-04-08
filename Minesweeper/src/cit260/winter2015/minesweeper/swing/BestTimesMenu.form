@@ -98,7 +98,6 @@
         <Component class="javax.swing.JButton" name="jbBeginnerBestTimes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Beginner Times"/>
-            <Property name="actionCommand" type="java.lang.String" value="Beginner Times"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBeginnerBestTimesActionPerformed"/>
@@ -416,7 +415,7 @@
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="BestTimeManagerBeginner.getBestTimesString() + &quot;\n&quot; + BestTimeManagerIntermediate.getBestTimesString() + &quot;\n&quot; + BestTimeManagerExpert.getBestTimesString()" type="code"/>
+                      <Connection code="&quot;Beginner Best Times&quot;&#xd;&#xa;+ &quot;\n---------------------------------------------------------------&quot;&#xd;&#xa;+ &quot;\n&quot; + BestTimeManagerBeginner.getBestTimesString()&#xd;&#xa;+ &quot;\n&quot;&#xd;&#xa;+ &quot;\nIntermediate Best Times&quot;&#xd;&#xa;+ &quot;\n---------------------------------------------------------------&quot;&#xd;&#xa;+ &quot;\n&quot; + BestTimeManagerIntermediate.getBestTimesString()&#xd;&#xa;+ &quot;\n&quot;&#xd;&#xa;+ &quot;\nExpert Best Times&quot;&#xd;&#xa;+ &quot;\n---------------------------------------------------------------&quot;&#xd;&#xa;+ &quot;\n&quot; + BestTimeManagerExpert.getBestTimesString()" type="code"/>
                     </Property>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

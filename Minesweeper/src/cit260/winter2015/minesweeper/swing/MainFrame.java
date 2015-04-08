@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Minesweeper");
-        setPreferredSize(new Dimension(500,400));
+        setPreferredSize(new Dimension(950,700));
         setMinimumSize(new Dimension(300, 200));
         setMaximumSize(null);
         setLayout(null);

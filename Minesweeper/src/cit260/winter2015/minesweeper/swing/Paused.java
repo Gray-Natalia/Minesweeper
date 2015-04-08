@@ -68,6 +68,7 @@ public class Paused extends javax.swing.JPanel {
 
     private void jbContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContinueActionPerformed
         MainFrame.card.show(mainPanel, "inGame");
+        MainFrame.inGame.resumeTimer();
     }//GEN-LAST:event_jbContinueActionPerformed
 
 

@@ -9,13 +9,13 @@ package cit260.winter2015.minesweeper.exceptions;
  *
  * @author knban_000
  */
-public class EndGameException extends Exception {
+public class LoseGameException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    public EndGameException() {
+    public LoseGameException() {
     }
 
-    public EndGameException(String message) {
+    public LoseGameException(String message) {
         super(message);
     }
     

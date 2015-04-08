@@ -5,18 +5,12 @@
  */
 package cit260.winter2015.minesweeper;
 
-import cit260.winter2015.minesweeper.enums.LevelType;
-import cit260.winter2015.minesweeper.exceptions.EndGameException;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
+import cit260.winter2015.minesweeper.exceptions.LoseGameException;
+import cit260.winter2015.minesweeper.exceptions.WinGameException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -36,25 +30,13 @@ public class CellManager implements Serializable {
     private static final ArrayList<CheckCell> checkCellsTemp = new ArrayList<>();
 
     private static int[][] values;
-    private static int[][] states;
-    
-    private String statusBarMessage;
-
-    private Image[] img;
+    public static int[][] states;
 
     public ArrayList<Cell> getCells() {
         return cells;
     }
 
     public CellManager() {
-    }
-
-    private int getLastRow() {
-        return rows;
-    }
-
-    private char getLastColumn() {
-        return (char) (columns + 'A' - 1);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +74,6 @@ public class CellManager implements Serializable {
                 if (c1c < c2c) {
                     return -1;
                 } else if (c1c == c2c) {
-                    System.out.println("Duplicate Cell");
                     return 0;
                 } else {
                     return 1;
@@ -210,223 +191,8 @@ public class CellManager implements Serializable {
     //////////////////////////////////////////////////////////////////////////////////////
     // During Game
     // Displays number of numberOfMines left
-    public void setStatusBarMinesRemaining() {
-        statusBarMessage = minesRemaining + " mines remaining";
-    }
-    
-    public String getStatusBarMessage() {
-        System.out.println("test");
-        System.out.println(statusBarMessage);
-        return statusBarMessage;
-    }
-
-    public void loadImages() {
-        img = new Image[LevelType.NUM_IMAGES];
-        
-        for (int i = 0; i < 15; i++) {
-            img[i] = new ImageIcon("images/" + i + ".png").getImage();
-        }
-    }
-
-    public void paintComponent(Graphics g) {
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
-                g.drawImage(img[states[row][column]], row * LevelType.CELL_SIZE, column * LevelType.CELL_SIZE, (ImageObserver) this);
-            }
-        }
-    }
-
-    // Displays Game Board
-    public void displayBoardState() {
-
-        // Symbols used in displaying board.
-        char undiscovered = 'U';
-        char flagged = 'F';
-        char unknown = '?';
-        char exploded = '*';
-        char mine = 'M';
-        char incorrectFlag = 'X';
-        StringBuilder boardPrint = new StringBuilder("\t   ");
-
-        for (int i = 0; i < columns; i++) {
-            boardPrint.append("   ")
-                    .append((char) (i + 65));
-        }
-        boardPrint.append("\n\t=====");
-        for (int i = 0; i < columns; i++) {
-            boardPrint.append("====");
-        }
-        boardPrint.append("\n");
-
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
-                if (column == 0) {
-                    boardPrint.append("\t")
-                            .append(row + 1)
-                            .append(".");
-                    if (row < 9) {
-                        boardPrint.append(" ");
-                    }
-                }
-                if (states[row][column] == 9) {
-                    boardPrint.append("   ")
-                            .append(undiscovered);
-                } else if (states[row][column] == 10) {
-                    boardPrint.append("   ")
-                            .append(flagged);
-                } else if (states[row][column] == 11) {
-                    boardPrint.append("   ")
-                            .append(unknown);
-                } else if (states[row][column] == 12) {
-                    boardPrint.append("   ")
-                            .append(exploded);
-                } else if (states[row][column] == 13) {
-                    boardPrint.append("   ")
-                            .append(mine);
-                } else if (states[row][column] == 14) {
-                    boardPrint.append("   ")
-                            .append(incorrectFlag);
-                } else if (states[row][column] == 15) {
-                    boardPrint.append("   ")
-                            .append(mine);
-                } else {
-                    boardPrint.append("   ")
-                            .append(states[row][column]);
-                }
-            }
-            boardPrint.append("\n\t-----");
-            for (int i = 0; i < columns; i++) {
-                boardPrint.append("----");
-            }
-            boardPrint.append("\n");
-        }
-        System.out.println(boardPrint);
-    }
-
-    public void displayBoardValue() {
-
-        // Symbols used in displaying board.
-        char mine = 'M';
-        StringBuilder boardPrint = new StringBuilder("\t   ");
-
-        for (int i = 0; i < columns; i++) {
-            boardPrint.append("   ")
-                    .append((char) (i + 65));
-        }
-        boardPrint.append("\n\t=====");
-        for (int i = 0; i < columns; i++) {
-            boardPrint.append("====");
-        }
-        boardPrint.append("\n");
-
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
-                if (column == 0) {
-                    boardPrint.append("\t")
-                            .append(row + 1)
-                            .append(".");
-                    if (row < 9) {
-                        boardPrint.append(" ");
-                    }
-                }
-                if (values[row][column] == 15) {
-                    boardPrint.append("   ")
-                            .append(mine);
-                } else {
-                    boardPrint.append("   ")
-                            .append(values[row][column]);
-                }
-            }
-            boardPrint.append("\n\t-----");
-            for (int i = 0; i < columns; i++) {
-                boardPrint.append("----");
-            }
-            boardPrint.append("\n");
-        }
-        System.out.println(boardPrint);
-    }
-
-    // Gets user input for column.
-    private char getSelectedColumn() {
-
-        Scanner in = new Scanner(System.in);
-
-        // Variable that stores the letter reperesenting the last column
-        String selectedColumn;
-        char letterOfLastColumn = getLastColumn();
-        char c = 'A';
-
-        System.out.println("Select a column.");
-
-        boolean valid = false; // rightClick to indicate if valid character entered
-        while (!valid) {
-            // prompt for input
-            System.out.println("Enter column value from A to " + letterOfLastColumn + ".");
-
-            // get input from user           
-            selectedColumn = in.nextLine();
-
-            // no marker entered?
-            if (selectedColumn == null || selectedColumn.length() < 1) {
-                System.out.println("Invalid input. Please try again.\n");
-                continue;
-            }
-            // grab only the first character and convert it to upper case
-            selectedColumn = selectedColumn.substring(0, 1).toUpperCase();
-
-            // Converts input to char
-            c = selectedColumn.charAt(0);
-
-            if (c >= 'A' && c <= letterOfLastColumn) {
-                return c;
-            } else {
-                System.out.println("Invalid input. Please try again.\n");
-            }
-        }
-        return c;
-    }
-
-    // Get usere input for selected row.
-    private int getSelectedRow() {
-        Scanner in = new Scanner(System.in);
-
-        // Variable that stores the letter reperesenting the last column
-        int lastRow = getLastRow();
-
-        int selectedRow = 0;
-        System.out.println("Select a row.");
-
-        boolean valid = false; // rightClick to indicate if valid character entered
-        do {
-            try {
-                // prompt for input
-                System.out.println("Enter row value from 1 to " + lastRow + ".");
-
-                // get input from user
-                selectedRow = in.nextInt();
-
-                if (selectedRow <= lastRow && selectedRow >= 0) {
-                    return selectedRow;
-                } else {
-                    System.out.println("Invalid input. Please try again.\n");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please try again.\n");
-                in.next();
-            }
-        } while (!valid);
-
-        return selectedRow;
-    }
-
-    private int getValue(int row, char column) {
-        return values[row][column];
-    }
-
-    public void inputGetValue() {
-        char column = getSelectedColumn();
-        int row = getSelectedRow();
-        getValue(row, column);
+    public int getMinesRemaining() {
+        return minesRemaining;
     }
 
     private void revealCheckCells() {
@@ -460,31 +226,23 @@ public class CellManager implements Serializable {
 
     }
 
-    public void click() throws EndGameException {
-        int column = getSelectedColumn() - 65;
-        int row = getSelectedRow() - 1;
+    public void click(int row, int column) throws LoseGameException, WinGameException {
         if (states[row][column] == 10) {
-            System.out.println("Flag must be removed before revealing cell.");
         } else if (states[row][column] == 11) {
-            System.out.println("Question mark must be removed before revealing cell.");
         } else if (values[row][column] == 15) {
             states[row][column] = 12;
-            System.out.println("Game over. You clicked a mine.");
             loseGame();
         } else if (states[row][column] == 9) {
             addCheckCell(row, column);
             revealCheckCells();
             checkWin();
         } else {
-            System.out.println("Cell already revealed.");
         }
     }
 
     // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flaged, 11 unknown
     // Game end only: 12 clicked exploded, 13 undiscovered mine, 14 Incorrect Flag, 15 discovered mine.
-    public void rightClick() {
-        int column = getSelectedColumn() - 65;
-        int row = getSelectedRow() - 1;
+    public void rightClick(int row, int column) {
         if (states[row][column] == 9) {
             states[row][column] = 10; // Undiscovered - Set Flag
             minesRemaining--; // Decrease Mine counter
@@ -498,48 +256,60 @@ public class CellManager implements Serializable {
 
     // Functionality for when a user clicks with both mouse buttons.
     // Reveals all cells touching number if the number shown has been marked with flags.
-    public void twoButtonClick() throws EndGameException {
-        int column = getSelectedColumn() - 65;
-        int row = getSelectedRow() - 1;
+    public void twoButtonClick(int row, int column) throws WinGameException {
         int state = states[row][column];
         int value = values[row][column];
         int counter = 0;
-        System.out.println("Column: " + column + " Row: " + row);
         if (state == 9) {
-            System.out.println("Can only be used on revealed cells.");
         }
         if (state > 0 && state < 9) {
-            if (row < rows && column < columns && states[row + 1][column + 1] == 10) {
-                counter++;
-                System.out.println(counter + " flag touching.");
+            try {
+                if (row < rows && column < columns && states[row + 1][column + 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (row < rows && states[row + 1][column] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (row < rows && states[row + 1][column] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (row < rows && column > 0 && states[row + 1][column - 1] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (row < rows && column > 0 && states[row + 1][column - 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (column < columns && states[row][column + 1] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (column < columns && states[row][column + 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (column > 0 && states[row][column - 1] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (column > 0 && states[row][column - 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (row > 0 && column < columns && states[row - 1][column + 1] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (row > 0 && column < columns && states[row - 1][column + 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (row > 0 && states[row - 1][column] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (row > 0 && states[row - 1][column] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
-            if (row > 0 && column > 0 && states[row - 1][column - 1] == 10) {
-                counter++;
-                System.out.println(counter + " flags touching.");
+            try {
+                if (row > 0 && column > 0 && states[row - 1][column - 1] == 10) {
+                    counter++;
+                }
+            } catch (ArrayIndexOutOfBoundsException ex) {
             }
             if (counter == value) {
                 addCheckCellTemp(row + 1, column + 1);
@@ -552,19 +322,17 @@ public class CellManager implements Serializable {
                 addCheckCellTemp(row - 1, column + 1);
                 addCheckCellTemp(row - 1, column);
                 addCheckCellTemp(row - 1, column - 1);
-                System.out.println("Checking Cells");
                 checkCellTempCopy();
                 revealCheckCells();
                 checkWin();
             } else {
-                System.out.println("Not enough flags.");
             }
         }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
     // End Game
-    public void checkWin() throws EndGameException {
+    public void checkWin() throws WinGameException {
         OUTER:
         {
             for (int row = 0; row < rows; row++) {
@@ -574,12 +342,11 @@ public class CellManager implements Serializable {
                     }
                 }
             }
-            System.out.println("Congratulations, you win!");
             winGame();
         }
     }
 
-    public void winGame() throws EndGameException {
+    public void winGame() throws WinGameException {
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
@@ -587,11 +354,10 @@ public class CellManager implements Serializable {
                 }
             }
         }
-        displayBoardState();
-        throw new EndGameException();
+        throw new WinGameException();
     }
 
-    public void loseGame() throws EndGameException {
+    public void loseGame() throws LoseGameException {
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
@@ -601,8 +367,7 @@ public class CellManager implements Serializable {
                 }
             }
         }
-        displayBoardState();
-        throw new EndGameException();
+        throw new LoseGameException();
     }
 
     // For checking for zeros.

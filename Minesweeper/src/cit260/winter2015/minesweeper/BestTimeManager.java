@@ -5,6 +5,7 @@
  */
 package cit260.winter2015.minesweeper;
 
+import cit260.winter2015.minesweeper.exceptions.NotBestTimeException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -55,13 +56,18 @@ public abstract class BestTimeManager {
         BestTimeManager.BestTimeCompare compare = new BestTimeManager.BestTimeCompare();
         Collections.sort(bestTimes, compare);
     }
-
-    public void addBestTime(String name, double time) {
+    
+    public void checkBestTime(double time) throws NotBestTimeException {
         loadBestTimesFile();
         if (bestTimes.size() >= 10 && time >= bestTimes.get(9).getTime()) {
             System.out.println("Sorry you did not make the top ten best times."
                     + "Better luck next time.");
-        } else {
+            throw new NotBestTimeException();
+        }
+    }
+
+    public void addBestTime(String name, double time) throws NotBestTimeException {
+        loadBestTimesFile();
             if (bestTimes.size() >= 10) {
                 for (int i = 9; i < bestTimes.size(); i++) {
                     bestTimes.remove(bestTimes.get(i));
@@ -70,7 +76,6 @@ public abstract class BestTimeManager {
             bestTimes.add(new BestTime(name, time));
             sort();
             updateBestTimesFile();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -180,7 +185,7 @@ public abstract class BestTimeManager {
         loadBestTimesFile();
         
         StringBuilder bestTimesString  = new StringBuilder(""
-                + "\n   Rank\tName\tTime"
+                + "   Rank\tName\tTime"
                 + "\n---------------------------------------------------------------"
                 + "\n");
         

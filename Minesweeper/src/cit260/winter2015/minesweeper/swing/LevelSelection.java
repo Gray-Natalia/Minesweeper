@@ -208,7 +208,7 @@ public class LevelSelection extends javax.swing.JPanel {
     private void jbPresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPresetActionPerformed
         GameVariables.setGameVariables("Preset", BEGINNER.getRows(), BEGINNER.getColumns(), BEGINNER.getMines());
         MainFrame.card.show(mainPanel, "inGame");
-        MainFrame.inGame.startGame();
+        MainFrame.inGame.startGamePreset();
     }//GEN-LAST:event_jbPresetActionPerformed
 
     private void jbQuitToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitToMainActionPerformed

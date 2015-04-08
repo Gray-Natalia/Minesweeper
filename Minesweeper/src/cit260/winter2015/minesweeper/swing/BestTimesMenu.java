@@ -66,7 +66,6 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
 
         jbBeginnerBestTimes.setText("Beginner Times");
-        jbBeginnerBestTimes.setActionCommand("Beginner Times");
         jbBeginnerBestTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBeginnerBestTimesActionPerformed(evt);
@@ -247,7 +246,17 @@ public class BestTimesMenu extends javax.swing.JPanel {
         jTextArea4.setColumns(20);
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText(BestTimeManagerBeginner.getBestTimesString() + "\n" + BestTimeManagerIntermediate.getBestTimesString() + "\n" + BestTimeManagerExpert.getBestTimesString());
+        jTextArea4.setText("Beginner Best Times"
+            + "\n---------------------------------------------------------------"
+            + "\n" + BestTimeManagerBeginner.getBestTimesString()
+            + "\n"
+            + "\nIntermediate Best Times"
+            + "\n---------------------------------------------------------------"
+            + "\n" + BestTimeManagerIntermediate.getBestTimesString()
+            + "\n"
+            + "\nExpert Best Times"
+            + "\n---------------------------------------------------------------"
+            + "\n" + BestTimeManagerExpert.getBestTimesString());
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextArea4.setMargin(new java.awt.Insets(5, 5, 5, 5));
