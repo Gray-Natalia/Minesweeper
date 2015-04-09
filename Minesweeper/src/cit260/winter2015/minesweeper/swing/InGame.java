@@ -19,7 +19,6 @@ import cit260.winter2015.minesweeper.exceptions.NotBestTimeException;
 import cit260.winter2015.minesweeper.exceptions.WinGameException;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -66,6 +65,7 @@ public class InGame extends javax.swing.JPanel {
     public void startGame() {
         GameVariables.setGameStatus(GameCodes.PLAYING);
         jbPause.setEnabled(true);
+        jbSubmitName.setEnabled(true);
         jButton1.setVisible(false);
         elapsed = 0;
         format.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -548,8 +548,10 @@ public class InGame extends javax.swing.JPanel {
         jdWonGame.setTitle("You Won!");
         jdWonGame.setAlwaysOnTop(true);
         jdWonGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jdWonGame.setMaximumSize(new java.awt.Dimension(250, 300));
         jdWonGame.setMinimumSize(new java.awt.Dimension(250, 300));
         jdWonGame.setModal(true);
+        jdWonGame.setPreferredSize(new java.awt.Dimension(250, 300));
         jdWonGame.setResizable(false);
         jdWonGame.setLocationRelativeTo(Minesweeper.mainFrame);
 
@@ -945,6 +947,7 @@ public class InGame extends javax.swing.JPanel {
     }//GEN-LAST:event_jbWonMainMenuActionPerformed
 
     private void jbHsViewHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsViewHsActionPerformed
+        MainFrame.bestTimesMenu.refresh();
         MainFrame.card.show(mainPanel, "bestTimesMenu");
         jdNewHighScore.dispose();
         Minesweeper.mainFrame.resizeWindow(500 , 400);

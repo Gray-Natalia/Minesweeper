@@ -23,6 +23,12 @@ public class BestTimesMenu extends javax.swing.JPanel {
     public BestTimesMenu() {
         initComponents();
     }
+    
+    public void refresh() {
+        jTextArea1.setText(BestTimeManagerBeginner.getBestTimesString());
+        jTextArea2.setText(BestTimeManagerIntermediate.getBestTimesString());
+        jTextArea3.setText(BestTimeManagerExpert.getBestTimesString());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -332,21 +338,25 @@ public class BestTimesMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBeginnerBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeginnerBestTimesActionPerformed
+        refresh();
         CardLayout cl =(CardLayout)(jpViewCard.getLayout());
         cl.show(jpViewCard, "BegCard");
     }//GEN-LAST:event_jbBeginnerBestTimesActionPerformed
 
     private void jbIntermediateBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntermediateBestTimesActionPerformed
+        refresh();
         CardLayout cl =(CardLayout)(jpViewCard.getLayout());
         cl.show(jpViewCard, "IntCard");
     }//GEN-LAST:event_jbIntermediateBestTimesActionPerformed
 
     private void jbExpertBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExpertBestTimesActionPerformed
+        refresh();
         CardLayout cl =(CardLayout)(jpViewCard.getLayout());
         cl.show(jpViewCard, "ExpCard");
     }//GEN-LAST:event_jbExpertBestTimesActionPerformed
 
     private void jbAllBestTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAllBestTimesActionPerformed
+        refresh();
         CardLayout cl =(CardLayout)(jpViewCard.getLayout());
         cl.show(jpViewCard, "AllBTCard");
     }//GEN-LAST:event_jbAllBestTimesActionPerformed

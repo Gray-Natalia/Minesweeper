@@ -184,7 +184,7 @@
             <CodeExpression id="2">
               <ExpressionOrigin>
                 <Value type="[I" editor="org.netbeans.modules.form.layoutsupport.delegates.GridBagLayoutSupport$IntArrayPropertyEditor">
-                  <PropertyValue value="[150]"/>
+                  <PropertyValue value="[160]"/>
                 </Value>
               </ExpressionOrigin>
             </CodeExpression>

@@ -5,6 +5,9 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
+import cit260.winter2015.minesweeper.BestTimeManagerBeginner;
+import cit260.winter2015.minesweeper.BestTimeManagerExpert;
+import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
 import cit260.winter2015.minesweeper.Minesweeper;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
 
@@ -183,6 +186,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPlayActionPerformed
 
     private void jbBestTimesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBestTimesMenuActionPerformed
+        MainFrame.bestTimesMenu.refresh();
         MainFrame.card.show(mainPanel, "bestTimesMenu");
     }//GEN-LAST:event_jbBestTimesMenuActionPerformed
 

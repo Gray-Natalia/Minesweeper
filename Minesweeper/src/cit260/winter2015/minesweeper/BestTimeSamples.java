@@ -23,15 +23,15 @@ public class BestTimeSamples implements Serializable{
         btme.clearBestTimesFile();
         
         // Beginner
-        btmb.addBestTime("John", 10.5);
-        btmb.addBestTime("James", 20.3);
-        btmb.addBestTime("Jill", 30);
-        btmb.addBestTime("Bill", 35);
-        btmb.addBestTime("Kevin", 40);
-        btmb.addBestTime("Nate", 55);
-        btmb.addBestTime("Bob", 75);
-        btmb.addBestTime("Dan", 85);
-        btmb.addBestTime("Amy", 93);
+        btmb.addBestTime("John", 1.5);
+        btmb.addBestTime("James", 2.3);
+        btmb.addBestTime("Jill", 3);
+        btmb.addBestTime("Bill", 3);
+        btmb.addBestTime("Kevin", 4);
+        btmb.addBestTime("Nate", 5);
+        btmb.addBestTime("Bob", 7);
+        btmb.addBestTime("Dan", 8);
+        btmb.addBestTime("Amy", 9);
         btmb.addBestTime("Jane", 100);
         
         

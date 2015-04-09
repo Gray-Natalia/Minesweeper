@@ -91,7 +91,7 @@ public class HelpMenu extends javax.swing.JPanel {
         jpButtonPanel.setMinimumSize(new java.awt.Dimension(150, 50));
         jpButtonPanel.setPreferredSize(new java.awt.Dimension(150, 50));
         java.awt.GridBagLayout jpButtonPanelLayout = new java.awt.GridBagLayout();
-        jpButtonPanelLayout.columnWidths = new int[] {150};
+        jpButtonPanelLayout.columnWidths = new int[] {160};
         jpButtonPanel.setLayout(jpButtonPanelLayout);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
