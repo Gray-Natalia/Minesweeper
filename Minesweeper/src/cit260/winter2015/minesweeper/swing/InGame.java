@@ -204,9 +204,10 @@ public class InGame extends javax.swing.JPanel {
 
     private static void loadImages() {
         img = new ImageIcon[LevelType.NUM_IMAGES];
-
+        
         for (int i = 0; i < 16; i++) {
             img[i] = new ImageIcon("images/" + i + ".png");
+            
         }
     }
 
@@ -548,10 +549,8 @@ public class InGame extends javax.swing.JPanel {
         jdWonGame.setTitle("You Won!");
         jdWonGame.setAlwaysOnTop(true);
         jdWonGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jdWonGame.setMaximumSize(new java.awt.Dimension(250, 300));
         jdWonGame.setMinimumSize(new java.awt.Dimension(250, 300));
         jdWonGame.setModal(true);
-        jdWonGame.setPreferredSize(new java.awt.Dimension(250, 300));
         jdWonGame.setResizable(false);
         jdWonGame.setLocationRelativeTo(Minesweeper.mainFrame);
 
