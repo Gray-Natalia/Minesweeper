@@ -24,7 +24,6 @@ import java.util.Comparator;
 public abstract class BestTimeManager {
 
     // ArrayList type is bestTimesBeginner (Uses BestTimeBeginner constructor)
-
     protected ArrayList<BestTime> bestTimes;
     protected final String BEST_TIMES_FILE;
     protected final String levelName;
@@ -56,26 +55,32 @@ public abstract class BestTimeManager {
         BestTimeManager.BestTimeCompare compare = new BestTimeManager.BestTimeCompare();
         Collections.sort(bestTimes, compare);
     }
-    
+
+    public double getSlowestTime() {
+        try {
+            return bestTimes.get(9).getTime();
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            return 0;
+        }
+    }
+
     public void checkBestTime(double time) throws NotBestTimeException {
         loadBestTimesFile();
         if (bestTimes.size() >= 10 && time >= bestTimes.get(9).getTime()) {
-            System.out.println("Sorry you did not make the top ten best times."
-                    + "Better luck next time.");
             throw new NotBestTimeException();
         }
     }
 
-    public void addBestTime(String name, double time) throws NotBestTimeException {
+    public void addBestTime(String name, double time) {
         loadBestTimesFile();
-            if (bestTimes.size() >= 10) {
-                for (int i = 9; i < bestTimes.size(); i++) {
-                    bestTimes.remove(bestTimes.get(i));
-                }
+        if (bestTimes.size() >= 10) {
+            for (int i = 9; i < bestTimes.size(); i++) {
+                bestTimes.remove(bestTimes.get(i));
             }
-            bestTimes.add(new BestTime(name, time));
-            sort();
-            updateBestTimesFile();
+        }
+        bestTimes.add(new BestTime(name, time));
+        sort();
+        updateBestTimesFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -141,7 +146,7 @@ public abstract class BestTimeManager {
         }
     }
 
-    protected String convertTime(double time) {
+    public static String convertTime(double time) {
         String output;
         output = (((int) time / 60) + ":" + String.format("%02d", (int) time % 60));
         return output;
@@ -179,16 +184,16 @@ public abstract class BestTimeManager {
             }
         }
     }
-    
+
     public String setBestTimesString() {
-        
+
         loadBestTimesFile();
-        
-        StringBuilder bestTimesString  = new StringBuilder(""
+
+        StringBuilder bestTimesString = new StringBuilder(""
                 + "   Rank\tName\tTime"
                 + "\n---------------------------------------------------------------"
                 + "\n");
-        
+
         int i = 0;
         int x = bestTimes.size();
         if (x > max) {
@@ -204,12 +209,12 @@ public abstract class BestTimeManager {
                     .append("\n");
             i++;
         }
-        
+
         bestTimesString.append("The ")
                 .append(levelName)
                 .append(" average best time is ")
                 .append(calculateAverageTime());
-        
+
         return bestTimesString.toString();
     }
 }

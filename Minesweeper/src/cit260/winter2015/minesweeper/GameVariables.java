@@ -10,6 +10,7 @@ package cit260.winter2015.minesweeper;
  * @author knban_000
  */
 public class GameVariables {
+    public static Object gameStatus;
     public static String playerName;
     public static String difficultyLevel;
     public static int numberOfRows;
@@ -64,6 +65,14 @@ public class GameVariables {
 
     public static void setNumberOfMines(int numberOfMines) {
         GameVariables.numberOfMines = numberOfMines;
+    }
+
+    public static Object getGameStatus() {
+        return gameStatus;
+    }
+
+    public static void setGameStatus(Object gameStatus) {
+        GameVariables.gameStatus = gameStatus;
     }
     
     

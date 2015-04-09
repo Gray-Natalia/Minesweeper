@@ -29,7 +29,7 @@ public class CellManager implements Serializable {
     private static final ArrayList<CheckCell> checkCells = new ArrayList<>();
     private static final ArrayList<CheckCell> checkCellsTemp = new ArrayList<>();
 
-    private static int[][] values;
+    public static int[][] values;
     public static int[][] states;
 
     public ArrayList<Cell> getCells() {
@@ -226,21 +226,26 @@ public class CellManager implements Serializable {
 
     }
 
+    public void revealAll() {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                states[row][column] = values[row][column];
+            }
+        }
+    }
+
     public void click(int row, int column) throws LoseGameException, WinGameException {
-        if (states[row][column] == 10) {
-        } else if (states[row][column] == 11) {
-        } else if (values[row][column] == 15) {
+        if (values[row][column] == 15) {
             states[row][column] = 12;
             loseGame();
         } else if (states[row][column] == 9) {
             addCheckCell(row, column);
             revealCheckCells();
             checkWin();
-        } else {
         }
     }
 
-    // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flaged, 11 unknown
+    // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flagged, 11 unknown
     // Game end only: 12 clicked exploded, 13 undiscovered mine, 14 Incorrect Flag, 15 discovered mine.
     public void rightClick(int row, int column) {
         if (states[row][column] == 9) {

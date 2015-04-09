@@ -29,15 +29,30 @@ public class Paused extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jbContinue = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 51, 153));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
 
+        jPanel2.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setBackground(new java.awt.Color(0, 51, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Paused");
+        jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        add(jPanel2);
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 33));
+        jPanel1.setPreferredSize(new java.awt.Dimension(95, 33));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jbContinue.setText("Continue");
         jbContinue.addActionListener(new java.awt.event.ActionListener() {
@@ -45,25 +60,9 @@ public class Paused extends javax.swing.JPanel {
                 jbContinueActionPerformed(evt);
             }
         });
+        jPanel1.add(jbContinue);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbContinue)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jbContinue)
-                .addContainerGap())
-        );
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContinueActionPerformed
@@ -74,6 +73,8 @@ public class Paused extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbContinue;
     // End of variables declaration//GEN-END:variables
 }

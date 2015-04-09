@@ -30,7 +30,10 @@ public class HelpMenu extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jpTitlePanel = new javax.swing.JPanel();
+        jlTitle = new javax.swing.JLabel();
         jpButtonPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jbHowToPlay = new javax.swing.JButton();
@@ -50,19 +53,57 @@ public class HelpMenu extends javax.swing.JPanel {
         jpAboutTheDevelopers = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jpTitlePanel = new javax.swing.JPanel();
-        jlTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 153));
+        setMinimumSize(new java.awt.Dimension(500, 400));
         setPreferredSize(new java.awt.Dimension(500, 400));
+        setLayout(new java.awt.GridBagLayout());
+
+        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpTitlePanel.setMinimumSize(new java.awt.Dimension(250, 46));
+        jpTitlePanel.setName(""); // NOI18N
+        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
+        jpTitlePanel.setLayout(new java.awt.GridBagLayout());
+
+        jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
+        jlTitle.setForeground(new java.awt.Color(240, 240, 240));
+        jlTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitle.setText("Minesweeper");
+        jlTitle.setToolTipText("");
+        jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpTitlePanel.add(jlTitle, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(jpTitlePanel, gridBagConstraints);
 
         jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
-        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
+        jpButtonPanel.setMinimumSize(new java.awt.Dimension(150, 50));
+        jpButtonPanel.setPreferredSize(new java.awt.Dimension(150, 50));
+        java.awt.GridBagLayout jpButtonPanelLayout = new java.awt.GridBagLayout();
+        jpButtonPanelLayout.columnWidths = new int[] {150};
+        jpButtonPanel.setLayout(jpButtonPanelLayout);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Help Menu");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jpButtonPanel.add(jLabel2, gridBagConstraints);
 
         jbHowToPlay.setText("How to Play");
         jbHowToPlay.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +111,13 @@ public class HelpMenu extends javax.swing.JPanel {
                 jbHowToPlayActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbHowToPlay, gridBagConstraints);
 
         jbBasicStrategies.setText("Basic Strategies");
         jbBasicStrategies.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +125,13 @@ public class HelpMenu extends javax.swing.JPanel {
                 jbBasicStrategiesActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbBasicStrategies, gridBagConstraints);
 
         jbAboutTheDevelopers.setText("About the Developers");
         jbAboutTheDevelopers.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +139,13 @@ public class HelpMenu extends javax.swing.JPanel {
                 jbAboutTheDevelopersActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbAboutTheDevelopers, gridBagConstraints);
 
         jbQuitToMain.setText("Quit to Main Menu");
         jbQuitToMain.setToolTipText("");
@@ -92,32 +154,25 @@ public class HelpMenu extends javax.swing.JPanel {
                 jbQuitToMainActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbQuitToMain, gridBagConstraints);
 
-        javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
-        jpButtonPanel.setLayout(jpButtonPanelLayout);
-        jpButtonPanelLayout.setHorizontalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbHowToPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbBasicStrategies, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbAboutTheDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-            .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jpButtonPanelLayout.setVerticalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpButtonPanelLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbHowToPlay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbBasicStrategies)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbAboutTheDevelopers)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbQuitToMain)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        add(jpButtonPanel, gridBagConstraints);
 
+        jpViewCard.setBackground(new java.awt.Color(0, 51, 153));
         jpViewCard.setLayout(new java.awt.CardLayout());
 
         jTextArea3.setEditable(false);
@@ -134,11 +189,11 @@ public class HelpMenu extends javax.swing.JPanel {
         jpMenuInstructions.setLayout(jpMenuInstructionsLayout);
         jpMenuInstructionsLayout.setHorizontalGroup(
             jpMenuInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
         jpMenuInstructionsLayout.setVerticalGroup(
             jpMenuInstructionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jpViewCard.add(jpMenuInstructions, "helpMenuInstructions");
@@ -157,11 +212,11 @@ public class HelpMenu extends javax.swing.JPanel {
         jpHowToPlay.setLayout(jpHowToPlayLayout);
         jpHowToPlayLayout.setHorizontalGroup(
             jpHowToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
         jpHowToPlayLayout.setVerticalGroup(
             jpHowToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jpViewCard.add(jpHowToPlay, "howToPlay");
@@ -179,11 +234,11 @@ public class HelpMenu extends javax.swing.JPanel {
         jpBasicStrategies.setLayout(jpBasicStrategiesLayout);
         jpBasicStrategiesLayout.setHorizontalGroup(
             jpBasicStrategiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
         jpBasicStrategiesLayout.setVerticalGroup(
             jpBasicStrategiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jpViewCard.add(jpBasicStrategies, "basicStrategies");
@@ -201,53 +256,22 @@ public class HelpMenu extends javax.swing.JPanel {
         jpAboutTheDevelopers.setLayout(jpAboutTheDevelopersLayout);
         jpAboutTheDevelopersLayout.setHorizontalGroup(
             jpAboutTheDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
         jpAboutTheDevelopersLayout.setVerticalGroup(
             jpAboutTheDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jpViewCard.add(jpAboutTheDevelopers, "aboutTheDevelopers");
 
-        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
-        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
-        jpTitlePanel.setLayout(new java.awt.BorderLayout());
-
-        jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
-        jlTitle.setForeground(new java.awt.Color(240, 240, 240));
-        jlTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitle.setText("Minesweeper");
-        jlTitle.setToolTipText("");
-        jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
-        jpTitlePanel.add(jlTitle, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpViewCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 10);
+        add(jpViewCard, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbHowToPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHowToPlayActionPerformed

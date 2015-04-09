@@ -5,8 +5,11 @@
  */
 package cit260.winter2015.minesweeper.swing;
 
+import cit260.winter2015.minesweeper.Minesweeper;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 /**
@@ -17,7 +20,7 @@ public class MainFrame extends JFrame {
 
     public static JPanel mainPanel;
     static CardLayout card;
-    
+
     // Declare all cards that will be used in GUI
     static MainMenu mainMenu;
     static LevelSelection levelSelection;
@@ -25,24 +28,19 @@ public class MainFrame extends JFrame {
     static HelpMenu helpMenu;
     static InGame inGame;
     static Paused paused;
-    
+
     public MainFrame() {
-        
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Minesweeper");
-        setPreferredSize(new Dimension(950,700));
-        setMinimumSize(new Dimension(300, 200));
-        setMaximumSize(null);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        pack();
-        setVisible(true);
-        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Minesweeper.mainFrame.dispose();
+            }
+        });
+
         mainPanel = new JPanel();
         mainPanel.setBackground(new java.awt.Color(0, 51, 153));
         mainPanel.setBounds(0, 0, 500, 400);
-        
+
         // Assign class location to variable for each panel or card.
         mainMenu = new MainMenu();
         levelSelection = new LevelSelection();
@@ -50,11 +48,11 @@ public class MainFrame extends JFrame {
         helpMenu = new HelpMenu();
         inGame = new InGame();
         paused = new Paused();
-        
+
         card = new CardLayout();
         mainPanel.setLayout(card);
         setContentPane(mainPanel);
-        
+
         // Assign card name to each card or panel.
         mainPanel.add(mainMenu, "mainMenu");
         mainPanel.add(levelSelection, "levelSelection");
@@ -62,13 +60,18 @@ public class MainFrame extends JFrame {
         mainPanel.add(helpMenu, "helpMenu");
         mainPanel.add(inGame, "inGame");
         mainPanel.add(paused, "paused");
+
+        resizeWindow(500, 400);
+
+        setVisible(true);
     }
-    
+
     public void resizeWindow(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         revalidate();
         repaint();
         pack();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -86,7 +89,11 @@ public class MainFrame extends JFrame {
         helpMenu1 = new cit260.winter2015.minesweeper.swing.HelpMenu();
         inGame1 = new cit260.winter2015.minesweeper.swing.InGame();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Minesweeper");
+        setMinimumSize(new java.awt.Dimension(500, 400));
+        setPreferredSize(new java.awt.Dimension(500, 400));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
         getContentPane().add(mainMenu1, "card2");
         getContentPane().add(levelSelection1, "card3");

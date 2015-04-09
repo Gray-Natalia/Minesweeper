@@ -12,6 +12,7 @@ import cit260.winter2015.minesweeper.BestTimeManagerIntermediate;
 import cit260.winter2015.minesweeper.CellManager;
 import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.Minesweeper;
+import cit260.winter2015.minesweeper.enums.GameCodes;
 import cit260.winter2015.minesweeper.enums.LevelType;
 import cit260.winter2015.minesweeper.exceptions.LoseGameException;
 import cit260.winter2015.minesweeper.exceptions.NotBestTimeException;
@@ -24,9 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import javax.swing.Timer;
 
@@ -45,12 +45,16 @@ public class InGame extends javax.swing.JPanel {
     private final ClockListener clock = new ClockListener();
     private final Timer timer = new Timer(53, clock);
     private long startTime;
-    public long elapsed;
+    public static long elapsed;
+    public static String timeString;
+    double elapsedSeconds;
 
     private final PauseClockListener pauseClock = new PauseClockListener();
     public final Timer pauseTimer = new Timer(53, pauseClock);
     private long pauseStart;
     private long pauseElapsed;
+
+    SimpleDateFormat format = new SimpleDateFormat("H:mm:ss");
 
     /**
      * Creates new form MainMenu
@@ -60,23 +64,27 @@ public class InGame extends javax.swing.JPanel {
     }
 
     public void startGame() {
+        GameVariables.setGameStatus(GameCodes.PLAYING);
+        jbPause.setEnabled(true);
+        jButton1.setVisible(false);
         elapsed = 0;
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        statusBarTimer.setText("Time Elapsed: " + format.format(elapsed));
         counter = 0;
         Minesweeper.mm.generateMines();
         Minesweeper.cm.calculateCellValues();
         loadImages();
         BuildBoard();
         statusBarMines.setText("Mines Remaining: " + GameVariables.getNumberOfMines());
-        jpBoard.setPreferredSize(new Dimension(GameVariables.getNumberOfColumns() * LevelType.CELL_SIZE, GameVariables.getNumberOfRows() * LevelType.CELL_SIZE));
-        setPreferredSize(new Dimension(jpBoard.getWidth() + 5, jpBoard.getHeight() + 100));
-//        System.out.println("Number of Columns: " + GameVariables.getNumberOfColumns() + ", width: " + jpBoard.getWidth());
-//        System.out.println("Calculated width: " + GameVariables.getNumberOfColumns() * LevelType.CELL_SIZE);
-//        System.out.println("Number of Rows: " + GameVariables.getNumberOfRows() + ", height: " + jpBoard.getHeight());
-//        System.out.println("Calculated height: " + GameVariables.getNumberOfRows() * LevelType.CELL_SIZE);
-        Minesweeper.mainFrame.resizeWindow(getWidth() + 5, getHeight() + 10);
+        jpBoard.setLayout(new java.awt.GridLayout(GameVariables.getNumberOfRows(), GameVariables.getNumberOfColumns(), -1, -1));
+        Minesweeper.mainFrame.pack();
+        Minesweeper.mainFrame.setLocationRelativeTo(null);
     }
 
     public void startGamePreset() {
+        GameVariables.setGameStatus(GameCodes.PLAYING);
+        jbPause.setEnabled(true);
+        jButton1.setVisible(false);
         elapsed = 0;
         counter = 0;
         Minesweeper.mm.presetMines();
@@ -84,12 +92,6 @@ public class InGame extends javax.swing.JPanel {
         loadImages();
         BuildBoard();
         statusBarMines.setText("Mines Remaining: " + GameVariables.getNumberOfMines());
-        jpBoard.setPreferredSize(new Dimension(GameVariables.getNumberOfColumns() * LevelType.CELL_SIZE, GameVariables.getNumberOfRows() * LevelType.CELL_SIZE));
-        setPreferredSize(new Dimension(jpBoard.getWidth() + 5, jpBoard.getHeight() + 100));
-//        System.out.println("Number of Columns: " + GameVariables.getNumberOfColumns() + ", width: " + jpBoard.getWidth());
-//        System.out.println("Calculated width: " + GameVariables.getNumberOfColumns() * LevelType.CELL_SIZE);
-//        System.out.println("Number of Rows: " + GameVariables.getNumberOfRows() + ", height: " + jpBoard.getHeight());
-//        System.out.println("Calculated height: " + GameVariables.getNumberOfRows() * LevelType.CELL_SIZE);
         Minesweeper.mainFrame.resizeWindow(getWidth() + 5, getHeight() + 10);
         Minesweeper.mainFrame.setLocationRelativeTo(null);
     }
@@ -104,18 +106,6 @@ public class InGame extends javax.swing.JPanel {
                 int c = column;
                 jButtons[row][column] = new JToggleButton("");
                 jButtons[row][column].addMouseListener(new java.awt.event.MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                    }
-
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (e.getButton() == MouseEvent.BUTTON1) {
@@ -137,6 +127,8 @@ public class InGame extends javax.swing.JPanel {
                 jButtons[row][column].setIcon(img[CellManager.states[row][column]]);
             }
         }
+//        Minesweeper.cm.revealAll();
+//        updateBoard();
         jpBoard.setVisible(true);
         jpBoard.validate();
         jpBoard.repaint();
@@ -167,9 +159,9 @@ public class InGame extends javax.swing.JPanel {
     }
 
     public void updateClock() {
-        long elapsed = (System.currentTimeMillis() - startTime);
-        SimpleDateFormat format = new SimpleDateFormat("H:mm:ss");
+        elapsed = (System.currentTimeMillis() - startTime);
         format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        timeString = ("Time Elapsed: " + format.format(elapsed));
         statusBarTimer.setText("Time Elapsed: " + format.format(elapsed));
     }
 
@@ -213,70 +205,124 @@ public class InGame extends javax.swing.JPanel {
     private static void loadImages() {
         img = new ImageIcon[LevelType.NUM_IMAGES];
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
             img[i] = new ImageIcon("images/" + i + ".png");
         }
     }
 
     private void click(int row, int column) {
-        if (counter == 0) {
-            counter++;
-            startTimer();
+        if (GameVariables.getGameStatus() == GameCodes.PLAYING) {
+            if (counter == 0) {
+                counter++;
+                startTimer();
+            }
+            try {
+                Minesweeper.cm.click(row, column);
+                updateBoard();
+            } catch (LoseGameException ex) {
+                updateBoard();
+                gameLost();
+            } catch (WinGameException ex) {
+                updateBoard();
+                gameWon();
+            }
         }
-        try {
-            Minesweeper.cm.click(row, column);
-        } catch (LoseGameException ex) {
-            System.out.println("Game Lost");
-            gameLost();
-        } catch (WinGameException ex) {
-            System.out.println("Game Won");
-            gameWon();
-        }
-        updateBoard();
     }
 
     private void rightClick(int row, int column) {
-        if (counter == 0) {
-            counter++;
-            startTimer();
+        if (GameVariables.getGameStatus() == GameCodes.PLAYING) {
+            if (counter == 0) {
+                counter++;
+                startTimer();
+            }
+            Minesweeper.cm.rightClick(row, column);
+            statusBarMines.setText("Mines Remaining: " + Minesweeper.cm.getMinesRemaining());
+            updateBoard();
         }
-        Minesweeper.cm.rightClick(row, column);
-        statusBarMines.setText("Mines Remaining: " + Minesweeper.cm.getMinesRemaining());
-        updateBoard();
     }
 
     private void twoButtonClick(int row, int column) {
-        try {
-            Minesweeper.cm.twoButtonClick(row, column);
-        } catch (WinGameException ex) {
-            System.out.println("Game Won");
-            gameWon();
+        if (GameVariables.getGameStatus() == GameCodes.PLAYING) {
+            try {
+                Minesweeper.cm.twoButtonClick(row, column);
+                updateBoard();
+            } catch (WinGameException ex) {
+                updateBoard();
+                gameWon();
+            }
         }
-        updateBoard();
     }
 
     private void gameWon() {
+        GameVariables.setGameStatus(GameCodes.NOT_PLAYING);
+        jbPause.setEnabled(false);
         stopTimer();
         stopPauseTimer();
         BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
         BestTimeManagerExpert btme = new BestTimeManagerExpert();
+        elapsedSeconds = elapsed / 1000;
 
         try {
-            if (GameVariables.difficultyLevel.equals("beginner")) {
-                btmb.addBestTime(GameVariables.playerName, elapsed);
-            } else if (GameVariables.difficultyLevel.equals("intermediate")) {
-                btmi.addBestTime(GameVariables.playerName, elapsed);
-            } else if (GameVariables.difficultyLevel.equals("expert")) {
-                btme.addBestTime(GameVariables.playerName, elapsed);
+            switch (GameVariables.getDifficultyLevel()) {
+                case "beginner":
+                    //Throws NotBestTimeException
+                    btmb.checkBestTime(elapsedSeconds);
+                    jTextArea4.setText("Congratulations! You made the best times list!"
+                            + " Enter your name to be added."
+                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
+                    jbHsViewHs.setEnabled(false);
+                    jbHsMainMenu.setEnabled(false);
+                    jdNewHighScore.setVisible(true);
+                    break;
+                case "intermediate":
+                    //Throws NotBestTimeException
+                    btmi.checkBestTime(elapsedSeconds);
+                    jTextArea4.setText("Congratulations! You made the best times list!"
+                            + " Enter your name to be added."
+                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
+                    jbHsViewHs.setEnabled(false);
+                    jbHsMainMenu.setEnabled(false);
+                    jdNewHighScore.setVisible(true);
+                    break;
+                case "expert":
+                    //Throws NotBestTimeException
+                    btme.checkBestTime(elapsedSeconds);
+                    jTextArea4.setText("Congratulations! You made the best times list!"
+                            + " Enter your name to be added."
+                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
+                    jbHsViewHs.setEnabled(false);
+                    jbHsMainMenu.setEnabled(false);
+                    jdNewHighScore.setVisible(true);
+                    break;
+                default:
+                    jTextArea3.setText("Congratulations! You won the game. The "
+                            + GameVariables.getDifficultyLevel() + " level doesn't have a best times list."
+                            + " If you'd like to be ranked next time, play Beginner, Intermediate, or Expert.");
+                    jdWonGame.setVisible(true);
             }
         } catch (NotBestTimeException ex) {
+            double slowestTime = 0;
+            switch (GameVariables.getDifficultyLevel()) {
+                case "beginner":
+                    slowestTime = btmb.getSlowestTime();
+                    break;
+                case "intermediate":
+                    slowestTime = btmi.getSlowestTime();
+                    break;
+                case "expert":
+                    slowestTime = btme.getSlowestTime();
+                    break;
+            }
+            jTextArea3.setText("Congratulations! You won the game. You didn't make the best times list but better luck next time."
+                    + " Get faster than " + BestTimeManager.convertTime(slowestTime) + " on the " + GameVariables.getDifficultyLevel() + " level next time to get a high score");
             jdWonGame.setVisible(true);
         }
-        jdNewHighScore.setVisible(true);
     }
 
     private void gameLost() {
+        GameVariables.setGameStatus(GameCodes.NOT_PLAYING);
+        jbPause.setEnabled(false);
         stopTimer();
         stopPauseTimer();
         jdLostGame.setVisible(true);
@@ -290,6 +336,7 @@ public class InGame extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jdQuitToMainMenu = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
@@ -329,21 +376,22 @@ public class InGame extends javax.swing.JPanel {
         jbSubmitName = new javax.swing.JButton();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
-        jpBottomBar = new javax.swing.JPanel();
-        jbMainMenu = new javax.swing.JButton();
-        jbPause = new javax.swing.JButton();
+        jpTopBar = new javax.swing.JPanel();
         statusBarMines = new javax.swing.JLabel();
         statusBarTimer = new javax.swing.JLabel();
+        jpCenerPane = new javax.swing.JPanel();
         jpBoard = new javax.swing.JPanel();
+        jpBottomBar = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jbPause = new javax.swing.JButton();
+        jbMainMenu = new javax.swing.JButton();
 
         jdQuitToMainMenu.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jdQuitToMainMenu.setTitle("Quit?");
         jdQuitToMainMenu.setAlwaysOnTop(true);
         jdQuitToMainMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jdQuitToMainMenu.setMaximumSize(new java.awt.Dimension(250, 200));
         jdQuitToMainMenu.setMinimumSize(new java.awt.Dimension(250, 200));
         jdQuitToMainMenu.setModal(true);
-        jdQuitToMainMenu.setPreferredSize(new java.awt.Dimension(250, 200));
         jdQuitToMainMenu.setResizable(false);
         jdQuitToMainMenu.setLocationRelativeTo(Minesweeper.mainFrame);
 
@@ -421,11 +469,10 @@ public class InGame extends javax.swing.JPanel {
         jdLostGame.setTitle("Lost Game");
         jdLostGame.setAlwaysOnTop(true);
         jdLostGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jdLostGame.setMaximumSize(new java.awt.Dimension(250, 200));
         jdLostGame.setMinimumSize(new java.awt.Dimension(250, 200));
         jdLostGame.setModal(true);
-        jdLostGame.setPreferredSize(new java.awt.Dimension(250, 200));
         jdLostGame.setResizable(false);
+        jdLostGame.setLocationRelativeTo(Minesweeper.mainFrame);
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -501,11 +548,10 @@ public class InGame extends javax.swing.JPanel {
         jdWonGame.setTitle("You Won!");
         jdWonGame.setAlwaysOnTop(true);
         jdWonGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jdWonGame.setMaximumSize(new java.awt.Dimension(250, 200));
-        jdWonGame.setMinimumSize(new java.awt.Dimension(250, 200));
+        jdWonGame.setMinimumSize(new java.awt.Dimension(250, 300));
         jdWonGame.setModal(true);
-        jdWonGame.setPreferredSize(new java.awt.Dimension(250, 200));
         jdWonGame.setResizable(false);
+        jdWonGame.setLocationRelativeTo(Minesweeper.mainFrame);
 
         jPanel7.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -561,7 +607,7 @@ public class InGame extends javax.swing.JPanel {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -581,11 +627,10 @@ public class InGame extends javax.swing.JPanel {
         jdNewHighScore.setTitle("New High Score");
         jdNewHighScore.setAlwaysOnTop(true);
         jdNewHighScore.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jdNewHighScore.setMaximumSize(new java.awt.Dimension(250, 200));
-        jdNewHighScore.setMinimumSize(new java.awt.Dimension(250, 200));
+        jdNewHighScore.setMinimumSize(new java.awt.Dimension(250, 300));
         jdNewHighScore.setModal(true);
-        jdNewHighScore.setPreferredSize(new java.awt.Dimension(250, 200));
         jdNewHighScore.setResizable(false);
+        jdNewHighScore.setLocationRelativeTo(Minesweeper.mainFrame);
 
         jPanel11.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -601,7 +646,7 @@ public class InGame extends javax.swing.JPanel {
         jTextArea4.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Congratulations! You made the best times list! Enter your name to be added." + elapsed);
+        jTextArea4.setText("Congratulations! You made the best times list! Enter your name to be added. Your time was " + InGame.timeString + ".");
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane4.setViewportView(jTextArea4);
@@ -678,12 +723,12 @@ public class InGame extends javax.swing.JPanel {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbSubmitName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -699,8 +744,14 @@ public class InGame extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(0, 51, 153));
+        setMinimumSize(new java.awt.Dimension(400, 450));
+        setPreferredSize(new java.awt.Dimension(400, 450));
+        setLayout(new java.awt.GridBagLayout());
 
         jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpTitlePanel.setMaximumSize(new java.awt.Dimension(32767, 37));
+        jpTitlePanel.setMinimumSize(new java.awt.Dimension(248, 46));
+        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
 
         jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         jlTitle.setForeground(new java.awt.Color(240, 240, 240));
@@ -714,7 +765,7 @@ public class InGame extends javax.swing.JPanel {
         jpTitlePanel.setLayout(jpTitlePanelLayout);
         jpTitlePanelLayout.setHorizontalGroup(
             jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jlTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         jpTitlePanelLayout.setVerticalGroup(
             jpTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,21 +774,17 @@ public class InGame extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jpBottomBar.setBackground(new java.awt.Color(0, 51, 153));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(jpTitlePanel, gridBagConstraints);
 
-        jbMainMenu.setText("Quit to MainMenu");
-        jbMainMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbMainMenuActionPerformed(evt);
-            }
-        });
-
-        jbPause.setText("Pause");
-        jbPause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPauseActionPerformed(evt);
-            }
-        });
+        jpTopBar.setBackground(new java.awt.Color(0, 51, 153));
+        jpTopBar.setMaximumSize(new java.awt.Dimension(32767, 25));
+        jpTopBar.setMinimumSize(new java.awt.Dimension(227, 25));
+        jpTopBar.setLayout(new java.awt.GridBagLayout());
 
         statusBarMines.setBackground(new java.awt.Color(0, 51, 153));
         statusBarMines.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -745,6 +792,11 @@ public class InGame extends javax.swing.JPanel {
         statusBarMines.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         statusBarMines.setText("Mines Remaining: " + GameVariables.getNumberOfMines());
         statusBarMines.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        statusBarMines.setMaximumSize(new java.awt.Dimension(200, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        jpTopBar.add(statusBarMines, gridBagConstraints);
 
         statusBarTimer.setBackground(new java.awt.Color(0, 51, 153));
         statusBarTimer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -752,65 +804,100 @@ public class InGame extends javax.swing.JPanel {
         statusBarTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         statusBarTimer.setText("Time Elapsed: " + 0);
         statusBarTimer.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        statusBarTimer.setMaximumSize(new java.awt.Dimension(200, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jpTopBar.add(statusBarTimer, gridBagConstraints);
 
-        javax.swing.GroupLayout jpBottomBarLayout = new javax.swing.GroupLayout(jpBottomBar);
-        jpBottomBar.setLayout(jpBottomBarLayout);
-        jpBottomBarLayout.setHorizontalGroup(
-            jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBottomBarLayout.createSequentialGroup()
-                .addComponent(statusBarMines, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(statusBarTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jbPause)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jpBottomBarLayout.setVerticalGroup(
-            jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jpBottomBarLayout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addGroup(jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbMainMenu)
-                        .addComponent(jbPause))
-                    .addGroup(jpBottomBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(statusBarMines)
-                        .addComponent(statusBarTimer))))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(jpTopBar, gridBagConstraints);
 
-        jpBoard.setBackground(new java.awt.Color(153, 153, 153));
+        jpCenerPane.setBackground(new java.awt.Color(0, 51, 153));
+        jpCenerPane.setMinimumSize(new java.awt.Dimension(280, 200));
+        jpCenerPane.setName(""); // NOI18N
+        jpCenerPane.setPreferredSize(new java.awt.Dimension(280, 200));
+
+        jpBoard.setBackground(new java.awt.Color(0, 51, 153));
+        jpBoard.setMinimumSize(new java.awt.Dimension(280, 280));
+        jpBoard.setName(""); // NOI18N
         jpBoard.setLayout(new java.awt.GridLayout(9, 9, -1, -1));
+        jpCenerPane.add(jpBoard);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpBottomBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpBottomBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(jpCenerPane, gridBagConstraints);
+
+        jpBottomBar.setBackground(new java.awt.Color(0, 51, 153));
+        jpBottomBar.setMaximumSize(new java.awt.Dimension(32767, 43));
+        jpBottomBar.setMinimumSize(new java.awt.Dimension(193, 43));
+        jpBottomBar.setPreferredSize(new java.awt.Dimension(280, 43));
+        jpBottomBar.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setText("Reveal All");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        jpBottomBar.add(jButton1, gridBagConstraints);
+
+        jbPause.setText("Pause");
+        jbPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPauseActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 5);
+        jpBottomBar.add(jbPause, gridBagConstraints);
+
+        jbMainMenu.setText("Quit to MainMenu");
+        jbMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMainMenuActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jpBottomBar.add(jbMainMenu, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(jpBottomBar, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMainMenuActionPerformed
-        stopTimer();
-        startPauseTimer();
-        MainFrame.card.show(mainPanel, "paused");
-        jdQuitToMainMenu.setVisible(true);
+        if (GameVariables.getGameStatus() == GameCodes.PLAYING) {
+            stopTimer();
+            startPauseTimer();
+            MainFrame.card.show(mainPanel, "paused");
+            jdQuitToMainMenu.setVisible(true);
+        } else if (GameVariables.getGameStatus() == GameCodes.NOT_PLAYING) {
+            stopPauseTimer();
+            stopTimer();
+            MainFrame.card.show(mainPanel, "mainMenu");
+            Minesweeper.mainFrame.resizeWindow(500, 400);
+        }
     }//GEN-LAST:event_jbMainMenuActionPerformed
 
     private void jbPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPauseActionPerformed
@@ -830,44 +917,81 @@ public class InGame extends javax.swing.JPanel {
         stopTimer();
         MainFrame.card.show(mainPanel, "mainMenu");
         jdQuitToMainMenu.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbYesQuitActionPerformed
 
     private void jbPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPlayAgainActionPerformed
         MainFrame.card.show(mainPanel, "levelSelection");
         jdLostGame.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbPlayAgainActionPerformed
 
     private void jbLostMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLostMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdLostGame.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbLostMainMenuActionPerformed
 
     private void jbWonHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonHsActionPerformed
         MainFrame.card.show(mainPanel, "bestTimesMenu");
         jdWonGame.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbWonHsActionPerformed
 
     private void jbWonMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdWonGame.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbWonMainMenuActionPerformed
 
     private void jbHsViewHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsViewHsActionPerformed
         MainFrame.card.show(mainPanel, "bestTimesMenu");
         jdNewHighScore.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbHsViewHsActionPerformed
 
     private void jbHsMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdNewHighScore.dispose();
+        Minesweeper.mainFrame.resizeWindow(500 , 400);
     }//GEN-LAST:event_jbHsMainMenuActionPerformed
 
     private void jbSubmitNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubmitNameActionPerformed
-        GameVariables.setPlayerName(jtPlayerName.getText());
+        BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
+        BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
+        BestTimeManagerExpert btme = new BestTimeManagerExpert();
+        if (jtPlayerName.getText().length() < 1) {
+            JOptionPane.showMessageDialog(Minesweeper.mainFrame, "Please enter a player name.", "Name Error", JOptionPane.WARNING_MESSAGE);
+        } else if (jtPlayerName.getText().length() > 15) {
+            JOptionPane.showMessageDialog(Minesweeper.mainFrame, "Player name is too long. Max of 15 characters.", "Name Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            GameVariables.setPlayerName(jtPlayerName.getText());
+            switch (GameVariables.getDifficultyLevel()) {
+                case "beginner":
+                    btmb.addBestTime(GameVariables.playerName, elapsedSeconds);
+                    break;
+                case "intermediate":
+                    btmi.addBestTime(GameVariables.playerName, elapsedSeconds);
+                    break;
+                case "expert":
+                    btme.addBestTime(GameVariables.playerName, elapsedSeconds);
+                    break;
+            }
+            jbHsViewHs.setEnabled(true);
+            jbHsMainMenu.setEnabled(true);
+            jtPlayerName.setEnabled(false);
+            jbSubmitName.setEnabled(false);
+        }
     }//GEN-LAST:event_jbSubmitNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Minesweeper.cm.revealAll();
+        updateBoard();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
@@ -908,7 +1032,9 @@ public class InGame extends javax.swing.JPanel {
     private javax.swing.JLabel jlTitle;
     private javax.swing.JPanel jpBoard;
     private javax.swing.JPanel jpBottomBar;
+    private javax.swing.JPanel jpCenerPane;
     private javax.swing.JPanel jpTitlePanel;
+    private javax.swing.JPanel jpTopBar;
     private javax.swing.JTextField jtPlayerName;
     private javax.swing.JLabel statusBarMines;
     private javax.swing.JLabel statusBarTimer;

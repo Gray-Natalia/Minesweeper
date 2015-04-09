@@ -6,6 +6,7 @@
 package cit260.winter2015.minesweeper.swing;
 
 import cit260.winter2015.minesweeper.GameVariables;
+import cit260.winter2015.minesweeper.Minesweeper;
 import cit260.winter2015.minesweeper.enums.LevelType;
 import static cit260.winter2015.minesweeper.enums.LevelType.BEGINNER;
 import static cit260.winter2015.minesweeper.swing.MainFrame.mainPanel;
@@ -36,25 +37,64 @@ public class LevelSelection extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jpTitlePanel = new javax.swing.JPanel();
+        jlTitle = new javax.swing.JLabel();
         jpButtonPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jbBeginner = new javax.swing.JButton();
         jbIntermediate = new javax.swing.JButton();
         jbExpert = new javax.swing.JButton();
         jbPreset = new javax.swing.JButton();
         jbQuitToMain = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jpTextPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jpTitlePanel = new javax.swing.JPanel();
-        jlTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 153));
+        setMinimumSize(new java.awt.Dimension(500, 400));
         setPreferredSize(new java.awt.Dimension(500, 400));
+        setLayout(new java.awt.GridBagLayout());
+
+        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
+        jpTitlePanel.setMinimumSize(new java.awt.Dimension(250, 46));
+        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
+        jpTitlePanel.setLayout(new java.awt.GridBagLayout());
+
+        jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
+        jlTitle.setForeground(new java.awt.Color(240, 240, 240));
+        jlTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitle.setText("Minesweeper");
+        jlTitle.setToolTipText("");
+        jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpTitlePanel.add(jlTitle, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(jpTitlePanel, gridBagConstraints);
 
         jpButtonPanel.setBackground(new java.awt.Color(0, 51, 153));
-        jpButtonPanel.setPreferredSize(new java.awt.Dimension(142, 332));
+        jpButtonPanel.setMinimumSize(new java.awt.Dimension(150, 140));
+        jpButtonPanel.setName(""); // NOI18N
+        jpButtonPanel.setPreferredSize(new java.awt.Dimension(150, 140));
+        java.awt.GridBagLayout jpButtonPanelLayout = new java.awt.GridBagLayout();
+        jpButtonPanelLayout.columnWidths = new int[] {150};
+        jpButtonPanel.setLayout(jpButtonPanelLayout);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Level Selection");
+        jpButtonPanel.add(jLabel1, new java.awt.GridBagConstraints());
 
         jbBeginner.setText("Beginner");
         jbBeginner.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +102,12 @@ public class LevelSelection extends javax.swing.JPanel {
                 jbBeginnerActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbBeginner, gridBagConstraints);
 
         jbIntermediate.setText("Intermediate");
         jbIntermediate.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +115,12 @@ public class LevelSelection extends javax.swing.JPanel {
                 jbIntermediateActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbIntermediate, gridBagConstraints);
 
         jbExpert.setText("Expert");
         jbExpert.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +128,12 @@ public class LevelSelection extends javax.swing.JPanel {
                 jbExpertActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbExpert, gridBagConstraints);
 
         jbPreset.setText("Preset Beginner");
         jbPreset.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +141,12 @@ public class LevelSelection extends javax.swing.JPanel {
                 jbPresetActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbPreset, gridBagConstraints);
 
         jbQuitToMain.setText("Quit to Main Menu");
         jbQuitToMain.setToolTipText("");
@@ -91,39 +155,24 @@ public class LevelSelection extends javax.swing.JPanel {
                 jbQuitToMainActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jpButtonPanel.add(jbQuitToMain, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Level Selection");
-
-        javax.swing.GroupLayout jpButtonPanelLayout = new javax.swing.GroupLayout(jpButtonPanel);
-        jpButtonPanel.setLayout(jpButtonPanelLayout);
-        jpButtonPanelLayout.setHorizontalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbBeginner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbIntermediate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbExpert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbPreset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jbQuitToMain, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jpButtonPanelLayout.setVerticalGroup(
-            jpButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpButtonPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbBeginner)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbIntermediate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbExpert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbPreset)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbQuitToMain)
-                .addContainerGap(149, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        add(jpButtonPanel, gridBagConstraints);
+        jpButtonPanel.getAccessibleContext().setAccessibleDescription("");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -134,81 +183,42 @@ public class LevelSelection extends javax.swing.JPanel {
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jTextArea1.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jpTextPanelLayout = new javax.swing.GroupLayout(jpTextPanel);
-        jpTextPanel.setLayout(jpTextPanelLayout);
-        jpTextPanelLayout.setHorizontalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jpTextPanelLayout.setVerticalGroup(
-            jpTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-
-        jpTitlePanel.setBackground(new java.awt.Color(0, 51, 153));
-        jpTitlePanel.setPreferredSize(new java.awt.Dimension(500, 46));
-        jpTitlePanel.setLayout(new java.awt.BorderLayout());
-
-        jlTitle.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
-        jlTitle.setForeground(new java.awt.Color(240, 240, 240));
-        jlTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitle.setText("Minesweeper");
-        jlTitle.setToolTipText("");
-        jlTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jlTitle.setMaximumSize(new java.awt.Dimension(2000, 37));
-        jpTitlePanel.add(jlTitle, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jpTitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpTextPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 10);
+        add(jTextArea1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBeginnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeginnerActionPerformed
         LevelType.setBeginner();
         MainFrame.card.show(mainPanel, "inGame");
         MainFrame.inGame.startGame();
+        Minesweeper.mainFrame.resizeWindow(400, 450);
     }//GEN-LAST:event_jbBeginnerActionPerformed
 
     private void jbIntermediateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntermediateActionPerformed
         LevelType.setIntermediate();
         MainFrame.card.show(mainPanel, "inGame");
         MainFrame.inGame.startGame();
+        Minesweeper.mainFrame.resizeWindow(500, 635);
     }//GEN-LAST:event_jbIntermediateActionPerformed
 
     private void jbExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExpertActionPerformed
         LevelType.setExpert();
         MainFrame.card.show(mainPanel, "inGame");
         MainFrame.inGame.startGame();
+        Minesweeper.mainFrame.resizeWindow(900, 635);
     }//GEN-LAST:event_jbExpertActionPerformed
 
     private void jbPresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPresetActionPerformed
-        GameVariables.setGameVariables("Preset", BEGINNER.getRows(), BEGINNER.getColumns(), BEGINNER.getMines());
+        GameVariables.setGameVariables("preset beginner", BEGINNER.getRows(), BEGINNER.getColumns(), BEGINNER.getMines());
         MainFrame.card.show(mainPanel, "inGame");
         MainFrame.inGame.startGamePreset();
+        Minesweeper.mainFrame.resizeWindow(400, 450);
     }//GEN-LAST:event_jbPresetActionPerformed
 
     private void jbQuitToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitToMainActionPerformed
@@ -218,7 +228,6 @@ public class LevelSelection extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbBeginner;
     private javax.swing.JButton jbExpert;
@@ -227,7 +236,6 @@ public class LevelSelection extends javax.swing.JPanel {
     private javax.swing.JButton jbQuitToMain;
     private javax.swing.JLabel jlTitle;
     private javax.swing.JPanel jpButtonPanel;
-    private javax.swing.JPanel jpTextPanel;
     private javax.swing.JPanel jpTitlePanel;
     // End of variables declaration//GEN-END:variables
 }
