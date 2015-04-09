@@ -14,6 +14,7 @@ import cit260.winter2015.minesweeper.GameVariables;
 import cit260.winter2015.minesweeper.Minesweeper;
 import cit260.winter2015.minesweeper.enums.GameCodes;
 import cit260.winter2015.minesweeper.enums.LevelType;
+import cit260.winter2015.minesweeper.exceptions.BestTimeException;
 import cit260.winter2015.minesweeper.exceptions.LoseGameException;
 import cit260.winter2015.minesweeper.exceptions.NotBestTimeException;
 import cit260.winter2015.minesweeper.exceptions.WinGameException;
@@ -66,6 +67,7 @@ public class InGame extends javax.swing.JPanel {
     public void startGame() {
         GameVariables.setGameStatus(GameCodes.PLAYING);
         jbPause.setEnabled(true);
+        jtPlayerName.setEnabled(true);
         jbSubmitName.setEnabled(true);
         jButton1.setVisible(false);
         elapsed = 0;
@@ -85,6 +87,8 @@ public class InGame extends javax.swing.JPanel {
     public void startGamePreset() {
         GameVariables.setGameStatus(GameCodes.PLAYING);
         jbPause.setEnabled(true);
+        jtPlayerName.setEnabled(true);
+        jbSubmitName.setEnabled(true);
         jButton1.setVisible(false);
         elapsed = 0;
         counter = 0;
@@ -205,7 +209,7 @@ public class InGame extends javax.swing.JPanel {
 
     private static void loadImages() {
         img = new ImageIcon[LevelType.NUM_IMAGES];
-        
+
         for (int i = 0; i < 16; i++) {
 //            InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("resources/" + i + ".png");
             img[i] = new ImageIcon("resources/" + i + ".png");
@@ -248,6 +252,9 @@ public class InGame extends javax.swing.JPanel {
             try {
                 Minesweeper.cm.twoButtonClick(row, column);
                 updateBoard();
+            } catch (LoseGameException ex) {
+                updateBoard();
+                gameLost();
             } catch (WinGameException ex) {
                 updateBoard();
                 gameWon();
@@ -270,33 +277,15 @@ public class InGame extends javax.swing.JPanel {
                 case "beginner":
                     //Throws NotBestTimeException
                     btmb.checkBestTime(elapsedSeconds);
-                    jTextArea4.setText("Congratulations! You made the best times list!"
-                            + " Enter your name to be added."
-                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
-                    jbHsViewHs.setEnabled(false);
-                    jbHsMainMenu.setEnabled(false);
-                    jdNewHighScore.setVisible(true);
-                    break;
+                    throw new BestTimeException();
                 case "intermediate":
                     //Throws NotBestTimeException
                     btmi.checkBestTime(elapsedSeconds);
-                    jTextArea4.setText("Congratulations! You made the best times list!"
-                            + " Enter your name to be added."
-                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
-                    jbHsViewHs.setEnabled(false);
-                    jbHsMainMenu.setEnabled(false);
-                    jdNewHighScore.setVisible(true);
-                    break;
+                    throw new BestTimeException();
                 case "expert":
                     //Throws NotBestTimeException
                     btme.checkBestTime(elapsedSeconds);
-                    jTextArea4.setText("Congratulations! You made the best times list!"
-                            + " Enter your name to be added."
-                            + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
-                    jbHsViewHs.setEnabled(false);
-                    jbHsMainMenu.setEnabled(false);
-                    jdNewHighScore.setVisible(true);
-                    break;
+                    throw new BestTimeException();
                 default:
                     jTextArea3.setText("Congratulations! You won the game. The "
                             + GameVariables.getDifficultyLevel() + " level doesn't have a best times list."
@@ -319,6 +308,16 @@ public class InGame extends javax.swing.JPanel {
             jTextArea3.setText("Congratulations! You won the game. You didn't make the best times list but better luck next time."
                     + " Get faster than " + BestTimeManager.convertTime(slowestTime) + " on the " + GameVariables.getDifficultyLevel() + " level next time to get a high score");
             jdWonGame.setVisible(true);
+        } catch (BestTimeException ex) {
+            jTextArea4.setText("Congratulations! You made the best times list!"
+                    + " Enter your name to be added."
+                    + " Your time was " + BestTimeManager.convertTime(elapsedSeconds) + ".");
+                    // Disables menu options except the submit button.
+            // Once the submit button is pressed these buttons will become available.
+            jbHsPlayAgain.setEnabled(false);
+            jbHsViewHs.setEnabled(false);
+            jbHsMainMenu.setEnabled(false);
+            jdNewHighScore.setVisible(true);
         }
     }
 
@@ -362,19 +361,21 @@ public class InGame extends javax.swing.JPanel {
         jTextArea3 = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jbWonHs = new javax.swing.JButton();
+        jbWonPlayAgain = new javax.swing.JButton();
+        jbWonViewHs = new javax.swing.JButton();
         jbWonMainMenu = new javax.swing.JButton();
         jdNewHighScore = new javax.swing.JDialog();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jbHsViewHs = new javax.swing.JButton();
-        jbHsMainMenu = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jtPlayerName = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jbHsPlayAgain = new javax.swing.JButton();
+        jbHsViewHs = new javax.swing.JButton();
+        jbHsMainMenu = new javax.swing.JButton();
         jbSubmitName = new javax.swing.JButton();
         jpTitlePanel = new javax.swing.JPanel();
         jlTitle = new javax.swing.JLabel();
@@ -579,15 +580,23 @@ public class InGame extends javax.swing.JPanel {
         jPanel9.setBackground(new java.awt.Color(0, 51, 153));
         jPanel9.setMaximumSize(new java.awt.Dimension(168, 79));
         jPanel9.setMinimumSize(new java.awt.Dimension(168, 79));
-        jPanel9.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel9.setLayout(new java.awt.GridLayout(0, 1));
 
-        jbWonHs.setText("View High Scores");
-        jbWonHs.addActionListener(new java.awt.event.ActionListener() {
+        jbWonPlayAgain.setText("Play Again");
+        jbWonPlayAgain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbWonHsActionPerformed(evt);
+                jbWonPlayAgainActionPerformed(evt);
             }
         });
-        jPanel9.add(jbWonHs);
+        jPanel9.add(jbWonPlayAgain);
+
+        jbWonViewHs.setText("View High Scores");
+        jbWonViewHs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbWonViewHsActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jbWonViewHs);
 
         jbWonMainMenu.setText("Return to Main Menu");
         jbWonMainMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -609,7 +618,7 @@ public class InGame extends javax.swing.JPanel {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -653,31 +662,6 @@ public class InGame extends javax.swing.JPanel {
         jTextArea4.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane4.setViewportView(jTextArea4);
 
-        jPanel12.setLayout(new java.awt.BorderLayout());
-
-        jPanel13.setBackground(new java.awt.Color(0, 51, 153));
-        jPanel13.setMaximumSize(new java.awt.Dimension(168, 79));
-        jPanel13.setMinimumSize(new java.awt.Dimension(168, 79));
-        jPanel13.setLayout(new java.awt.GridLayout(2, 0));
-
-        jbHsViewHs.setText("View High Scores");
-        jbHsViewHs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbHsViewHsActionPerformed(evt);
-            }
-        });
-        jPanel13.add(jbHsViewHs);
-
-        jbHsMainMenu.setText("Return to Main Menu");
-        jbHsMainMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbHsMainMenuActionPerformed(evt);
-            }
-        });
-        jPanel13.add(jbHsMainMenu);
-
-        jPanel12.add(jPanel13, java.awt.BorderLayout.CENTER);
-
         jPanel14.setBackground(new java.awt.Color(0, 51, 153));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -703,6 +687,39 @@ public class InGame extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
 
+        jPanel12.setLayout(new java.awt.BorderLayout());
+
+        jPanel13.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel13.setMaximumSize(new java.awt.Dimension(168, 79));
+        jPanel13.setMinimumSize(new java.awt.Dimension(168, 79));
+        jPanel13.setLayout(new java.awt.GridLayout(0, 1));
+
+        jbHsPlayAgain.setText("Play Again");
+        jbHsPlayAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbHsPlayAgainActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jbHsPlayAgain);
+
+        jbHsViewHs.setText("View High Scores");
+        jbHsViewHs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbHsViewHsActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jbHsViewHs);
+
+        jbHsMainMenu.setText("Return to Main Menu");
+        jbHsMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbHsMainMenuActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jbHsMainMenu);
+
+        jPanel12.add(jPanel13, java.awt.BorderLayout.CENTER);
+
         jbSubmitName.setText("Submit");
         jbSubmitName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,7 +742,7 @@ public class InGame extends javax.swing.JPanel {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -919,50 +936,51 @@ public class InGame extends javax.swing.JPanel {
         stopTimer();
         MainFrame.card.show(mainPanel, "mainMenu");
         jdQuitToMainMenu.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbYesQuitActionPerformed
 
     private void jbPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPlayAgainActionPerformed
         MainFrame.card.show(mainPanel, "levelSelection");
         jdLostGame.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbPlayAgainActionPerformed
 
     private void jbLostMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLostMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdLostGame.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbLostMainMenuActionPerformed
 
-    private void jbWonHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonHsActionPerformed
+    private void jbWonViewHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonViewHsActionPerformed
         MainFrame.card.show(mainPanel, "bestTimesMenu");
         jdWonGame.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
-    }//GEN-LAST:event_jbWonHsActionPerformed
+        Minesweeper.mainFrame.resizeWindow(500, 400);
+    }//GEN-LAST:event_jbWonViewHsActionPerformed
 
     private void jbWonMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdWonGame.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbWonMainMenuActionPerformed
 
     private void jbHsViewHsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsViewHsActionPerformed
         MainFrame.bestTimesMenu.refresh();
         MainFrame.card.show(mainPanel, "bestTimesMenu");
         jdNewHighScore.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbHsViewHsActionPerformed
 
     private void jbHsMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsMainMenuActionPerformed
         MainFrame.card.show(mainPanel, "mainMenu");
         jdNewHighScore.dispose();
-        Minesweeper.mainFrame.resizeWindow(500 , 400);
+        Minesweeper.mainFrame.resizeWindow(500, 400);
     }//GEN-LAST:event_jbHsMainMenuActionPerformed
 
     private void jbSubmitNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubmitNameActionPerformed
         BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
         BestTimeManagerExpert btme = new BestTimeManagerExpert();
+
         if (jtPlayerName.getText().length() < 1) {
             JOptionPane.showMessageDialog(Minesweeper.mainFrame, "Please enter a player name.", "Name Error", JOptionPane.WARNING_MESSAGE);
         } else if (jtPlayerName.getText().length() > 15) {
@@ -980,6 +998,7 @@ public class InGame extends javax.swing.JPanel {
                     btme.addBestTime(GameVariables.playerName, elapsedSeconds);
                     break;
             }
+            jbHsPlayAgain.setEnabled(true);
             jbHsViewHs.setEnabled(true);
             jbHsMainMenu.setEnabled(true);
             jtPlayerName.setEnabled(false);
@@ -991,6 +1010,18 @@ public class InGame extends javax.swing.JPanel {
         Minesweeper.cm.revealAll();
         updateBoard();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jbWonPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWonPlayAgainActionPerformed
+        MainFrame.card.show(mainPanel, "levelSelection");
+        jdWonGame.dispose();
+        Minesweeper.mainFrame.resizeWindow(500, 400);
+    }//GEN-LAST:event_jbWonPlayAgainActionPerformed
+
+    private void jbHsPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHsPlayAgainActionPerformed
+        MainFrame.card.show(mainPanel, "levelSelection");
+        jdNewHighScore.dispose();
+        Minesweeper.mainFrame.resizeWindow(500, 400);
+    }//GEN-LAST:event_jbHsPlayAgainActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1018,6 +1049,7 @@ public class InGame extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JButton jbHsMainMenu;
+    private javax.swing.JButton jbHsPlayAgain;
     private javax.swing.JButton jbHsViewHs;
     private javax.swing.JButton jbLostMainMenu;
     private javax.swing.JButton jbMainMenu;
@@ -1025,8 +1057,9 @@ public class InGame extends javax.swing.JPanel {
     private javax.swing.JButton jbPause;
     private javax.swing.JButton jbPlayAgain;
     private javax.swing.JButton jbSubmitName;
-    private javax.swing.JButton jbWonHs;
     private javax.swing.JButton jbWonMainMenu;
+    private javax.swing.JButton jbWonPlayAgain;
+    private javax.swing.JButton jbWonViewHs;
     private javax.swing.JButton jbYesQuit;
     private javax.swing.JDialog jdLostGame;
     private javax.swing.JDialog jdNewHighScore;

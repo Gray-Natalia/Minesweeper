@@ -195,7 +195,7 @@ public class CellManager implements Serializable {
         return minesRemaining;
     }
 
-    private void revealCheckCells() {
+    private void revealCheckCells() throws LoseGameException {
         for (CheckCell checkCell : checkCells) {
             int row = checkCell.getRow();
             int column = checkCell.getColumn();
@@ -203,6 +203,10 @@ public class CellManager implements Serializable {
             int value = values[row][column];
             if (state == 9) {
                 switch (value) {
+                    case 15:
+                        states[row][column] = 12;
+                        loseGame();
+                        break;
                     case 0:
                         states[row][column] = 0;
                         addCheckCellTemp(row + 1, column + 1);
@@ -235,10 +239,7 @@ public class CellManager implements Serializable {
     }
 
     public void click(int row, int column) throws LoseGameException, WinGameException {
-        if (values[row][column] == 15) {
-            states[row][column] = 12;
-            loseGame();
-        } else if (states[row][column] == 9) {
+        if (states[row][column] == 9) {
             addCheckCell(row, column);
             revealCheckCells();
             checkWin();
@@ -261,7 +262,7 @@ public class CellManager implements Serializable {
 
     // Functionality for when a user clicks with both mouse buttons.
     // Reveals all cells touching number if the number shown has been marked with flags.
-    public void twoButtonClick(int row, int column) throws WinGameException {
+    public void twoButtonClick(int row, int column) throws LoseGameException, WinGameException {
         int state = states[row][column];
         int value = values[row][column];
         int counter = 0;
@@ -356,6 +357,10 @@ public class CellManager implements Serializable {
             for (int column = 0; column < columns; column++) {
                 if (states[row][column] == 10 && values[row][column] == 15) {
                     states[row][column] = 15; // Discovered Mine
+                } else if (states[row][column] == 10 && values[row][column] != 15) {
+                    states[row][column] = 14; // Incorrect Flag
+                } else if (states[row][column] == 9) {
+                    states[row][column] = values[row][column];
                 }
             }
         }
@@ -422,7 +427,7 @@ public class CellManager implements Serializable {
         }
     }
 
-    private void checkCellTempCopy() {
+    private void checkCellTempCopy() throws LoseGameException {
         if (checkCellsTemp.size() > 0) {
             for (CheckCell checkCellTemp : checkCellsTemp) {
                 checkCells.add(new CheckCell(checkCellTemp.getRow(), checkCellTemp.getColumn()));
