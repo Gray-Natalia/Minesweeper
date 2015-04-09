@@ -12,7 +12,12 @@ import java.io.Serializable;
  */
 public class BestTimeSamples implements Serializable{
     private static final long serialVersionUID = 1L;
-    public static void main(String args[]) {
+    
+//    public static void main(String args[]) {
+//        addSampleTimes();
+//    }
+    
+    private static void addSampleTimes() {
         
         BestTimeManagerBeginner btmb = new BestTimeManagerBeginner();
         BestTimeManagerIntermediate btmi = new BestTimeManagerIntermediate();
@@ -23,15 +28,15 @@ public class BestTimeSamples implements Serializable{
         btme.clearBestTimesFile();
         
         // Beginner
-        btmb.addBestTime("John", 1.5);
-        btmb.addBestTime("James", 2.3);
-        btmb.addBestTime("Jill", 3);
-        btmb.addBestTime("Bill", 3);
-        btmb.addBestTime("Kevin", 4);
-        btmb.addBestTime("Nate", 5);
-        btmb.addBestTime("Bob", 7);
-        btmb.addBestTime("Dan", 8);
-        btmb.addBestTime("Amy", 9);
+        btmb.addBestTime("John", 10.5);
+        btmb.addBestTime("James", 20.3);
+        btmb.addBestTime("Jill", 30);
+        btmb.addBestTime("Bill", 30);
+        btmb.addBestTime("Kevin", 40);
+        btmb.addBestTime("Nate", 50);
+        btmb.addBestTime("Bob", 70);
+        btmb.addBestTime("Dan", 80);
+        btmb.addBestTime("Amy", 90);
         btmb.addBestTime("Jane", 100);
         
         
