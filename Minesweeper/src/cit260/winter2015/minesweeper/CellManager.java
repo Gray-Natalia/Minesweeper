@@ -5,6 +5,7 @@
  */
 package cit260.winter2015.minesweeper;
 
+import cit260.winter2015.minesweeper.enums.CellStates;
 import cit260.winter2015.minesweeper.exceptions.LoseGameException;
 import cit260.winter2015.minesweeper.exceptions.WinGameException;
 import java.io.Serializable;
@@ -105,7 +106,7 @@ public class CellManager implements Serializable {
                 if (currentMineCheck < numberOfMines
                         && mm.getMineColumn(currentMineCheck) == j
                         && mm.getMineRow(currentMineCheck) == currentRow) {
-                    addCell(currentRow, j, 15, 9); // Adds mine.
+                    addCell(currentRow, j, CellStates.DISCOVERED_MINE.getState(), CellStates.UNDISCOVERED.getState()); // Adds mine.
                     currentMineCheck++;
                     continue;
                 } else {
@@ -160,7 +161,7 @@ public class CellManager implements Serializable {
                         }
                     }
                 }
-                addCell(currentRow, j, tempCellValue, 9);
+                addCell(currentRow, j, tempCellValue, CellStates.UNDISCOVERED.getState());
             }
         }
         sort();
@@ -171,21 +172,21 @@ public class CellManager implements Serializable {
     public void valueArray() {
 
         values = new int[rows][columns];
-        for (Cell cell : cells) {
+        cells.stream().forEach((cell) -> {
             int row = cell.getRow();
             int column = cell.getColumn() - 65;
             values[row - 1][column] = cell.getValue();
-        }
+        });
     }
 
     public void stateArray() {
 
         states = new int[rows][columns];
-        for (Cell cell : cells) {
+        cells.stream().forEach((cell) -> {
             int row = cell.getRow();
             int column = cell.getColumn() - 65;
             states[row - 1][column] = cell.getState();
-        }
+        });
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -201,14 +202,14 @@ public class CellManager implements Serializable {
             int column = checkCell.getColumn();
             int state = states[row][column];
             int value = values[row][column];
-            if (state == 9) {
+            if (state == CellStates.UNDISCOVERED.getState()) {
                 switch (value) {
                     case 15:
-                        states[row][column] = 12;
+                        states[row][column] = CellStates.EXPLODED.getState() ;
                         loseGame();
                         break;
                     case 0:
-                        states[row][column] = 0;
+                        states[row][column] = CellStates.EMPTY.getState() ;
                         addCheckCellTemp(row + 1, column + 1);
                         addCheckCellTemp(row + 1, column);
                         addCheckCellTemp(row + 1, column - 1);
@@ -239,7 +240,10 @@ public class CellManager implements Serializable {
     }
 
     public void click(int row, int column) throws LoseGameException, WinGameException {
-        if (states[row][column] == 9) {
+        if (states[row][column] < CellStates.UNDISCOVERED.getState()) {
+            twoButtonClick(row, column);
+        }
+        if (states[row][column] == CellStates.UNDISCOVERED.getState()) {
             addCheckCell(row, column);
             revealCheckCells();
             checkWin();
@@ -249,14 +253,14 @@ public class CellManager implements Serializable {
     // States 0 empty, 1-8 numbers, 9 undiscovered, 10 flagged, 11 unknown
     // Game end only: 12 clicked exploded, 13 undiscovered mine, 14 Incorrect Flag, 15 discovered mine.
     public void rightClick(int row, int column) {
-        if (states[row][column] == 9) {
-            states[row][column] = 10; // Undiscovered - Set Flag
+        if (states[row][column] == CellStates.UNDISCOVERED.getState()) {
+            states[row][column] = CellStates.FLAGGED.getState(); // Undiscovered - Set Flag
             minesRemaining--; // Decrease Mine counter
-        } else if (states[row][column] == 10) {
-            states[row][column] = 11; // Already Flagged - Set Unknown
+        } else if (states[row][column] == CellStates.FLAGGED.getState()) {
+            states[row][column] = CellStates.UNKNOWN.getState(); // Already Flagged - Set Unknown
             minesRemaining++; // Increase Mine counter
-        } else if (states[row][column] == 11) {
-            states[row][column] = 9; // Already Unknown - Set Undiscovered
+        } else if (states[row][column] == CellStates.UNKNOWN.getState()) {
+            states[row][column] = CellStates.UNDISCOVERED.getState(); // Already Unknown - Set Undiscovered
         }
     }
 
@@ -266,53 +270,32 @@ public class CellManager implements Serializable {
         int state = states[row][column];
         int value = values[row][column];
         int counter = 0;
-        if (state == 9) {
+        if (state == CellStates.UNDISCOVERED.getState()) {
         }
-        if (state > 0 && state < 9) {
+        if (state > CellStates.EMPTY.getState() && state < CellStates.UNDISCOVERED.getState()) {
             try {
-                if (row < rows && column < columns && states[row + 1][column + 1] == 10) {
+                if (row < rows && column < columns && states[row + 1][column + 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (row < rows && states[row + 1][column] == 10) {
+                if (row < rows && states[row + 1][column] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (row < rows && column > 0 && states[row + 1][column - 1] == 10) {
+                if (row < rows && column > 0 && states[row + 1][column - 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (column < columns && states[row][column + 1] == 10) {
+                if (column < columns && states[row][column + 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (column > 0 && states[row][column - 1] == 10) {
+                if (column > 0 && states[row][column - 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (row > 0 && column < columns && states[row - 1][column + 1] == 10) {
+                if (row > 0 && column < columns && states[row - 1][column + 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (row > 0 && states[row - 1][column] == 10) {
+                if (row > 0 && states[row - 1][column] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-            }
-            try {
-                if (row > 0 && column > 0 && states[row - 1][column - 1] == 10) {
+                if (row > 0 && column > 0 && states[row - 1][column - 1] == CellStates.FLAGGED.getState()) {
                     counter++;
                 }
             } catch (ArrayIndexOutOfBoundsException ex) {
@@ -343,7 +326,8 @@ public class CellManager implements Serializable {
         {
             for (int row = 0; row < rows; row++) {
                 for (int column = 0; column < columns; column++) {
-                    if (states[row][column] == 9 && values[row][column] != 15) {
+                    if (states[row][column] == CellStates.UNDISCOVERED.getState()
+                            && values[row][column] != CellStates.DISCOVERED_MINE.getState()) {
                         break OUTER;
                     }
                 }
@@ -355,11 +339,13 @@ public class CellManager implements Serializable {
     public void winGame() throws WinGameException {
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                if (states[row][column] == 10 && values[row][column] == 15) {
-                    states[row][column] = 15; // Discovered Mine
-                } else if (states[row][column] == 10 && values[row][column] != 15) {
-                    states[row][column] = 14; // Incorrect Flag
-                } else if (states[row][column] == 9) {
+                if (states[row][column] == CellStates.FLAGGED.getState()
+                        && values[row][column] == CellStates.DISCOVERED_MINE.getState()) {
+                    states[row][column] = CellStates.DISCOVERED_MINE.getState(); // Discovered Mine
+                } else if (states[row][column] == CellStates.FLAGGED.getState() 
+                        && values[row][column] != CellStates.DISCOVERED_MINE.getState()) {
+                    states[row][column] = CellStates.INCORRECT_FLAG.getState(); // Incorrect Flag
+                } else if (states[row][column] == CellStates.UNDISCOVERED.getState()) {
                     states[row][column] = values[row][column];
                 }
             }
@@ -370,10 +356,12 @@ public class CellManager implements Serializable {
     public void loseGame() throws LoseGameException {
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                if (states[row][column] == 10 && values[row][column] == 15) {
-                    states[row][column] = 15; // Discovered Mine
-                } else if (states[row][column] == 10 && values[row][column] != 15) {
-                    states[row][column] = 14; // Incorrect Flag
+                if (states[row][column] == CellStates.FLAGGED.getState()
+                        && values[row][column] == CellStates.DISCOVERED_MINE.getState()) {
+                    states[row][column] = CellStates.DISCOVERED_MINE.getState(); // Discovered Mine
+                } else if (states[row][column] == CellStates.FLAGGED.getState()
+                        && values[row][column] != CellStates.DISCOVERED_MINE.getState()) {
+                    states[row][column] = CellStates.INCORRECT_FLAG.getState(); // Incorrect Flag
                 }
             }
         }

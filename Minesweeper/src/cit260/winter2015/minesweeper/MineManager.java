@@ -69,6 +69,7 @@ public class MineManager implements Serializable {
                     mines.get(i).setColumn((char) ('A' + (char) (Math.random() * columns)));
                     ri = mines.get(i).getRow();
                     ci = mines.get(i).getColumn();
+                    j = 0;
                 }
             }
         }

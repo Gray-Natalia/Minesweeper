@@ -13,7 +13,7 @@ package cit260.winter2015.minesweeper;
  */
 public class BestTimeManagerExpert extends BestTimeManager {
 
-    private static final String BEST_TIMES_EXPERT_FILE = "best_times_expert.dat";
+    private static final String BEST_TIMES_EXPERT_FILE = "resources/best_times_expert.dat";
 
     public BestTimeManagerExpert() {
         super(BEST_TIMES_EXPERT_FILE, "Expert");

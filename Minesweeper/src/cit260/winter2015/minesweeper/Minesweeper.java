@@ -23,12 +23,9 @@ public class Minesweeper {
     public static void main(String[] args) {
         try {
 
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Minesweeper.mainFrame = new MainFrame();
-                    Minesweeper.mainFrame.setVisible(true);
-                }
+            java.awt.EventQueue.invokeLater(() -> {
+                Minesweeper.mainFrame = new MainFrame();
+                Minesweeper.mainFrame.setVisible(true);
             });
         } catch (Exception e) {
             System.err.println("Game crashed: " + e.getMessage());
